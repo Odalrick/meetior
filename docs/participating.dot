@@ -1,0 +1,31 @@
+digraph Participating {
+	graph [rankdir=LR];	
+	label=Participating		
+	Meeting
+	Questionnaire
+	Meeting -> Questionnaire
+	Q_1[shape=rectangle]
+	Q_2[shape=rectangle]
+	Q_3[shape=rectangle]
+	Q_4[shape=rectangle]
+	Q_n[shape=rectangle]
+	Questionnaire -> Q_1
+	Questionnaire -> Q_2
+	Questionnaire -> Q_3
+	Questionnaire -> Q_4
+	Questionnaire -> Q_n	
+	Summoned
+	Meeting -> Summoned
+	User_1[shape=rectangle]	
+	User_n[shape=rectangle]
+	Summoned -> User_1	
+	Summoned -> User_n
+	Participating[style=filled, fillcolor=lightblue]
+	Meeting -> Participating
+	User_2[shape=rectangle, style=filled, fillcolor=lightyellow]
+	User_3[shape=rectangle, style=filled, fillcolor=lightyellow]
+	User_4[shape=rectangle, style=filled, fillcolor=lightyellow]
+	Participating -> User_2
+	Participating -> User_3
+	Participating ->  User_4
+}

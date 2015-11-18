@@ -1,0 +1,29 @@
+digraph Summoned {
+	graph [rankdir=LR];	
+	label=Summoned		
+	Meeting
+	Questionnaire
+	Meeting -> Questionnaire
+	Q_1[shape=rectangle]
+	Q_2[shape=rectangle]
+	Q_3[shape=rectangle]
+	Q_4[shape=rectangle]
+	Q_n[shape=rectangle]
+	Questionnaire -> Q_1
+	Questionnaire -> Q_2
+	Questionnaire -> Q_3
+	Questionnaire -> Q_4
+	Questionnaire -> Q_n	
+	Summoned
+	Meeting -> Summoned
+	User_1[shape=rectangle]
+	User_2[shape=rectangle]
+	User_3[shape=rectangle]
+	User_4[shape=rectangle]
+	User_n[shape=rectangle]
+	Summoned -> User_1
+	Summoned -> User_2
+	Summoned -> User_3
+	Summoned -> User_4
+	Summoned -> User_n
+}
