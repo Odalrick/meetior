@@ -1,10 +1,10 @@
 const CREATE_MEETING = 'CREATE_MEETING'
 
-const initialState = mori.vector()
+const initialState = Immutable.List()
 
 const actions = {
   [CREATE_MEETING](state, action) {
-    return mori.conj(state, mori.hashMap('name', action.name))
+    return state.push(Immutable.Map({name: action.name}))
   },
 }
 

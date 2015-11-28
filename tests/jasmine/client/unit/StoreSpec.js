@@ -1,21 +1,26 @@
 describe('meeting store', ()=> {
+
+  beforeEach(function() {
+    jasmine.addMatchers(immutableMatchers);
+  });
+
   it('should create empty structure', ()=> {
 
     const newState = Store.reduceMeetings(undefined, {type: 'bubbel blä',})
 
-    expect(newState).toEqual(mori.vector())
+    expect(newState).toEqual(Immutable.List())
   })
 
   it('should add meeting to list',()=>{
-    const initialState = mori.vector()
+    const initialState = Immutable.List()
 
     const newState = Store.reduceMeetings(initialState,
       Store.actionCreators.addMeeting('test')
     )
 
-    const expectedState = mori.vector(mori.hashMap('name', 'test'))
+    const expectedState = Immutable.fromJS([{'name': 'test'}])
 
-    expect(mori.toJs(newState)).toEqual(mori.toJs(expectedState))
+    expect(newState).toEqualImmutable(expectedState);
   })
 
 })
