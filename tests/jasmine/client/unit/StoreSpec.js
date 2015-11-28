@@ -1,7 +1,7 @@
 describe('meeting store', ()=> {
   it('should create empty structure', ()=> {
 
-    const newState = Store.reduceMeetings(undefined, {type: Symbol(),})
+    const newState = Store.reduceMeetings(undefined, {type: 'bubbel blä',})
 
     expect(newState).toEqual(mori.vector())
   })
