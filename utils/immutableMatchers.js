@@ -1,3 +1,5 @@
+// Adopted from: https://github.com/unindented/jasmine-immutable-matchers/blob/master/src/matchers.js
+
 var slice = Array.prototype.slice;
 
 var partial = function (func) {
