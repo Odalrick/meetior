@@ -1,13 +1,47 @@
+var webpack = require('webpack');
+
+var path = require('path');
+var HtmlwebpackPlugin = require('html-webpack-plugin');
+
+var ROOT_PATH = path.resolve(__dirname);
+
 module.exports = {
   entry: [
-    './app/src/index.js'
+    path.resolve(ROOT_PATH, 'app/src/index'),
   ],
+  module: {
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      // Options to configure babel with
+      query: {
+        presets: ['es2015', 'stage-0', 'react'],
+      }
+    }],
+
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   output: {
-    path: __dirname + '/app/build',
+    path: path.resolve(ROOT_PATH, 'app/build'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './app/build'
-  }
-}
+    contentBase: path.resolve(ROOT_PATH, 'app/build'),
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlwebpackPlugin({
+      title: 'Listlogs'
+    })
+  ]
+};
+
+

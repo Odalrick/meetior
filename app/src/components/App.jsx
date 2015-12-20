@@ -1,5 +1,7 @@
-App = React.createClass({
-  render: function(){
+import Immutable from 'immutable'
+import React from 'react'
+
+export default () => {
     const state = Immutable.List([{name: 'test',}, {name: 'test2',}, {name: 'test3',},])
     const meetings = state.map(item=><div
       key={item.name}>{item.name}</div>, state)
@@ -11,4 +13,5 @@ App = React.createClass({
       </article>
     )
   }
-})
+
+
