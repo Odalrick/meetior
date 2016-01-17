@@ -8,7 +8,8 @@
     "test:watch": "npm run test -- --watch",
     "webserver": "node api/src/server.js",
     "build": "node_modules/.bin/webpack",
-    "dev": "node_modules/.bin/webpack-dev-server"
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "deploy": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
   entry: [
     path.resolve(ROOT_PATH, 'app/src/index'),
   ],
@@ -28,12 +28,12 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.resolve(ROOT_PATH, 'app/build'),
+    path: process.env.NODE_ENV === 'production' ? path.resolve(ROOT_PATH, 'app/dist') : path.resolve(ROOT_PATH, 'app/build'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(ROOT_PATH, 'app/build'),
+    contentBase: path.resolve(ROOT_PATH, 'app/dist'),
     historyApiFallback: true,
     hot: true,
     inline: true,
