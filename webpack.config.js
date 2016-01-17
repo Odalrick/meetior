@@ -15,12 +15,14 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel',
-      // Options to configure babel with
       query: {
         presets: ['es2015', 'stage-0', 'react'],
       }
+    },
+    {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass'],
     }],
-
   },
   resolve: {
     extensions: ['', '.js', '.jsx']

@@ -3,7 +3,7 @@ import Immutable from 'immutable'
 import chaiImmutable from 'chai-immutable'
 import reducer, {addMeeting} from './meetings'
 
-chai.use(chaiImmutable);
+chai.use(chaiImmutable)
 
 describe('meetings duck', ()=> {
 
@@ -21,7 +21,7 @@ describe('meetings duck', ()=> {
 
     const expectedState = Immutable.fromJS([{'name': 'test'}])
 
-    expect(newState).equal(expectedState);
+    expect(newState).equal(expectedState)
   })
 
 })
