@@ -6,7 +6,7 @@ export default function Meetings(props) {
   return (
     <div>
       <input ref={(i)=>{input = i}}/>
-      <button onClick={()=>{props.createMeeting(input.value)}}>Skapa möte 2</button>
+      <button onClick={()=>{props.createMeeting(input.value)}}>Skapa möte</button>
       {props.meetings.map((item)=><div key={item.get('name')}>
         {item.get('name')}
       </div>)}

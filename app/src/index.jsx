@@ -8,8 +8,7 @@ import Immutable from 'immutable'
 
 (() => {
   const reducer = combineReducers({meetings,})
-  const state = Immutable.fromJS([{name: 'test',}, {name: 'test2',}, {name: 'test3',},])
-  const store = createStore(reducer, {meetings: state,})
+  const store = createStore(reducer)
   const app = document.createElement('div')
   document.body.appendChild(app)
   ReactDOM.render(
