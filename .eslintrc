@@ -36,6 +36,8 @@
     "react/jsx-quotes": [0,
       "single"
     ],
+    "react/prop-types": [0
+    ],
     "semi": [
       2,
       "never"

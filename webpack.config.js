@@ -7,9 +7,10 @@ var ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
-  entry: [
-    path.resolve(ROOT_PATH, 'app/src/index'),
-  ],
+  entry: {
+    admin: path.resolve(ROOT_PATH, 'src/admin'),
+    server: path.resolve(ROOT_PATH, 'src/server')
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -28,12 +29,12 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: process.env.NODE_ENV === 'production' ? path.resolve(ROOT_PATH, 'app/dist') : path.resolve(ROOT_PATH, 'app/build'),
+    path: path.resolve(ROOT_PATH, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: "[name].js"
   },
   devServer: {
-    contentBase: path.resolve(ROOT_PATH, 'app/dist'),
+    contentBase: path.resolve(ROOT_PATH, 'dist'),
     historyApiFallback: true,
     hot: true,
     inline: true,
@@ -42,7 +43,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
-      title: 'Listlogs'
+      title: 'Meetior - administration',
+      chunks:['admin']
     })
   ]
 };

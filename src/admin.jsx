@@ -4,7 +4,6 @@ import App from './components/App.jsx'
 import { createStore, combineReducers, } from 'redux'
 import { Provider, } from 'react-redux'
 import meetings from './ducks/meetings'
-import Immutable from 'immutable'
 
 (() => {
   const reducer = combineReducers({meetings,})
