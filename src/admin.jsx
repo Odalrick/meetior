@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App.jsx'
+import Admin from './components/Admin.jsx'
 import { createStore, combineReducers, } from 'redux'
 import { Provider, } from 'react-redux'
 import meetings from './ducks/meetings'
@@ -12,7 +12,7 @@ import meetings from './ducks/meetings'
   document.body.appendChild(app)
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <Admin />
     </Provider>,
     app
   )
