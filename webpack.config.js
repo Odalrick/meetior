@@ -44,7 +44,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
       title: 'Meetior - administration',
-      chunks:['admin']
+      chunks:['admin'],
+      template: 'src/index.ejs',
+      inject: 'body',
     })
   ]
 };

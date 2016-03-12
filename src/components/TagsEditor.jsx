@@ -10,7 +10,7 @@ export default function TagsEditor(props) {
   return (
     <section>
       <TagList tags={tags}/>
-      <table>
+      <table className="table table-hover">
         <thead>
         <tr>
           <th>Fråga</th>
@@ -19,6 +19,7 @@ export default function TagsEditor(props) {
         <tbody>{makeTbody(questions)}
         </tbody>
       </table>
+      <button className="btn btn-primary">+ Skapa ny tagg</button>
     </section>
   )
 }
