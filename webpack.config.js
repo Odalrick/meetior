@@ -31,21 +31,20 @@ module.exports = {
   output: {
     path: path.resolve(ROOT_PATH, 'dist'),
     publicPath: '/',
-    filename: "[name].js"
+    filename: '[name].js',
   },
   devServer: {
     contentBase: path.resolve(ROOT_PATH, 'dist'),
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true
+    progress: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
-      title: 'Meetior - administration',
-      chunks:['admin'],
-      template: 'src/index.ejs',
+      chunks:['admin',],
+      template: 'src/index.html',
       inject: 'body',
     })
   ]
