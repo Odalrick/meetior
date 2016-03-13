@@ -1,12 +1,16 @@
 import React from 'react'
+import Immutable from 'immutable'
 import TagList from './TagList.jsx'
-import tags from '../mock-data/tags'
+
 import questions from '../mock-data/questions'
 import R from 'ramda'
 
 const makeTbody = R.map(question => <tr key={question.id} ><td>{question.statement}</td></tr>)
 
 export default function TagsEditor(props) {
+
+  const tags = Immutable.List(props.tags)
+
   return (
     <section>
       <TagList tags={tags}/>

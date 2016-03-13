@@ -1,13 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Immutable from 'immutable'
 import Admin from './components/Admin.jsx'
 import { createStore, combineReducers, } from 'redux'
 import { Provider, } from 'react-redux'
-import meetings from './ducks/meetings'
+import tags from './ducks/tags'
+
+import mockTags from './mock-data/tags'
 
 (() => {
-  const reducer = combineReducers({meetings,})
-  const store = createStore(reducer)
+  const reducer = combineReducers({tags, })
+  const initialStateTags = Immutable.fromJS(mockTags)
+
+  const store = createStore(reducer, {tags: initialStateTags})
   const app = document.createElement('div')
   document.body.appendChild(app)
   ReactDOM.render(

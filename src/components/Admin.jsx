@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminLayout from './AdminLayout.jsx'
 import Sidebar from './Sidebar.jsx'
-import TagsEditor from './TagsEditor.jsx'
+import TagsEditor from '../containers/TagsEditorContainer'
 
 require('./Admin.scss')
 
