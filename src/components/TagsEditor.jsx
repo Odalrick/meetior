@@ -8,9 +8,7 @@ import R from 'ramda'
 const makeTbody = R.map(question => <tr key={question.id} ><td>{question.statement}</td></tr>)
 
 export default function TagsEditor(props) {
-
-  const tags = Immutable.List(props.tags)
-
+  const tags = props.tags.toList()
   return (
     <section>
       <TagList tags={tags}/>
@@ -23,7 +21,7 @@ export default function TagsEditor(props) {
         <tbody>{makeTbody(questions)}
         </tbody>
       </table>
-      <button className="btn btn-primary">+ Skapa ny tagg</button>
+      <button className="btn btn-primary" onClick={()=>props.addTag('asd')}>+ Skapa ny tagg</button>
     </section>
   )
 }

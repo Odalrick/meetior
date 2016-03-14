@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createTag: (name) => dispatch(createTag(name)),
+    addTag: (name) => dispatch(addTag(name)),
   }
 }
 

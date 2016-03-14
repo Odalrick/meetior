@@ -15,6 +15,7 @@ export default function reducer(state = initialState, action) {
 const actions = {
   [ADD_TAG](state, action) {
     const id = `tags/${action.name}`
+    // Not happy with this, shouldn't this dispatch an action? See redux-thunk...
     if(state.get(id)) {
       throw new Error('Får inte finnas två taggar med samma namn')
     }
