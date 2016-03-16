@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha 'src/**/*.spec.js' --compilers js:babel-core/register",
+    "test": "./node_modules/mocha/bin/mocha 'src/**/*.spec.js' --require './mocha.config.js' --compilers js:babel-core/register",
     "test:watch": "npm run test -- --watch",
     "webserver": "node api/src/server.js",
     "build": "node_modules/.bin/webpack",
@@ -37,6 +37,7 @@
   "dependencies": {
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
+    "babel-polyfill": "^6.7.2",
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^1.7.0",
     "immutable": "^3.7.6",
@@ -47,6 +48,7 @@
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.2",
     "redux": "^3.0.5",
+    "redux-saga": "^0.9.4",
     "redux-thunk": "^1.0.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",

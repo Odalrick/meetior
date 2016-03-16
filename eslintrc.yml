@@ -1,0 +1,27 @@
+---
+extends: "airbnb"
+parserOptions:
+  ecmaVersion: 6
+globals:
+  __DEV__: false
+  __PROD__: false
+  __DEBUG__: false
+  __DEBUG_NW__: false
+  expect: false
+rules:
+  comma-dangle: [1, always-multiline]
+  indent: [2, 2, { SwitchCase: 1 }]
+  key-spacing: [2, { beforeColon: false, afterColon: true }]
+  no-else-return: 0
+  func-names: 0
+  space-before-function-paren: [2, { anonymous: always, named: never} ]
+  semi: [2, never]
+  no-console: 0
+  prefer-arrow-callback: 0
+  strict: 0
+  no-unused-vars: [2, { vars: all, args: after-used, argsIgnorePattern: "^_" }]
+  arrow-body-style: [2, as-needed]
+  max-len: [1, { code: 100, tabWidth: 2, ignoreUrls: true}]
+env:
+  node: true
+  mocha: true

@@ -8,8 +8,8 @@ var ROOT_PATH = path.resolve(__dirname);
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
   entry: {
-    admin: path.resolve(ROOT_PATH, 'src/admin'),
-    server: path.resolve(ROOT_PATH, 'src/server')
+    admin: ['babel-polyfill', path.resolve(ROOT_PATH, 'src/admin')],
+    server: ['babel-polyfill', path.resolve(ROOT_PATH, 'src/server')]
   },
   module: {
     loaders: [{

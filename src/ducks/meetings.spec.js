@@ -1,9 +1,5 @@
-import chai, {expect,} from 'chai'
 import Immutable from 'immutable'
-import chaiImmutable from 'chai-immutable'
 import reducer, {addMeeting,} from './meetings'
-
-chai.use(chaiImmutable)
 
 describe('meetings duck', ()=> {
 
