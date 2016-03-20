@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import TagsEditor from '../components/TagsEditor'
-import {addTag} from '../sagas/addTagSaga'
+import {actionCreators} from '../sagas/addTagSaga'
 
 function mapStateToProps(state) {
   return {
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addTag: (name) => dispatch(addTag(name)),
+    addTag: (name) => dispatch(actionCreators.addTag(name)),
   }
 }
 
