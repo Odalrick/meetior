@@ -1,13 +1,11 @@
-import {put} from 'redux-saga'
-import saga from './addTagSaga'
-import duck from '../ducks/tags'
+import {put} from 'redux-saga/effects'
+import saga, {sagas, actionCreators} from './addTagSaga'
+import duck, {addTag as addTagDuck} from '../ducks/tags'
 
 describe('add tag saga', ()=> {
-
   it('should yield ADD_TAG effect', ()=> {
-    const saga = saga()
-    const effect = saga.next(duck.addTag('test')  ).value
-    expect(effect).to.deepEqual(put(duck.addTag('test')))
+    const s = sagas.addTagSaga(actionCreators.addTag('test'))
+    const effect = s.next().value
+    expect(effect).to.deep.equal(put(addTagDuck('test')))
   })
-
 })

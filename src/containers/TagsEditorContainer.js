@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import TagsEditor from '../components/TagsEditor'
-import {addTag} from '../ducks/tags'
+import {addTag} from '../sagas/addTagSaga'
 
 function mapStateToProps(state) {
   return {

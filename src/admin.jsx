@@ -13,6 +13,7 @@ import mockTags from './mock-data/tags'
   const initialStateTags = Immutable.fromJS(mockTags)
 
   const store = createStore(reducer, {tags: initialStateTags})
+  // TODO: add redux-saga middleware
   const app = document.createElement('div')
   document.body.appendChild(app)
   ReactDOM.render(
