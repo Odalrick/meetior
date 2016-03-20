@@ -1,4 +1,4 @@
-import chai, {expect,} from 'chai'
+import chai, {expect} from 'chai'
 import chaiImmutable from 'chai-immutable'
 import 'babel-polyfill'
 
