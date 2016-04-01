@@ -3,12 +3,19 @@ import {put,select} from 'redux-saga/effects'
 import {addTag} from '../ducks/tags'
 const ADD_TAG = 'meetingz/sagas/ADD_TAG'
 import {tagsSelector} from '../selectors'
+import {error} from '../utils'
 
 export const sagas = {
   *addTagSaga(action) {
     const tags = yield select(tagsSelector)
-
-    yield put(addTag(action.payload.name))
+    const id = `tags/${action.payload.name}`
+    if(tags && tags.get(id)) {
+      yield put(error(addTag(action.payload.name),
+        'Det finns redan en tagg med detta namn'))
+    }
+    else {
+      yield put(addTag(action.payload.name))
+    }
   },
 }
 

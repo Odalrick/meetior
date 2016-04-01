@@ -2,7 +2,7 @@ import Immutable from 'immutable'
 import {put, select} from 'redux-saga/effects'
 import {sagas, actionCreators} from './addTagSaga'
 import {addTag} from '../ducks/tags'
-import {errorPayload} from '../utils'
+import {error} from '../utils'
 import {tagsSelector} from '../selectors'
 
 describe('add tag saga', () => {
@@ -14,7 +14,7 @@ describe('add tag saga', () => {
   })
 
   it('should reject duplicate tags', () => {
-    var action = actionCreators.addTag('test')
+    const action = actionCreators.addTag('test')
     const s = sagas.addTagSaga(action)
     const effect = s.next().value
 
@@ -26,10 +26,8 @@ describe('add tag saga', () => {
       },
     })).value
 
-    expect(effect2).to.deep.equal(put({
-      type: action.type,
-      error: true,
-      payload: errorPayload('Det finns redan en tagg med detta namn'),
-    }))
+    expect(effect2).to.deep.equal(put(
+      error(addTag('test'),'Det finns redan en tagg med detta namn')
+    ))
   })
 })
