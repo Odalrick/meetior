@@ -19,11 +19,4 @@ describe('tags duck', ()=> {
       Immutable.fromJS({[id]: {id, name}}))
   })
 
-  it('should enforce unique tags', () => {
-    const name = 'aNewTag'
-    const state = reducer(Immutable.Map(), addTag(name))
-
-    expect(() => reducer(state, addTag(name))).to.throw()
-  })
-
 })
