@@ -1,9 +1,12 @@
 ---
-#extends:
-#  - airbnb
+extends:
+  - airbnb
+  - plugin:react/recommended
 parserOptions:
   ecmaVersion: 6
   sourceType: module
+  ecmaFeatures:
+    jsx: true
 globals:
   __DEV__: false
   __PROD__: false
@@ -31,7 +34,6 @@ rules:
   import/default: 2
   import/export: 2
   max-len: [1, 100, 2, {ignoreUrls: true}]
-#  max-len: [1, { code: 100, tabWidth: 2, ignoreUrls: true}]
 env:
   node: true
   mocha: true
