@@ -8,15 +8,27 @@ chai.use(chaiImmutable)
 describe('tags duck', ()=> {
   it('should create initial state', () => {
     const newState = reducer(undefined, {type: 'unknown',})
-    expect(newState).equal(Immutable.Map())
+    expect(newState).equal(Immutable.List())
   })
+
+  // {
+  //  tags: [],
+  //  drafts:
+  //  {
+  //    tags: []
+  //  }
+  // }
+
+  // {
+  //   tags: <tags>.drafts
+  // }
 
   it('should add a new tag', () => {
     const name = 'aNewTag'
-    const newState = reducer(Immutable.Map(), addTag(name))
+    const newState = reducer(Immutable.List(), addTag(name))
     const id = `tags/${name}`
     expect(newState).equal(
-      Immutable.fromJS({[id]: {id, name}}))
+      Immutable.fromJS([{id, name}]))
   })
 
 })

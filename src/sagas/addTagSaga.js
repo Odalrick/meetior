@@ -7,7 +7,6 @@ import {error} from '../utils'
 
 export const sagas = {
   *addTagSaga(action) {
-    console.log(action)
     const tags = yield select(tagsSelector)
     const id = `tags/${action.payload.name}`
     if(tags && tags.get(id)) {
@@ -20,7 +19,6 @@ export const sagas = {
 }
 
 export default function* () {
-  console.log('export default')
   yield* takeEvery(ADD_TAG, sagas.addTagSaga)
 }
 

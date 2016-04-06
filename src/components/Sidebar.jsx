@@ -1,6 +1,7 @@
 import React from 'react'
+import TagList from  './TagList'
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   return (
     <div>
       <div>
@@ -13,7 +14,9 @@ export default function Sidebar() {
         <ul className="nav nav-pills nav-stacked">
           <li><a>Överblick</a></li>
           <li><a>Statistik</a></li>
-          <li className="active"><a>Taggar</a></li>
+          <li className="active"><a>Taggar</a>
+            <TagList tags={props.tags}/>
+          </li>
         </ul>
       </section>
     </div>
