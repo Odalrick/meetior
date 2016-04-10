@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 
-const ADD_MEETING = 'meetior/meetings/ADD_MEETING'
+const EDIT_SLIDE_CONTENT = 'planck/slides/EDIT_SLIDE_CONTENT'
 
 const initialState = Immutable.List()
 
@@ -13,13 +13,15 @@ export default function reducer(state = initialState, action) {
 }
 
 const actions = {
-  [ADD_MEETING](state, action) {
-    return state.push(Immutable.Map({name: action.name}))
+  [EDIT_SLIDE_CONTENT](state, action) {
+    return state.updateIn(
+      [state.indexOf(s => s._id === action.payload._id), 'content'],
+      () => action.payload.newContent)
   },
 }
 
-//export function addMeeting(name) {
-//  return {
-//    type: ADD_MEETING, name,
-//  }
-//}
+export function editSlideContent(courseId, slideId, newContent) {
+  return {
+    type: EDIT_SLIDE_CONTENT, payload: {courseId, slideId, newContent}
+  }
+}

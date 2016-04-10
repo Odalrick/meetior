@@ -5,8 +5,8 @@ export default function(props) {
   return (
     <ol>
       {
-        slides.map((s, i) =>
-          <li key={i}><textarea defaultValue={s}></textarea></li>
+        slides.map((s) =>
+          <li key={s.get('_id')}><textarea defaultValue={s.get('content')}></textarea></li>
         )
       }
     </ol>
