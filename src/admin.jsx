@@ -5,19 +5,22 @@ import createSagaMiddleware from 'redux-saga'
 import Admin from './components/Admin.jsx'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import tags from './ducks/tags'
-import tagSagas from './sagas/addTagSaga'
+import slides from './ducks/slides'
+//import tagSagas from './sagas/addTagSaga'
 
-import mockTags from './mock-data/tags'
+import mockSlides from './mock-data/slides'
 
 (() => {
-  const reducer = combineReducers({tags})
-  const initialStateTags = Immutable.fromJS(mockTags)
-  const sagaMiddleware = createSagaMiddleware(tagSagas)
+  const reducer = combineReducers({slides})
+  const initialStateSlides = Immutable.fromJS(mockSlides)
+  //const sagaMiddleware = createSagaMiddleware(tagSagas)
 
-  const store = createStore(reducer, {tags: initialStateTags},
-    compose(applyMiddleware(sagaMiddleware),
-      window.devToolsExtension ? window.devToolsExtension() : f => f))
+  //const store = createStore(reducer, {slides: initialStateSlides},
+  //  compose(applyMiddleware(sagaMiddleware),
+  //    window.devToolsExtension ? window.devToolsExtension() : f => f))
+
+  const store = createStore(reducer, {slides: initialStateSlides},
+      window.devToolsExtension ? window.devToolsExtension() : f => f)
   const app = document.createElement('div')
   document.body.appendChild(app)
   ReactDOM.render(
