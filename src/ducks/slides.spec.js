@@ -10,10 +10,13 @@ describe('slide duck', ()=> {
   it('should edit slide content', () => {
     const newContent = 'new content'
     const courseId = 0
-    const slideId = 0
-    const newState = reducer(Immutable.fromJS([
-      {_id: slideId, content: 'old content'}]), editSlideContent(courseId, slideId, newContent))
+    const targetId = 0
+    const targetSlide = {_id: targetId, content: 'old content'}
+    const otherSlide = {_id: 999, content: 'nothing interesting'}
+    const newState = reducer(Immutable.fromJS([targetSlide, otherSlide]),
+      editSlideContent(courseId, targetId, newContent))
     expect(newState).equal(
-      Immutable.fromJS([{_id: slideId, content: newContent}]))
+      Immutable.fromJS(Immutable.fromJS([{_id: targetId, content: newContent}, otherSlide])))
   })
+
 })

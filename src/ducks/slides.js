@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action) {
 const actions = {
   [EDIT_SLIDE_CONTENT](state, action) {
     return state.updateIn(
-      [state.indexOf(s => s._id === action.payload._id), 'content'],
+      [state.findIndex(s => s.get('_id') === action.payload.slideId), 'content'],
       () => action.payload.newContent)
   },
 }
