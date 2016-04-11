@@ -1,4 +1,8 @@
 import React from 'react'
+import WYSIWYG from './WYSIWYG'
+
+//<textarea value={slide.get('content')}></textarea>
+//<button onChange={handleChange} onClick={() => editSlideContent('asd')}>Spara</button>
 
 export default function(props){
   const slide = props.slide
@@ -7,10 +11,9 @@ export default function(props){
     this.setState({value: event.target.value}) // Why do this?
   }
   return (
-    <div>
-      <textarea value={slide.get('content')}></textarea>
-      <button onChange={handleChange} onClick={() => editSlideContent('asd')}>Spara</button>
-    </div>
+
+      <WYSIWYG content={slide.get('content')}></WYSIWYG>
+
   )
 }
 
