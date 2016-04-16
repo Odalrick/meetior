@@ -1,19 +1,38 @@
-import React from 'react'
+import React, {Component} from 'react'
+import { DragSource } from 'react-dnd'
+
 import WYSIWYG from './WYSIWYG'
+import {ItemTypes} from './ItemTypes'
 
-//<textarea value={slide.get('content')}></textarea>
-//<button onChange={handleChange} onClick={() => editSlideContent('asd')}>Spara</button>
-
-export default function(props){
-  const slide = props.slide
-  const editSlideContent = props.editSlideContent
-  const handleChange = (event) => {
-    this.setState({value: event.target.value}) // Why do this?
+const slideSource = {
+  beginDrag(props){
+    return {
+      slideId: props.slide.get('_id')
+    }
   }
-  return (
-
-      <WYSIWYG content={slide.get('content')}></WYSIWYG>
-
-  )
 }
 
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+class Slide extends Component{
+  render() {
+    const {slide, editSlideContent, connectDragSource, isDragging} = this.props
+
+    const handleChange = (event) => {
+      this.setState({value: event.target.value}) // Why do this?
+    }
+
+    return connectDragSource(
+      <div>
+        <WYSIWYG content={slide.get('content')}></WYSIWYG>
+      </div>
+    )
+  }
+}
+
+export default DragSource(ItemTypes.SLIDE, slideSource, collect)(Slide);
