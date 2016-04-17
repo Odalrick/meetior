@@ -1,0 +1,45 @@
+import Immutable from 'immutable'
+
+const SET_SLIDE_CONTENT = 'planck/lesson/SET_SLIDE_CONTENT'
+const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
+
+const initialState = Immutable.fromJS({name:'',description:'',slides:[]})
+
+export default function reducer(state = initialState, action) {
+  if (actions[action.type]) {
+    return actions[action.type](state, action)
+  } else {
+    return state
+  }
+}
+
+const actions = {
+  [SET_SLIDE_CONTENT](state, action) {
+    return state.updateIn(
+      ['slides', action.payload.slideIndex, 'text'],
+      () => action.payload.newText)
+  },
+  [MOVE_SLIDE](state, action) {
+    const toIndex = action.payload.toIndex
+    const fromIndex = action.payload.fromIndex
+    const slideToMove = state.get('slides').get(fromIndex)
+    return state.updateIn(
+      ['slides'], (slides) => {
+        return slides
+          .insert(toIndex, slideToMove)
+          .remove(fromIndex >= toIndex ? fromIndex + 1: fromIndex)
+      })
+  },
+}
+
+export function setSlideContent(slideIndex, newText) {
+  return {
+    type: SET_SLIDE_CONTENT, payload: {slideIndex, newText}
+  }
+}
+
+export function moveSlide(fromIndex, toIndex) {
+  return {
+    type: MOVE_SLIDE, payload: {fromIndex, toIndex}
+  }
+}
