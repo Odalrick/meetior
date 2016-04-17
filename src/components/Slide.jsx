@@ -8,7 +8,6 @@ import {ItemTypes} from './ItemTypes'
 const slideSource = {
   beginDrag(props){
     return {
-      slideId: props.slide.get('_id'),
       index: props.index
     }
   }
@@ -32,7 +31,6 @@ const slideTarget = {
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
       return
     }
-
     props.moveSlide(dragIndex, hoverIndex)
     monitor.getItem().index = hoverIndex
   }
@@ -54,16 +52,16 @@ function collectTarget(connect) {
 
 class Slide extends Component{
   render() {
-    const {slide, editSlideContent, connectDragSource, connectDropTarget, isDragging} = this.props
+    const {slide, setSlideText, connectDragSource, connectDropTarget, isDragging} = this.props
     const opacity = isDragging ? 0 : 1;
     const handleChange = (event) => {
       this.setState({value: event.target.value}) // Why do this?
     }
+//<WYSIWYG content={slide.get('text')}></WYSIWYG>
 
     return connectDropTarget(connectDragSource(
-      <div style={{opacity}}>
-        <WYSIWYG content={slide.get('content')}></WYSIWYG>
-      </div>
+        <div style={{opacity}} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
+        </div>
     ))
   }
 }

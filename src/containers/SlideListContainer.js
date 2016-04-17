@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
 
 import SlideList from '../components/SlideList'
-import {editSlideContent, moveSlide} from '../ducks/slides'
+import {setSlideText, moveSlide} from '../ducks/lesson'
 
 
 function mapStateToProps(state) {
   return {
-    slides: state.slides,
+    slides: state.lesson.get('slides'),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    editSlideContent: (courseId, slideId, newContent) => dispatch(editSlideContent(courseId, slideId, newContent)),
-    moveSlide: (courseId, slideId, newPosition) => dispatch(moveSlide(courseId, slideId, newPosition))
+    setSlideText: (slideIndex, newText) => dispatch(setSlideText(slideIndex, newText)),
+    moveSlide: (fromIndex, toIndex) => dispatch(moveSlide(fromIndex, toIndex))
   }
 }
 

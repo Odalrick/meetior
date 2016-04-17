@@ -1,25 +1,23 @@
 import React from 'react'
-
 import Slide from './Slide'
 
 export default function(props) {
-  const {slides, editSlideContent, moveSlide} = props
+  const {slides, setSlideText, moveSlide} = props
   return (
     <ol>
       {
         slides
-          .sort((s1, s2) => s1.get('position') - s2.get('position'))
           .map((s,i) =>
-            <li key={s.get('_id')}>
+            <li key={i}>
               <Slide
                 slide={s}
-                index={s.get('position')}
-                editSlideContent={(newContent) => {
-                   editSlideContent('unknown course', s.get('_id'), newContent)
+                index={i}
+                setSlideText={(newText) => {
+                   setSlideText(i, newText)
                   }
                 }
-                moveSlide={(newPosition) => {
-                    moveSlide('unknown course', s.get('_id'), newPosition)
+                moveSlide={(fromIndex, toIndex) => {
+                    moveSlide(fromIndex, toIndex)
                   }
                 }
                 ></Slide>

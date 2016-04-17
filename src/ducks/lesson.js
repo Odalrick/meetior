@@ -1,7 +1,8 @@
 import Immutable from 'immutable'
 
-const SET_SLIDE_CONTENT = 'planck/lesson/SET_SLIDE_CONTENT'
+const SET_SLIDE_TEXT = 'planck/lesson/SET_SLIDE_TEXT'
 const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
+const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
 
 const initialState = Immutable.fromJS({name:'',description:'',slides:[]})
 
@@ -14,7 +15,7 @@ export default function reducer(state = initialState, action) {
 }
 
 const actions = {
-  [SET_SLIDE_CONTENT](state, action) {
+  [SET_SLIDE_TEXT](state, action) {
     return state.updateIn(
       ['slides', action.payload.slideIndex, 'text'],
       () => action.payload.newText)
@@ -32,14 +33,20 @@ const actions = {
   },
 }
 
-export function setSlideContent(slideIndex, newText) {
+export function setSlideText(slideIndex, newText) {
   return {
-    type: SET_SLIDE_CONTENT, payload: {slideIndex, newText}
+    type: SET_SLIDE_TEXT, payload: {slideIndex, newText}
   }
 }
 
 export function moveSlide(fromIndex, toIndex) {
   return {
     type: MOVE_SLIDE, payload: {fromIndex, toIndex}
+  }
+}
+
+export function startEditingSlide(slideIndex) {
+  return {
+    type: START_EDITING_SLIDE, payload: {slideIndex}
   }
 }
