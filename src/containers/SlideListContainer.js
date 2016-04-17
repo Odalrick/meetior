@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import SlideList from '../components/SlideList'
-import {editSlideContent,} from '../ducks/slides'
+import {editSlideContent, moveSlide} from '../ducks/slides'
 
 
 function mapStateToProps(state) {
@@ -13,6 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     editSlideContent: (courseId, slideId, newContent) => dispatch(editSlideContent(courseId, slideId, newContent)),
+    moveSlide: (courseId, slideId, newPosition) => dispatch(moveSlide(courseId, slideId, newPosition))
   }
 }
 

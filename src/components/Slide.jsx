@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { DragSource } from 'react-dnd'
+import {findDOMNode} from 'react-dom'
+import { DragSource, DropTarget } from 'react-dnd'
 
 import WYSIWYG from './WYSIWYG'
 import {ItemTypes} from './ItemTypes'
@@ -7,32 +8,65 @@ import {ItemTypes} from './ItemTypes'
 const slideSource = {
   beginDrag(props){
     return {
-      slideId: props.slide.get('_id')
+      slideId: props.slide.get('_id'),
+      index: props.index
     }
   }
 }
 
-function collect(connect, monitor) {
+const slideTarget = {
+  hover(props, monitor, component){
+    const dragIndex = monitor.getItem().index
+    const hoverIndex = props.index
+    if(dragIndex === hoverIndex)
+      return
+
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect()
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+    const clientOffset = monitor.getClientOffset()
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top
+    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      return
+    }
+
+    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      return
+    }
+
+    props.moveSlide(dragIndex, hoverIndex)
+    monitor.getItem().index = hoverIndex
+  }
+}
+
+function collectSource(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   }
 }
 
+function collectTarget(connect) {
+  return {
+    connectDropTarget: connect.dropTarget()
+  }
+}
+
+
 class Slide extends Component{
   render() {
-    const {slide, editSlideContent, connectDragSource, isDragging} = this.props
-
+    const {slide, editSlideContent, connectDragSource, connectDropTarget, isDragging} = this.props
+    const opacity = isDragging ? 0 : 1;
     const handleChange = (event) => {
       this.setState({value: event.target.value}) // Why do this?
     }
 
-    return connectDragSource(
-      <div>
+    return connectDropTarget(connectDragSource(
+      <div style={{opacity}}>
         <WYSIWYG content={slide.get('content')}></WYSIWYG>
       </div>
-    )
+    ))
   }
 }
 
-export default DragSource(ItemTypes.SLIDE, slideSource, collect)(Slide);
+export default DropTarget(ItemTypes.SLIDE, slideTarget, collectTarget)(
+  DragSource(ItemTypes.SLIDE, slideSource, collectSource)(Slide));
