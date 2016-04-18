@@ -23,12 +23,13 @@ const actions = {
   [MOVE_SLIDE](state, action) {
     const toIndex = action.payload.toIndex
     const fromIndex = action.payload.fromIndex
-    const slideToMove = state.get('slides').get(fromIndex)
+
     return state.updateIn(
       ['slides'], (slides) => {
+        const slideToMove = state.get('slides').get(fromIndex)
         return slides
+          .remove(fromIndex)
           .insert(toIndex, slideToMove)
-          .remove(fromIndex >= toIndex ? fromIndex + 1: fromIndex)
       })
   },
 }
