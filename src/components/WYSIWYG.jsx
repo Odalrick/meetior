@@ -19,20 +19,28 @@ import 'tinymce/skins/lightgray/skin.min.css'
 
 import ReactTinyMCE from 'react-tinymce';
 
+import 'quill/dist/quill.snow.css'
+import ReactQuill from 'react-quill';
+
 export default function(props) {
-  const handleEditorChange = (e) => {
-    console.log(e.target.getContent());
+  const handleEditorChange = (content, delta, source, editor) => {
+    console.log(content);
   }
 
+  //<ReactTinyMCE
+  //  content={props.content}
+  //  config={{
+  //      plugins: 'autolink link image lists print preview',
+  //      skin: false,
+  //      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'
+  //    }}
+  //  onChange={handleEditorChange}
+  ///>
+
   return (
-    <ReactTinyMCE
-      content={props.content}
-      config={{
-        plugins: 'autolink link image lists print preview',
-        skin: false,
-        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'
-      }}
-      onChange={handleEditorChange}
-    />
-  );
+    <ReactQuill theme="snow"
+                value={props.text}
+                onChange={handleEditorChange}
+                pollInterval={1000} />
+  )
 }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import SlideList from '../components/SlideList'
-import {setSlideText, moveSlide} from '../ducks/lesson'
+import {setSlideText, moveSlide, startEditingSlide} from '../ducks/lesson'
 
 
 function mapStateToProps(state) {
@@ -13,7 +13,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setSlideText: (slideIndex, newText) => dispatch(setSlideText(slideIndex, newText)),
-    moveSlide: (fromIndex, toIndex) => dispatch(moveSlide(fromIndex, toIndex))
+    moveSlide: (fromIndex, toIndex) => dispatch(moveSlide(fromIndex, toIndex)),
+    startEditingSlide: (slideIndex) => dispatch(startEditingSlide(slideIndex)),
   }
 }
 

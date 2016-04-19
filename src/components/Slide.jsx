@@ -52,15 +52,21 @@ function collectTarget(connect) {
 
 class Slide extends Component{
   render() {
-    const {slide, setSlideText, connectDragSource, connectDropTarget, isDragging} = this.props
-    const opacity = isDragging ? 0 : 1;
-    const handleChange = (event) => {
-      this.setState({value: event.target.value}) // Why do this?
+    const {slide, setSlideText, startEditingSlide, connectDragSource, connectDropTarget, isDragging} = this.props
+    const style = {
+      opacity: isDragging ? 0.2 : 1,
+      maxHeight: 300,
+      overflow: 'hidden'
     }
-//<WYSIWYG content={slide.get('text')}></WYSIWYG>
+    const handleChange = (value) => {
+      this.setState({text: value}) // Why do this?
+    }
 
-    return connectDropTarget(connectDragSource(
-        <div style={{opacity}} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
+    return connectDropTarget(connectDragSource(slide.get('editing') ?
+        <div>
+          <WYSIWYG text={slide.get('text')}></WYSIWYG>
+        </div> :
+        <div onClick={startEditingSlide} style={style} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
         </div>
     ))
   }
