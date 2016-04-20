@@ -1,23 +1,36 @@
 import React from 'react'
-
 import Slide from './Slide'
 
-export default function(props) {
-  const slides = props.slides
-  const editSlideContent = props.editSlideContent
+export default function (props) {
+  const {slides, setSlideText, moveSlide,
+    startEditingSlide, stopEditingSlide, deleteSlide, addSlide} = props
   return (
-    <ol>
-      {
-        slides.map((s) =>
-          <li key={s.get('_id')}>
-            <Slide
-              slide={s}
-              editSlideContent={(newContent) => {
-                editSlideContent('unknown course', s.get('_id'), newContent)
-            }} ></Slide>
-          </li>
-        )
-      }
-    </ol>
+    <div>
+      <ol>
+        {
+          slides
+            .map((s, i) =>
+              <li key={i}>
+                <Slide
+                  slide={s}
+                  index={i}
+                  setSlideText={(newText) => {
+                     setSlideText(i, newText)
+                    }
+                  }
+                  moveSlide={(fromIndex, toIndex) => {
+                      moveSlide(fromIndex, toIndex)
+                    }
+                  }
+                  startEditingSlide={()=>startEditingSlide(i)}
+                  stopEditingSlide={()=>stopEditingSlide(i)}
+                  deleteSlide={()=>deleteSlide(i)}
+                ></Slide>
+              </li>
+            )
+        }
+      </ol>
+      <button onClick={addSlide}>ADD SLIDE</button>
+    </div>
   )
 }

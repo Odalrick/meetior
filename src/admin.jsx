@@ -5,21 +5,21 @@ import createSagaMiddleware from 'redux-saga'
 import Admin from './components/Admin.jsx'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import slides from './ducks/slides'
+import lesson from './ducks/lesson'
 //import tagSagas from './sagas/addTagSaga'
 
-import mockSlides from './mock-data/slides'
+import mockLessons from './db/fixtures/courses'
 
 (() => {
-  const reducer = combineReducers({slides})
-  const initialStateSlides = Immutable.fromJS(mockSlides)
+  const reducer = combineReducers({lesson})
+  const initialStateLesson = Immutable.fromJS(mockLessons[0])
   //const sagaMiddleware = createSagaMiddleware(tagSagas)
 
   //const store = createStore(reducer, {slides: initialStateSlides},
   //  compose(applyMiddleware(sagaMiddleware),
   //    window.devToolsExtension ? window.devToolsExtension() : f => f))
 
-  const store = createStore(reducer, {slides: initialStateSlides},
+  const store = createStore(reducer, {lesson: initialStateLesson},
       window.devToolsExtension ? window.devToolsExtension() : f => f)
   const app = document.createElement('div')
   document.body.appendChild(app)
