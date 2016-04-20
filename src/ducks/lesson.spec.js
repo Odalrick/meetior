@@ -1,5 +1,6 @@
 import Immutable from 'immutable'
-import reducer,{setSlideText, moveSlide, startEditingSlide, stopEditingSlide} from './lesson'
+import reducer,{setSlideText, moveSlide, startEditingSlide,
+  stopEditingSlide, deleteSlide} from './lesson'
 
 describe('lesson duck', ()=> {
   it('should create initial state', () => {
@@ -50,6 +51,7 @@ describe('lesson duck', ()=> {
     expect(newState).equal(Immutable.fromJS(
       {name: '', description: '', slides: [{text: 'old content', editing: true}]}))
   })
+
   it('should stop editing slide', () => {
     const newState = reducer(Immutable.fromJS(
       {name: '', description: '', slides: [{text: 'old content'}]}),
@@ -57,6 +59,7 @@ describe('lesson duck', ()=> {
     expect(newState).equal(Immutable.fromJS(
       {name: '', description: '', slides: [{text: 'old content', editing: false}]}))
   })
+
   it('should stop editing other slide', () => {
     const newState = reducer(Immutable.fromJS(
       {name: '', description: '', slides: [{text: 'old content', editing: true}, {text:'other content'}]}),
@@ -64,4 +67,21 @@ describe('lesson duck', ()=> {
     expect(newState).equal(Immutable.fromJS(
       {name: '', description: '', slides: [{text: 'old content', editing: false}, {text:'other content', editing: true}]}))
   })
+
+  it('should stop editing other slide', () => {
+    const newState = reducer(Immutable.fromJS(
+      {name: '', description: '', slides: [{text: 'old content', editing: true}, {text:'other content'}]}),
+      startEditingSlide(1))
+    expect(newState).equal(Immutable.fromJS(
+      {name: '', description: '', slides: [{text: 'old content', editing: false}, {text:'other content', editing: true}]}))
+  })
+
+  it('should remove slide', () => {
+    const newState = reducer(Immutable.fromJS(
+      {name: '', description: '', slides: [{text: 'old content'}, {text:'other content'}]}),
+      deleteSlide(0))
+    expect(newState).equal(Immutable.fromJS(
+      {name: '', description: '', slides: [{text:'other content'}]}))
+  })
+
 })

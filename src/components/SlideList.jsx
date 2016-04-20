@@ -2,7 +2,8 @@ import React from 'react'
 import Slide from './Slide'
 
 export default function (props) {
-  const {slides, setSlideText, moveSlide, startEditingSlide, stopEditingSlide} = props
+  const {slides, setSlideText, moveSlide,
+    startEditingSlide, stopEditingSlide, deleteSlide} = props
   return (
     <ol>
       {
@@ -22,6 +23,7 @@ export default function (props) {
                 }
                 startEditingSlide={()=>startEditingSlide(i)}
                 stopEditingSlide={()=>stopEditingSlide(i)}
+                deleteSlide={()=>deleteSlide(i)}
               ></Slide>
             </li>
           )

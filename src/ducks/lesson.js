@@ -4,6 +4,7 @@ const SET_SLIDE_TEXT = 'planck/lesson/SET_SLIDE_TEXT'
 const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
 const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
 const STOP_EDITING_SLIDE = 'planck/lesson/STOP_EDITING_SLIDE'
+const DELETE_SLIDE =  'planck/lesson/DELETE_SLIDE'
 
 const initialState = Immutable.fromJS({name: '', description: '', slides: []})
 
@@ -45,6 +46,10 @@ const actions = {
   [STOP_EDITING_SLIDE](state, action) {
     return state.updateIn(
       ['slides', action.payload.slideIndex, 'editing'], () => false)
+  },
+  [DELETE_SLIDE](state, action) {
+    return state.deleteIn(
+      ['slides', action.payload.slideIndex])
   }
 }
 
@@ -69,5 +74,11 @@ export function startEditingSlide(slideIndex) {
 export function stopEditingSlide(slideIndex) {
   return {
     type: STOP_EDITING_SLIDE, payload: {slideIndex}
+  }
+}
+
+export function deleteSlide(slideIndex) {
+  return {
+    type: DELETE_SLIDE, payload: {slideIndex}
   }
 }

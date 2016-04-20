@@ -52,10 +52,10 @@ function collectTarget(connect) {
   }
 }
 
-
 class Slide extends Component {
   render() {
     const {slide, setSlideText, startEditingSlide, stopEditingSlide,
+      deleteSlide,
       connectDragSource, connectDropTarget, isDragging} = this.props
     const style = {
       div: {
@@ -78,14 +78,14 @@ class Slide extends Component {
         boxSizing: 'border-box',
         cursor: 'pointer',
         textAlign: 'center',
-        width: 24,
         float: 'right'
       }
     }
 
     return connectDropTarget(connectDragSource(slide.get('editing') ?
       <div style={style.div}>
-        <button style={style.button} onClick={stopEditingSlide}>{'X'}</button>
+        <button style={style.button} onClick={stopEditingSlide}>{'CLOSE'}</button>
+        <button style={style.button} onClick={deleteSlide}>{'DELETE'}</button>
         <WYSIWYG style={style.wysiwyg} handleEditorChange={setSlideText} text={slide.get('text')}></WYSIWYG>
       </div> :
       <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
