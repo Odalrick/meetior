@@ -1,23 +1,23 @@
 import React from 'react'
 
 // Core
-import tinymce from 'tinymce/tinymce'
-import 'tinymce/themes/modern/theme'
+//import tinymce from 'tinymce/tinymce'
+//import 'tinymce/themes/modern/theme'
 
 // Plugins
-import 'tinymce/plugins/paste/plugin'
-import 'tinymce/plugins/link/plugin'
-import 'tinymce/plugins/autoresize/plugin'
-import 'tinymce/plugins/autolink/plugin'
-import 'tinymce/plugins/image/plugin'
-import 'tinymce/plugins/lists/plugin'
-import 'tinymce/plugins/print/plugin'
-import 'tinymce/plugins/preview/plugin'
+//import 'tinymce/plugins/paste/plugin'
+//import 'tinymce/plugins/link/plugin'
+//import 'tinymce/plugins/autoresize/plugin'
+//import 'tinymce/plugins/autolink/plugin'
+//import 'tinymce/plugins/image/plugin'
+//import 'tinymce/plugins/lists/plugin'
+//import 'tinymce/plugins/print/plugin'
+//import 'tinymce/plugins/preview/plugin'
 
 // Skin
-import 'tinymce/skins/lightgray/skin.min.css'
+//import 'tinymce/skins/lightgray/skin.min.css'
 
-import ReactTinyMCE from 'react-tinymce';
+//import ReactTinyMCE from 'react-tinymce';
 
 import 'quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill';
