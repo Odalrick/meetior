@@ -61,6 +61,7 @@ class Slide extends Component {
       div: {
         opacity: isDragging ? 0.5 : 1,
         maxHeight: 300,
+        minHeight: 100,
         overflow: 'hidden',
         border: '1px black solid',
         borderRadius: 15,
