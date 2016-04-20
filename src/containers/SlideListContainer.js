@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
     setSlideText: (slideIndex, newText) => dispatch(setSlideText(slideIndex, newText)),
     moveSlide: (fromIndex, toIndex) => dispatch(moveSlide(fromIndex, toIndex)),
     startEditingSlide: (slideIndex) => dispatch(startEditingSlide(slideIndex)),
-	stopEditingSlide: (slideIndex) => dispatch(stopEditingSlide(slideIndex)),
+    stopEditingSlide: (slideIndex) => dispatch(stopEditingSlide(slideIndex)),
   }
 }
 

@@ -6,10 +6,10 @@ import WYSIWYG from './WYSIWYG'
 import {ItemTypes} from './ItemTypes'
 
 const slideSource = {
-	canDrag(props, monitor){
-		return !props.slide.get('editing')
-	},
-  beginDrag(props){	
+  canDrag(props, monitor){
+    return !props.slide.get('editing')
+  },
+  beginDrag(props){
     return {
       index: props.index
     }
@@ -20,7 +20,7 @@ const slideTarget = {
   hover(props, monitor, component){
     const dragIndex = monitor.getItem().index
     const hoverIndex = props.index
-    if(dragIndex === hoverIndex)
+    if (dragIndex === hoverIndex)
       return
 
     const hoverBoundingRect = findDOMNode(component).getBoundingClientRect()
@@ -53,46 +53,43 @@ function collectTarget(connect) {
 }
 
 
-class Slide extends Component{
+class Slide extends Component {
   render() {
     const {slide, setSlideText, startEditingSlide, stopEditingSlide,
-		connectDragSource, connectDropTarget, isDragging} = this.props
-    const style = {	
-			div: {
-				opacity: isDragging ? 0.5 : 1,
-				maxHeight: 300,
-				overflow: 'hidden',
-				border:'1px black solid',
-				borderRadius: 15,
-				marginTop: 15,
-				padding: 5,
-				boxShadow: '4px 4px 17px 2px rgba(0,0,0,0.75)'
-			},
-			button: {
-			    display: 'inline-block',
-				height: 24,				
-				verticalAlign: 'middle',
-				backgroundPosition: 'center center',
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: '18px 18px',
-				boxSizing: 'border-box',
-				cursor: 'pointer',
-				textAlign: 'center',
-				width: 24,
-				float: 'right'
-			}
-	}
-    const handleChange = (value) => {
-      this.setState({text: value}) // Why do this?
+      connectDragSource, connectDropTarget, isDragging} = this.props
+    const style = {
+      div: {
+        opacity: isDragging ? 0.5 : 1,
+        maxHeight: 300,
+        overflow: 'hidden',
+        border: '1px black solid',
+        borderRadius: 15,
+        marginTop: 15,
+        padding: 5,
+        boxShadow: '4px 4px 17px 2px rgba(0,0,0,0.75)'
+      },
+      button: {
+        display: 'inline-block',
+        height: 24,
+        verticalAlign: 'middle',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '18px 18px',
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+        textAlign: 'center',
+        width: 24,
+        float: 'right'
+      }
     }
 
     return connectDropTarget(connectDragSource(slide.get('editing') ?
-        <div style={style.div}>
-			<button style={style.button} onClick={stopEditingSlide}>{'X'}</button>
-			<WYSIWYG style={style.wysiwyg} text={slide.get('text')}></WYSIWYG>
-        </div> :
-        <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
-        </div>
+      <div style={style.div}>
+        <button style={style.button} onClick={stopEditingSlide}>{'X'}</button>
+        <WYSIWYG style={style.wysiwyg} handleEditorChange={setSlideText} text={slide.get('text')}></WYSIWYG>
+      </div> :
+      <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
+      </div>
     ))
   }
 }

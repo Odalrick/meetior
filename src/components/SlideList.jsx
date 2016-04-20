@@ -1,13 +1,13 @@
 import React from 'react'
 import Slide from './Slide'
 
-export default function(props) {
+export default function (props) {
   const {slides, setSlideText, moveSlide, startEditingSlide, stopEditingSlide} = props
   return (
     <ol>
       {
         slides
-          .map((s,i) =>
+          .map((s, i) =>
             <li key={i}>
               <Slide
                 slide={s}
@@ -21,8 +21,8 @@ export default function(props) {
                   }
                 }
                 startEditingSlide={()=>startEditingSlide(i)}
-				stopEditingSlide={()=>stopEditingSlide(i)}
-                ></Slide>
+                stopEditingSlide={()=>stopEditingSlide(i)}
+              ></Slide>
             </li>
           )
       }
