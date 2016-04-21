@@ -26,7 +26,8 @@ module.exports = {
         loaders: ['style', 'css', 'sass'],
       },
       {
-        test: /\.css$/, loaders: [ "style","css"]
+        test: /\.css$/,
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -38,19 +39,6 @@ module.exports = {
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file'
-      },
-      {
-        test: require.resolve('tinymce/tinymce'),
-        loaders: [
-          'imports?this=>window',
-          'exports?window.tinymce'
-        ]
-      },
-      {
-        test: /tinymce\/(themes|plugins)\//,
-        loaders: [
-          'imports?this=>window'
-        ]
       }
     ],
   },

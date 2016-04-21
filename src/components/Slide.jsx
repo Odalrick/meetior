@@ -4,6 +4,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 
 import WYSIWYG from './WYSIWYG'
 import {ItemTypes} from './ItemTypes'
+import style from './Slide.css'
 
 const slideSource = {
   canDrag(props, monitor){
@@ -57,39 +58,15 @@ class Slide extends Component {
     const {slide, setSlideText, startEditingSlide, stopEditingSlide,
       deleteSlide,
       connectDragSource, connectDropTarget, isDragging} = this.props
-    const style = {
-      div: {
-        opacity: isDragging ? 0.5 : 1,
-        maxHeight: 300,
-        minHeight: 100,
-        overflow: 'hidden',
-        border: '1px black solid',
-        borderRadius: 15,
-        marginTop: 15,
-        padding: 5,
-        boxShadow: '4px 4px 17px 2px rgba(0,0,0,0.75)'
-      },
-      button: {
-        display: 'inline-block',
-        height: 24,
-        verticalAlign: 'middle',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '18px 18px',
-        boxSizing: 'border-box',
-        cursor: 'pointer',
-        textAlign: 'center',
-        float: 'right'
-      }
-    }
+    const opacity = isDragging ? 0.5 : 1
 
     return connectDropTarget(connectDragSource(slide.get('editing') ?
       <div style={style.div}>
-        <button style={style.button} onClick={stopEditingSlide}>{'CLOSE'}</button>
-        <button style={style.button} onClick={deleteSlide}>{'DELETE'}</button>
-        <WYSIWYG style={style.wysiwyg} handleEditorChange={setSlideText} text={slide.get('text')}></WYSIWYG>
+        <button className={style.button} onClick={stopEditingSlide}>{'CLOSE'}</button>
+        <button className={style.button} onClick={deleteSlide}>{'DELETE'}</button>
+        <WYSIWYG className={style.wysiwyg} handleEditorChange={setSlideText} text={slide.get('text')}></WYSIWYG>
       </div> :
-      <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
+      <div onClick={startEditingSlide} className={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
       </div>
     ))
   }
