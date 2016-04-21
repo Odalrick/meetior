@@ -1,5 +1,5 @@
 import React from 'react'
-import Slide from './Slide'
+import SlideEditor from './SlideEditor'
 
 export default function (props) {
   const {slides, setSlideText, moveSlide,
@@ -11,7 +11,7 @@ export default function (props) {
           slides
             .map((s, i) =>
               <li key={i}>
-                <Slide
+                <SlideEditor
                   slide={s}
                   index={i}
                   setSlideText={(newText) => {
@@ -25,11 +25,11 @@ export default function (props) {
                   startEditingSlide={()=>startEditingSlide(i)}
                   stopEditingSlide={()=>stopEditingSlide(i)}
                   deleteSlide={()=>deleteSlide(i)}
-                ></Slide>
+                ></SlideEditor>
               </li>
             )
         }
-      </ol>      
+      </ol>
     </div>
   )
 }
