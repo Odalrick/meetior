@@ -3,7 +3,7 @@ import Slide from './Slide'
 
 export default function (props) {
   const {slides, setSlideText, moveSlide,
-    startEditingSlide, stopEditingSlide, deleteSlide, addSlide} = props
+    startEditingSlide, stopEditingSlide, deleteSlide} = props
   return (
     <div>
       <ol>
@@ -29,8 +29,7 @@ export default function (props) {
               </li>
             )
         }
-      </ol>
-      <button onClick={addSlide}>ADD SLIDE</button>
+      </ol>      
     </div>
   )
 }
