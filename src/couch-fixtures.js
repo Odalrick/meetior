@@ -3,7 +3,7 @@ import co from 'co'
 import R from 'ramda'
 
 import config from './config'
-import courseFixtures from './db/fixtures/courses'
+import courseFixtures from './db/fixtures/courses.json'
 
 co(function *() {
   try {
