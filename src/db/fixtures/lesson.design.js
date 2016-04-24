@@ -4,7 +4,7 @@ export default {
     lesson: {
       map: function (doc) {
         if (isArray(doc.slides)) {
-          emit(doc.title, doc)
+          emit(doc.title, {title: doc.title, _id: doc._id})
         }
       },
     },
