@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import lesson from './ducks/lesson'
 //import tagSagas from './sagas/addTagSaga'
 
-import mockLessons from './db/fixtures/courses'
+import mockLessons from './db/fixtures/lessons'
 
 (() => {
   const reducer = combineReducers({lesson})
