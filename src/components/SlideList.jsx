@@ -1,40 +1,5 @@
-import React, {Component} from 'react'
-
-import Slide from './Slide'
-import {ItemTypes} from './ItemTypes'
-import { DragSource, DropTarget } from 'react-dnd'
-
-const slideSource = {
-  canDrag(props, monitor){
-	debugger;
-    return !props.slide.get('editing')
-  },
-  beginDrag(props){
-	  debugger;
-    return {
-      index: props.index
-    }
-  }
-}
-
-function collectSource(connect, monitor) {
-	debugger;
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  }
-}
-
-class Draggabli extends Component {
-	render(){		
-		const {children, id, connectDragSource} = this.props			
-		return (connectDragSource(			
-				<span>{'asfdwe' + id}</span>			
-		))
-	}	
-}
-
-DragSource(ItemTypes.SLIDE, slideSource, collectSource)(Draggabli)
+import React from 'react'
+import SlideEditor from './SlideEditor'
 
 export default function (props) {
   const {slides, setSlideText, moveSlide,
@@ -45,13 +10,27 @@ export default function (props) {
         {
           slides
             .map((s, i) =>
-				<li key={i}>
-					<Draggabli id={i}/>
-				</li>
+              <li key={i}>
+                <SlideEditor
+                  slide={s}
+                  index={i}
+                  setSlideText={(newText) => {
+                     setSlideText(i, newText)
+                    }
+                  }
+                  moveSlide={(fromIndex, toIndex) => {
+                      moveSlide(fromIndex, toIndex)
+                    }
+                  }
+                  startEditingSlide={()=>startEditingSlide(i)}
+                  stopEditingSlide={()=>stopEditingSlide(i)}
+                  deleteSlide={()=>deleteSlide(i)}
+                ></SlideEditor>
+              </li>
             )
 			
         }
-      </ol>      
+      </ol>
     </div>
   )
 }
