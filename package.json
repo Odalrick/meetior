@@ -29,6 +29,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.4.1",
     "chai-immutable": "^1.5.3",
+    "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.0.0",
     "eslint-config-airbnb": "^1.0.0",
     "eslint-plugin-import": "^1.2.0",
@@ -74,5 +75,10 @@
       "stage-0",
       "react"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

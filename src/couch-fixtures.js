@@ -2,13 +2,14 @@ import fetch from 'node-fetch'
 import co from 'co'
 import R from 'ramda'
 
+import config from './config'
 import courseFixtures from './db/fixtures/courses'
 
 co(function *() {
   try {
-    yield fetch('http://localhost:5984/test-db', {method: 'DELETE'})
-    yield fetch('http://localhost:5984/test-db', {method: 'PUT'})
-    yield R.map(course => fetch(`http://localhost:5984/test-db/${course._id}`, {
+    yield fetch(`${config.couchUrl}/${config.dataDB}`, { method: 'DELETE' })
+    yield fetch(`${config.couchUrl}/${config.dataDB}`, { method: 'PUT' })
+    yield R.map(course => fetch(`${config.couchUrl}/${config.dataDB}/${course._id}`, {
       method: 'PUT',
       body: JSON.stringify(course),
     }), courseFixtures)
