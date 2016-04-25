@@ -4,10 +4,27 @@ import LessonEditor from '../components/LessonEditor'
 import {setSlideText, moveSlide, startEditingSlide, stopEditingSlide,
   deleteSlide, addSlide} from '../ducks/lesson'
 
+import im from 'immutable'
+ const mockLesson = {
+    "title": "Nulli potentus",
+    "slides": [
+      {
+        "text": "<h1>Neutrum vero, inquit ille.</h1>\n      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est enim\n      effectrix multarum et magnarum voluptatum. Proclivi currit oratio. Quid\n      ad utilitatem tantae pecuniae? Non est igitur voluptas bonum. </p>\n      <p>Sed nimis multa. Inquit, dasne adolescenti veniam? Quis enim redargueret?\n      Quibusnam praeteritis? </p>\n<ul>\n  <li>Si enim ad populum me vocas,\n      eum.</li>\n  <li>Te autem hortamur omnes, currentem quidem, ut spero, ut eos, quos novisse vis,\n   imitari etiam velis.</li>\n  <li>Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi\n  partes, secundae corporis.</li>\n  <li>Qui autem esse poteris, nisi te amor ipse ceperit?</li>\n  <li>Semper enim ita adsumit aliquid, ut ea, quae prima dederit, non deserat.</li>\n</ul>\n<p>Quis negat? Sedulo, inquam, faciam. Duo Reges: constructio interrete. Negat enim\nsummo bono afferre incrementum diem. Is es profecto tu. Ne discipulum abducam, times.\n</p>\n\n"
+      },
+      {
+        "text": "<h1>Apparet statim, quae sint officia, quae actiones.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proclivi currit oratio.\nNihil ad rem! Ne sit sane; Age sane, inquam. Sed tamen intellego quid velit. Duo Reges:\nconstructio interrete. </p>\n\n<ul>\n  <li>Cum sciret confestim esse moriendum eamque mortem ardentiore studio peteret, quam\n  Epicurus voluptatem petendam putat.</li>\n  <li>Quae qui non vident, nihil umquam magnum ac cognitione dignum amaverunt.</li>\n  <li>Ut proverbia non nulla veriora sint quam vestra dogmata.</li>\n  <li>Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere.</li>\n</ul>\n\n\n<p>Memini me adesse P. Sed fortuna fortis; Sullae consulatum? Ita nemo beato beatior.\n </p>\n\n<p>Efficiens dici potest. Primum Theophrasti, Strato, physicum se voluit; Recte dicis;\nSed in rebus apertissimis nimium longi sumus. </p>\n\n"
+      },
+      {
+        "text": "<h1>Non est ista, inquam, Piso, magna dissensio.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles,\npostea. Sed fortuna fortis; Cur iustitia laudatur? Duo Reges: constructio interrete. </p>\n\n<ul>\n  <li>Quid ergo hoc loco intellegit honestum?</li>\n  <li>Nobis aliter videtur, recte secusne, postea;</li>\n  <li>Sequitur disserendi ratio cognitioque naturae;</li>\n  <li>Quis animo aequo videt eum, quem inpure ac flagitiose putet vivere?</li>\n</ul>\n\n\n<p>Paria sunt igitur. Ut aliquid scire se gaudeant? Haec dicuntur fortasse ieiunius;\nTubulo putas dicere? </p>\n\n<p>Eaedem res maneant alio modo. Res enim concurrent contrariae. Hoc tu nunc in illo\n probas. Eaedem res maneant alio modo. Hoc tu nunc in illo probas. </p>\n\n"
+      }
+    ],
+    "_id": "eecf0a39454b4b2244ebdc3518015605"
+  };
 
-function mapStateToProps(state) {
+function mapStateToProps(state) {	
+
   return {
-    slides: state.lesson.get('slides'),
+    slides: im.fromJS(mockLesson.slides) //state.lesson.get('slides'),
   }
 }
 
