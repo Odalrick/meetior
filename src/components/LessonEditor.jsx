@@ -1,14 +1,14 @@
 import React from 'react'
-import SlideList from './SlideList'
+import SlidePanel from './SlidePanel'
 
 export default (props) => {
 	const {addSlide} = props
 	return (
 		<div>
-			<SlideList 
+			<SlidePanel
 				{...props}
 			/>
-			<button onClick={addSlide}>ADD SLIDE</button>
+
 		</div>
 	)
 }
