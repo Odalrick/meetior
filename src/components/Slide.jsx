@@ -82,18 +82,20 @@ class Slide extends Component {
         float: 'right'
       }
     }
-
-    return connectDropTarget(connectDragSource(slide.get('editing') ?
-      <div style={style.div}>
-        <button style={style.button} onClick={stopEditingSlide}>{'CLOSE'}</button>
-        <button style={style.button} onClick={deleteSlide}>{'DELETE'}</button>
-        <WYSIWYG style={style.wysiwyg} handleEditorChange={setSlideText} text={slide.get('text')}></WYSIWYG>
-      </div> :
-      <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
-      </div>
-    ))
+	return <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}></div>
+	
+    //return connectDropTarget(connectDragSource(slide.get('editing') ?
+    //  <div style={style.div}>
+    //    <button style={style.button} onClick={stopEditingSlide}>{'CLOSE'}</button>
+    //    <button style={style.button} onClick={deleteSlide}>{'DELETE'}</button>
+    //    <WYSIWYG style={style.wysiwyg} handleEditorChange={setSlideText} text={slide.get('text')}></WYSIWYG>
+    //  </div> :
+    //  <div onClick={startEditingSlide} style={style.div} dangerouslySetInnerHTML={{__html:slide.get('text')}}>
+    //  </div>
+    //))
   }
 }
 
-export default DropTarget(ItemTypes.SLIDE, slideTarget, collectTarget)(
-  DragSource(ItemTypes.SLIDE, slideSource, collectSource)(Slide));
+//export default DropTarget(ItemTypes.SLIDE, slideTarget, collectTarget)(
+//  DragSource(ItemTypes.SLIDE, slideSource, collectSource)(Slide));
+export default Slide
