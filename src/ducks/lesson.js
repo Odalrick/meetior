@@ -1,5 +1,7 @@
 import Immutable from 'immutable'
 
+const SET_LESSON_TITLE = 'planck/lesson/SET_LESSON_TITLE'
+const SET_LESSON_DESCRIPTION = 'planck/lesson/SET_LESSON_DESCRIPTION'
 const SET_SLIDE_TEXT = 'planck/lesson/SET_SLIDE_TEXT'
 const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
 const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
@@ -9,6 +11,7 @@ const ADD_SLIDE =  'planck/lesson/ADD_SLIDE'
 
 const initialState = Immutable.fromJS({
   "title": "Nulli potentus",
+  "description": "short and sweet",
   "slides": [
     {
       "text": "<h1>Neutrum vero, inquit ille.</h1>\n      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est enim\n      effectrix multarum et magnarum voluptatum. Proclivi currit oratio. Quid\n      ad utilitatem tantae pecuniae? Non est igitur voluptas bonum. </p>\n      <p>Sed nimis multa. Inquit, dasne adolescenti veniam? Quis enim redargueret?\n      Quibusnam praeteritis? </p>\n<ul>\n  <li>Si enim ad populum me vocas,\n      eum.</li>\n  <li>Te autem hortamur omnes, currentem quidem, ut spero, ut eos, quos novisse vis,\n   imitari etiam velis.</li>\n  <li>Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi\n  partes, secundae corporis.</li>\n  <li>Qui autem esse poteris, nisi te amor ipse ceperit?</li>\n  <li>Semper enim ita adsumit aliquid, ut ea, quae prima dederit, non deserat.</li>\n</ul>\n<p>Quis negat? Sedulo, inquam, faciam. Duo Reges: constructio interrete. Negat enim\nsummo bono afferre incrementum diem. Is es profecto tu. Ne discipulum abducam, times.\n</p>\n\n"
@@ -33,6 +36,12 @@ export default function reducer(state = initialState, action) {
 }
 
 const actions = {
+  [SET_LESSON_TITLE](state, action) {
+    return state.set('title', action.payload.newTitle)
+  },
+  [SET_LESSON_DESCRIPTION](state, action) {
+    return state.set('description', action.payload.newDescription)
+  },
   [SET_SLIDE_TEXT](state, action) {
     return state.updateIn(
       ['slides', action.payload.slideIndex, 'text'],
@@ -70,6 +79,18 @@ const actions = {
   [ADD_SLIDE](state, action) {
     return state.updateIn(
       ['slides'], (slides) => slides.push(Immutable.fromJS({text:''})))
+  }
+}
+
+export function setLessonTitle(newTitle) {
+  return {
+    type: SET_LESSON_TITLE, payload: {newTitle}
+  }
+}
+
+export function setLessonDescription(newDescription) {
+  return {
+    type: SET_LESSON_DESCRIPTION, payload: {newDescription}
   }
 }
 
