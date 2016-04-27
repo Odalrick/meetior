@@ -1,0 +1,38 @@
+.lessonEditor {
+	
+}
+
+.lessonInfo {
+	border: 2px #72888F solid;
+	margin: 5px auto;
+	max-width: 60%;
+	padding: 15px;
+	-webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
+	box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
+}
+
+.lessonInfo > h1 {
+	display: inline;
+}
+
+.lessonInfo > button {
+	float: right;
+}
+
+.lessonInfo > label,
+.lessonInfo > input {
+	display: block;
+}
+
+.lessonInfo > label {
+	margin-bottom: 2px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.lessonInfo > input {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}

@@ -1,6 +1,8 @@
 import React from 'react'
 import SlidePanel from './SlidePanel'
 
+import style from './LessonEditor.css'
+
 export default (props) => {
 	const {lesson, setLessonTitle, setLessonDescription} = props
 	const onLessonTitleChange = (event) => {
@@ -14,12 +16,14 @@ export default (props) => {
   }
 
 	return (
-		<div>
-		  <section>
+		<div className={style.lessonEditor}>
+		  <section className={style.lessonInfo}>
 		  <h1>Skapa lektion</h1>
 		  <button>Spara</button>
-		  <label>Titel<input value={lesson.get('title')} onChange={onLessonTitleChange}></input></label>
-		  <label>Beskrivning<input value={lesson.get('description')} onChange={onLessonDescriptionChange}></input></label>
+		  <label>Titel</label>
+		  <input value={lesson.get('title')} onChange={onLessonTitleChange}></input>
+		  <label>Beskrivning</label>
+		  <input value={lesson.get('description')} onChange={onLessonDescriptionChange}></input>
 		  </section>
 			<SlidePanel
 				{...props}

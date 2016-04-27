@@ -7,6 +7,8 @@ import {ItemTypes} from './ItemTypes'
 import Slide from './Slide'
 import SlideEditor from './WYSIWYG'
 
+import style from './SlidePanelItem.css'
+
 const dragSource = {
   canDrag(props, monitor){
     return !props.slide.get('editing')
@@ -74,7 +76,7 @@ class SlidePanelItem extends Component {
       connectDragSource, connectDropTarget} = this.props
     return (
       connectDropTarget(connectDragSource(
-        <div onClick={startEditingSlide}>
+        <div className={style.slidePanelItem} onClick={startEditingSlide}>
           {componentToggle(this.props)}
         </div>
         )
