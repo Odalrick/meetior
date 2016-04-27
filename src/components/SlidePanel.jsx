@@ -19,7 +19,7 @@ export default function SlidePanel(props) {
              stopEditingSlide={()=>stopEditingSlide(i)}
              deleteSlide={()=>deleteSlide(i)}
              />)
-      }
+      }	  
       <button onClick={addSlide}>ADD SLIDE</button>
     </SlidePanelLayout>
   )
