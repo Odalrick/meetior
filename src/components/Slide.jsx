@@ -1,19 +1,11 @@
 import React from 'react'
-import WYSIWYG from './WYSIWYG'
-
-//<textarea value={slide.get('content')}></textarea>
-//<button onChange={handleChange} onClick={() => editSlideContent('asd')}>Spara</button>
+import style from './Slide.css'
 
 export default function(props){
-  const slide = props.slide
-  const editSlideContent = props.editSlideContent
-  const handleChange = (event) => {
-    this.setState({value: event.target.value}) // Why do this?
-  }
+  const {text} = props
   return (
-
-      <WYSIWYG content={slide.get('content')}></WYSIWYG>
-
+    <div {...props} className={style.slide}
+         dangerouslySetInnerHTML={{__html:text}}>
+    </div>
   )
 }
-
