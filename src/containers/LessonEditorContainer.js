@@ -1,18 +1,22 @@
 import { connect } from 'react-redux'
 
 import LessonEditor from '../components/LessonEditor'
-import {setSlideText, moveSlide, startEditingSlide, stopEditingSlide,
+import {setLessonTitle, setLessonDescription,
+  setSlideText, moveSlide, startEditingSlide, stopEditingSlide,
   deleteSlide, addSlide} from '../ducks/lesson'
 
-
 function mapStateToProps(state) {
+
   return {
+    lesson: state.lesson,
     slides: state.lesson.get('slides'),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    setLessonTitle: (newTitle) => dispatch(setLessonTitle(newTitle)),
+    setLessonDescription: (newDescription) => dispatch(setLessonDescription(newDescription)),
     setSlideText: (slideIndex, newText) => dispatch(setSlideText(slideIndex, newText)),
     moveSlide: (fromIndex, toIndex) => dispatch(moveSlide(fromIndex, toIndex)),
     startEditingSlide: (slideIndex) => dispatch(startEditingSlide(slideIndex)),

@@ -1,5 +1,7 @@
 import Immutable from 'immutable'
 
+const SET_LESSON_TITLE = 'planck/lesson/SET_LESSON_TITLE'
+const SET_LESSON_DESCRIPTION = 'planck/lesson/SET_LESSON_DESCRIPTION'
 const SET_SLIDE_TEXT = 'planck/lesson/SET_SLIDE_TEXT'
 const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
 const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
@@ -7,7 +9,7 @@ const STOP_EDITING_SLIDE = 'planck/lesson/STOP_EDITING_SLIDE'
 const DELETE_SLIDE =  'planck/lesson/DELETE_SLIDE'
 const ADD_SLIDE =  'planck/lesson/ADD_SLIDE'
 
-const initialState = Immutable.fromJS({name: '', description: '', slides: []})
+const initialState = Immutable.fromJS({title: '', description: '', slides: []})
 
 export default function reducer(state = initialState, action) {
   if (actions[action.type]) {
@@ -18,6 +20,12 @@ export default function reducer(state = initialState, action) {
 }
 
 const actions = {
+  [SET_LESSON_TITLE](state, action) {
+    return state.set('title', action.payload.newTitle)
+  },
+  [SET_LESSON_DESCRIPTION](state, action) {
+    return state.set('description', action.payload.newDescription)
+  },
   [SET_SLIDE_TEXT](state, action) {
     return state.updateIn(
       ['slides', action.payload.slideIndex, 'text'],
@@ -55,6 +63,18 @@ const actions = {
   [ADD_SLIDE](state, action) {
     return state.updateIn(
       ['slides'], (slides) => slides.push(Immutable.fromJS({text:''})))
+  }
+}
+
+export function setLessonTitle(newTitle) {
+  return {
+    type: SET_LESSON_TITLE, payload: {newTitle}
+  }
+}
+
+export function setLessonDescription(newDescription) {
+  return {
+    type: SET_LESSON_DESCRIPTION, payload: {newDescription}
   }
 }
 

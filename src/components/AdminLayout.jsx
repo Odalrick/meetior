@@ -7,10 +7,10 @@ class AdminLayout extends Component {
   render() {
     const children = this.props.children
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-4">{children[0]}</div>
-          <div className="col-sm-8">{children[1]}</div>
+          <div className="col-sm-3">{children[0]}</div>
+          <div className="col-sm-9">{children[1]}</div>
         </div>
       </div>
     )
