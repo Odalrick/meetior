@@ -1,5 +1,5 @@
 .lessonEditor {
-	
+
 }
 
 .lessonInfo {
@@ -11,28 +11,48 @@
 	-moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
 	box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
 }
-
-.lessonInfo > h1 {
-	display: inline;
+.left {
+ float: left;
+}
+.right {
+  float: left;
 }
 
-.lessonInfo > button {
-	float: right;
-}
+/*.left {*/
+  /*display: inline;*/
+/*}*/
 
-.lessonInfo > label,
-.lessonInfo > input {
-	display: block;
-}
+/*.left > h1 {*/
+	/*display: inline;*/
+/*}*/
 
-.lessonInfo > label {
-	margin-bottom: 2px;
-	margin-top: 10px;
-	font-weight: bold;
-}
+/*.left > label,*/
+/*.left > input {*/
+	/*display: block;*/
+/*}*/
 
-.lessonInfo > input {
-	border-top: 0;
-	border-left: 0;
-	border-right: 0;
-}
+/*.left > label {*/
+	/*margin-bottom: 2px;*/
+	/*margin-top: 10px;*/
+	/*font-weight: bold;*/
+/*}*/
+
+/*.left > input {*/
+	/*border-top: 0;*/
+	/*border-left: 0;*/
+	/*border-right: 0;*/
+/*}*/
+
+/*.right {*/
+  /*display: inline;*/
+/*}*/
+
+/*.right > label {*/
+  /*margin-bottom: 2px;*/
+  /*margin-top: 10px;*/
+  /*font-weight: bold;*/
+/*}*/
+
+/*.right > button {*/
+  /*float: right;*/
+/*}*/
