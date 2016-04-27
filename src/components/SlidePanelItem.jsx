@@ -34,32 +34,28 @@ const dragTarget = {
     if (dragIndex === hoverIndex)
       return
 
-	const domNode = findDOMNode(component)
-	  
+    const domNode = findDOMNode(component)
+
     const hoverBoundingRect = domNode.getBoundingClientRect()
-    
+
     const clientOffset = monitor.getClientOffset()
-	const hoverClientX = clientOffset.x - hoverBoundingRect.left
+    const hoverClientX = clientOffset.x - hoverBoundingRect.left
     const hoverClientY = clientOffset.y - hoverBoundingRect.top
-		
-		
-	
-	const tolerance = 20;		
-	
-    if (dragIndex < hoverIndex){
-		return
-	}
-	if((hoverClientX < tolerance)
-		|| (hoverClientX > (domNode.clientWidth - tolerance))){
-		console.log('outside x!')
-		return
+
+
+    const tolerance = 20;
+    if (dragIndex === hoverIndex) {
+      return
     }
-	if((hoverClientY < tolerance)
-		|| (hoverClientY > (domNode.clientHeight - tolerance))){
-		console.log('outside y!')
-		return
-	}
-		    
+    if ((hoverClientX < tolerance)
+      || (hoverClientX > (domNode.clientWidth - tolerance))) {
+      return
+    }
+    if ((hoverClientY < tolerance)
+      || (hoverClientY > (domNode.clientHeight - tolerance))) {
+      return
+    }
+
     props.moveSlide(dragIndex, hoverIndex)
     monitor.getItem().index = hoverIndex
   }

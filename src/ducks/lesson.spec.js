@@ -63,26 +63,34 @@ describe('lesson duck', ()=> {
 
   it('should stop editing other slide', () => {
     const newState = reducer(Immutable.fromJS(
-      {title: '', description: '', slides: [{text: 'old content', editing: true}, {text:'other content'}]}),
+      {title: '', description: '', slides: [{text: 'old content', editing: true}, {text: 'other content'}]}),
       startEditingSlide(1))
     expect(newState).equal(Immutable.fromJS(
-      {title: '', description: '', slides: [{text: 'old content', editing: false}, {text:'other content', editing: true}]}))
+      {
+        title: '',
+        description: '',
+        slides: [{text: 'old content', editing: false}, {text: 'other content', editing: true}]
+      }))
   })
 
   it('should stop editing other slide', () => {
     const newState = reducer(Immutable.fromJS(
-      {title: '', description: '', slides: [{text: 'old content', editing: true}, {text:'other content'}]}),
+      {title: '', description: '', slides: [{text: 'old content', editing: true}, {text: 'other content'}]}),
       startEditingSlide(1))
     expect(newState).equal(Immutable.fromJS(
-      {title: '', description: '', slides: [{text: 'old content', editing: false}, {text:'other content', editing: true}]}))
+      {
+        title: '',
+        description: '',
+        slides: [{text: 'old content', editing: false}, {text: 'other content', editing: true}]
+      }))
   })
 
   it('should remove slide', () => {
     const newState = reducer(Immutable.fromJS(
-      {title: '', description: '', slides: [{text: 'old content'}, {text:'other content'}]}),
+      {title: '', description: '', slides: [{text: 'old content'}, {text: 'other content'}]}),
       deleteSlide(0))
     expect(newState).equal(Immutable.fromJS(
-      {title: '', description: '', slides: [{text:'other content'}]}))
+      {title: '', description: '', slides: [{text: 'other content'}]}))
   })
 
   it('should add a slide to the end', () => {
@@ -90,7 +98,7 @@ describe('lesson duck', ()=> {
       {title: '', description: '', slides: [{text: 'old content'}]}),
       addSlide())
     expect(newState).equal(Immutable.fromJS(
-      {title: '', description: '', slides: [{text:'old content'}, {text:''}]}))
+      {title: '', description: '', slides: [{text: 'old content'}, {text: ''}]}))
   })
 
   it('should set the lesson description', () => {
@@ -99,16 +107,16 @@ describe('lesson duck', ()=> {
       {title: '', description: '', slides: [{text: 'old content'}]}),
       setLessonDescription(description))
     expect(newState).equal(Immutable.fromJS(
-      {title: '', description, slides: [{text:'old content'}]}))
+      {title: '', description, slides: [{text: 'old content'}]}))
   })
 
-  t('should set lesson title', () => {
+  it('should set lesson title', () => {
     const title = 'a title'
     const newState = reducer(Immutable.fromJS(
       {title: '', description: '', slides: [{text: 'old content'}]}),
       setLessontitle(title))
     expect(newState).equal(Immutable.fromJS(
-      {title , description: '', slides: [{text:'old content'}]}))
+      {title, description: '', slides: [{text: 'old content'}]}))
   })
 
 })
