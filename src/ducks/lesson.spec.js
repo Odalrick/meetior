@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 import reducer,{setSlideText, moveSlide, startEditingSlide,
   stopEditingSlide, deleteSlide, addSlide,
-  setLessonTitle, setLessonDescription} from './lesson'
+  setLessonTitle, setLessonDescription, setLessonIcon} from './lesson'
 
 describe('lesson duck', ()=> {
   it('should create initial state', () => {
@@ -114,9 +114,16 @@ describe('lesson duck', ()=> {
     const title = 'a title'
     const newState = reducer(Immutable.fromJS(
       {title: '', description: '', slides: [{text: 'old content'}]}),
-      setLessontitle(title))
+      setLessonTitle(title))
     expect(newState).equal(Immutable.fromJS(
       {title, description: '', slides: [{text: 'old content'}]}))
+  })
+
+  it('should set lesson icon', () => {
+    const newState = reducer(Immutable.fromJS(
+      {title: '', description: '', icon: null, slides: []}),
+      setLessonIcon(new Object()))
+    expect(newState.get('icon')).to.exist
   })
 
 })
