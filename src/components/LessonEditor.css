@@ -4,9 +4,9 @@
 
 .lessonInfo {
 	border: 2px #72888F solid;
-	margin: 5px auto;		
+	margin: 5px auto;
 	width: 380px;
-	height: 280px;
+	min-height: 280px;
 	padding: 15px;
 	-webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
 	-moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
@@ -18,7 +18,6 @@
   text-align: center;
   float: left;
   margin: auto;
-  
   min-width: 80%;
 }
 
@@ -37,6 +36,18 @@
   border-top: 0;
   border-left: 0;
   border-right: 0;
+  width: 80%;
+  border-bottom: 1px #72888F solid;
+}
+
+.lessonInfo textarea {
+  resize: vertical;
+  overflow: visible;
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px #72888F solid;
 }
 
 .lessonInfo div:nth-child(2) {
@@ -51,9 +62,14 @@
   width: 50%;
 }
 
-.imageUploader { 
- width: 125px;
- height: 125px;
+.lessonInfo div:nth-child(3):after {
+  clear: both;
+}
+
+.imageUploader {
+ width: 100px;
+ height: 100px;
  padding: 10px;
- border: 2px #72888F dashed 
+ border: 2px #72888F dashed;
+ margin: auto;
 }

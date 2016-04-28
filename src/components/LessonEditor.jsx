@@ -23,16 +23,16 @@ export default (props) => {
 			<h1>Skapa lektion</h1>
 			<button>Spara</button>
 		</div>
-        <div>          
+        <div>
           <label>Titel</label>
           <input value={lesson.get('title')} onChange={onLessonTitleChange}></input>
-          <label>Beskrivning</label>
-          <input value={lesson.get('description')} onChange={onLessonDescriptionChange}></input>
         </div>
-        <div>          
+        <div>
           <label>Bild</label>
           <ImageUploader className={style.imageUploader} handleImageUpload={setLessonIcon} />
         </div>
+        <label>Beskrivning</label>
+        <textarea rows="1" value={lesson.get('description')} onChange={onLessonDescriptionChange}></textarea>
       </section>
       <SlidePanel
         {...props}
