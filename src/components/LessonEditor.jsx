@@ -19,17 +19,19 @@ export default (props) => {
   return (
     <div className={style.lessonEditor}>
       <section className={style.lessonInfo}>
-        <div className={style.left}>
-          <h1>Skapa lektion</h1>
+		<div>
+			<h1>Skapa lektion</h1>
+			<button>Spara</button>
+		</div>
+        <div>          
           <label>Titel</label>
           <input value={lesson.get('title')} onChange={onLessonTitleChange}></input>
           <label>Beskrivning</label>
           <input value={lesson.get('description')} onChange={onLessonDescriptionChange}></input>
         </div>
-        <div className={style.right}>
-          <button>Spara</button>
+        <div>          
           <label>Bild</label>
-          <ImageUploader handleImageUpload={setLessonIcon} />
+          <ImageUploader className={style.imageUploader} handleImageUpload={setLessonIcon} />
         </div>
       </section>
       <SlidePanel
