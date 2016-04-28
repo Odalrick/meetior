@@ -9,6 +9,8 @@ const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
 const STOP_EDITING_SLIDE = 'planck/lesson/STOP_EDITING_SLIDE'
 const DELETE_SLIDE =  'planck/lesson/DELETE_SLIDE'
 const ADD_SLIDE =  'planck/lesson/ADD_SLIDE'
+const ADD_TAG =  'planck/lesson/ADD_TAG'
+const REMOVE_TAG =  'planck/lesson/REMOVE_TAG'
 
 const initialState = Immutable.fromJS({
   "title": "Nulli potentus",
@@ -24,6 +26,7 @@ const initialState = Immutable.fromJS({
       "text": "<h1>Non est ista, inquam, Piso, magna dissensio.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles,\npostea. Sed fortuna fortis; Cur iustitia laudatur? Duo Reges: constructio interrete. </p>\n\n<ul>\n  <li>Quid ergo hoc loco intellegit honestum?</li>\n  <li>Nobis aliter videtur, recte secusne, postea;</li>\n  <li>Sequitur disserendi ratio cognitioque naturae;</li>\n  <li>Quis animo aequo videt eum, quem inpure ac flagitiose putet vivere?</li>\n</ul>\n\n\n<p>Paria sunt igitur. Ut aliquid scire se gaudeant? Haec dicuntur fortasse ieiunius;\nTubulo putas dicere? </p>\n\n<p>Eaedem res maneant alio modo. Res enim concurrent contrariae. Hoc tu nunc in illo\n probas. Eaedem res maneant alio modo. Hoc tu nunc in illo probas. </p>\n\n"
     }
   ],
+  "tags": ["Kinfolk", "bird", "hoodie", "letterpress", "four", "loko", "pitchfork"],
   "_id": "eecf0a39454b4b2244ebdc3518015605"
 })
 //Immutable.fromJS({name: '', description: '', slides: []})
@@ -85,6 +88,14 @@ const actions = {
   [ADD_SLIDE](state, action) {
     return state.updateIn(
       ['slides'], (slides) => slides.push(Immutable.fromJS({text:''})))
+  },
+  [ADD_TAG](state, action) {
+    return state.updateIn(
+      ['tags'], (tags) => tags.push(action.payload.tag))
+  },
+  [REMOVE_TAG](state, action) {
+    return state.updateIn(
+      ['tags'], (tags) => tags.delete(tags.findIndex(t => t === action.payload.tag)))
   }
 }
 
@@ -142,3 +153,15 @@ export function addSlide() {
     type: ADD_SLIDE, payload: {}
   }
 }
+
+export function addTag(tag) {
+  return {
+    type: ADD_TAG, payload: {tag}
+  }
+}
+export function removeTag(tag) {
+  return {
+    type: REMOVE_TAG, payload: {tag}
+  }
+}
+

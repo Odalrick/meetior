@@ -53,13 +53,13 @@
 .lessonInfo div:nth-child(2) {
   padding-top: 10px;
   float: left;
-  width: 50%;
+  width: 60%;
 }
 
 .lessonInfo div:nth-child(3) {
   padding-top: 10px;
   float: left;
-  width: 50%;
+  width: 40%;
 }
 
 .lessonInfo div:nth-child(3):after {

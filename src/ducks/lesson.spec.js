@@ -1,7 +1,8 @@
 import Immutable from 'immutable'
 import reducer,{setSlideText, moveSlide, startEditingSlide,
   stopEditingSlide, deleteSlide, addSlide,
-  setLessonTitle, setLessonDescription, setLessonIcon} from './lesson'
+  setLessonTitle, setLessonDescription, setLessonIcon,
+  addTag, removeTag} from './lesson'
 
 describe('lesson duck', ()=> {
   it('should create initial state', () => {
@@ -124,6 +125,24 @@ describe('lesson duck', ()=> {
       {title: '', description: '', icon: null, slides: []}),
       setLessonIcon(new Object()))
     expect(newState.get('icon')).to.exist
+  })
+
+  it('should add a tag',()=> {
+    const tag = 'bacon'
+    const newState = reducer(Immutable.fromJS(
+      {title: '', description: '', tags: [], slides: [{text: 'old content'}]}),
+      addTag(tag))
+    expect(newState).equal(Immutable.fromJS(
+      {title: '', description: '', tags:[tag], slides: [{text: 'old content'}]}))
+  })
+
+  it('should remove a tag',()=> {
+    const tag = 'bacon'
+    const newState = reducer(Immutable.fromJS(
+      {title: '', description: '', tags: ['salami', tag], slides: [{text: 'old content'}]}),
+      removeTag(tag))
+    expect(newState).equal(Immutable.fromJS(
+      {title: '', description: '', tags:['salami'], slides: [{text: 'old content'}]}))
   })
 
 })
