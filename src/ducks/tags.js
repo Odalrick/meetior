@@ -1,8 +1,9 @@
 import Immutable from 'immutable'
 
-const ADD_TAG = 'meetingz/tags/ADD_TAG'
+const SET_TAG_FILTER = 'planck/lesson/SET_TAG_FILTER'
 
-const initialState = Immutable.List()
+const initialState = Immutable.fromJS(
+	{tags: [], tagFilter: '', filteredTags: []})
 
 export default function reducer(state = initialState, action) {
   if (actions[action.type]) {
@@ -13,24 +14,13 @@ export default function reducer(state = initialState, action) {
 }
 
 const actions = {
-  [ADD_TAG](state, action) {
-    const id = `tags/${action.name}`
-
-    return state.push(
-      Immutable.fromJS({id, name: action.name}))
+  [SET_TAG_FILTER](state, action) {
+    return state
   },
 }
 
-export function addTag(name) {
+export function setTagFilter(newTagFilter) {
   return {
-    type: ADD_TAG, name,
+    type: SET_TAG_FILTER, payload: {newTagFilter},
   }
 }
-
-// {
-//  tags: [],
-//  drafts:
-//  {
-//    tags: []
-//  }
-// }
