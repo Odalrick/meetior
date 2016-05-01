@@ -1,18 +1,13 @@
-import {takeEvery} from 'redux-saga'
-import {put, call} from 'redux-saga/effects'
-import fetch from 'isomorphic-fetch'
+import { takeEvery } from 'redux-saga'
+import { put, call } from 'redux-saga/effects'
 import R from 'ramda'
 
 import config from '../config'
-import {addLesson} from '../ducks/showLesson'
+import { addLesson } from '../ducks/showLesson'
 
 const PREFIX = 'planck/SHOW_LESSON_SAGA'
 const LOAD_VIEWABLE_LESSONS = `${PREFIX}/LOAD_VIEWABLE_LESSONS`
 
-const loadLessons = () => fetch(
-  `${config.couchUrl}/${config.dataDB}/_design/lesson/_view/lesson`, {
-    method: 'GET',
-  }).then(res => res.json())
 
 export const sagas = {
   *loadViewableLessons(action) {
@@ -33,6 +28,6 @@ export default function *showLessonSagas() {
 
 export const actionCreators = {
   loadViewableLessons() {
-    return {type: LOAD_VIEWABLE_LESSONS, payload: {}}
+    return { type: LOAD_VIEWABLE_LESSONS, payload: {} }
   },
 }

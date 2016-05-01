@@ -1,9 +1,9 @@
 import Immutable from 'immutable'
 import R from 'ramda'
 import nano from 'co-nano'
-import {put, select, call} from 'redux-saga/effects'
-import reducer, {addLesson, showLesson, showSlide} from '../ducks/showLesson'
-import {sagas, actionCreators} from './showLessonSagas'
+import { put, select, call } from 'redux-saga/effects'
+import reducer, { addLesson, showLesson, showSlide } from '../ducks/showLesson'
+import { sagas, actionCreators } from './showLessonSagas'
 
 describe('showLessons duck', ()=> {
   const buildState = R.reduce(reducer, undefined)
@@ -23,7 +23,7 @@ describe('showLessons duck', ()=> {
     _id: '123',
   }
 
-  it.skip('should populate viewable lessons', ()=> {
+  it.skip('should populate viewable lessons', () => {
     const saga = sagas.loadViewableLessons(actionCreators.loadViewableLessons())
     // TODO: set loading state
     expect(saga.next()).to.deep.equal(
