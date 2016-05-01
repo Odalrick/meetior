@@ -1,11 +1,11 @@
 import Immutable from 'immutable'
 import R from 'ramda'
-import nano from 'co-nano'
+
 import { put, select, call } from 'redux-saga/effects'
 import reducer, { addLesson, showLesson, showSlide } from '../ducks/showLesson'
 import { sagas, actionCreators } from './showLessonSagas'
 
-describe('showLessons duck', ()=> {
+describe('showLessons saga', ()=> {
   const buildState = R.reduce(reducer, undefined)
   const lessonJsNulliPotentus = {
     title: 'Nulli potentus',

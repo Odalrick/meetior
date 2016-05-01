@@ -15,7 +15,7 @@ export default config => {
     },
     load(_id) {
       return fetch(
-        `${this.config.couchUrl}/${this.config.dataDB}/${_id}`, {
+        `${config.couchUrl}/${config.dataDB}/${_id}`, {
           method: 'GET',
         }).then(res => res.json())
     },

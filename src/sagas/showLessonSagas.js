@@ -4,10 +4,12 @@ import R from 'ramda'
 
 import config from '../config'
 import { addLesson } from '../ducks/showLesson'
+import db from '../db/couch'
 
 const PREFIX = 'planck/SHOW_LESSON_SAGA'
 const LOAD_VIEWABLE_LESSONS = `${PREFIX}/LOAD_VIEWABLE_LESSONS`
 
+const loadLessons = db(config).loadLessons
 
 export const sagas = {
   *loadViewableLessons(action) {
