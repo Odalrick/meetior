@@ -7,7 +7,7 @@ const SAVE_LESSON = `${PREFIX}/SAVE_LESSON`
 
 export const sagas = (db) => ({
   *saveLesson(action) {
-    
+
   },
   actionCreators: {
     saveLesson(newLesson) {
