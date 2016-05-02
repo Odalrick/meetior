@@ -12,6 +12,9 @@ export default function SlidePanelLayout(props) {
 					return <div className="col-md-3" key={i}>{c}</div>
 				}
 			)}
+		  <div className="col-md-3">
+			{props.children[1]}
+		  </div>
 		</div>
     </div>
   )
