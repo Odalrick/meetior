@@ -5,7 +5,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 import {ItemTypes} from './ItemTypes'
 
 import Slide from './Slide'
-import SlideEditor from './WYSIWYG'
+import SlideEditor from './SlideEditor'
 
 import style from './SlidePanelItem.css'
 
