@@ -27,18 +27,19 @@ export default (props) => {
 		</div>
         <div>
           <label>Titel</label>
-          <input value={lesson.get('title')} onChange={onLessonTitleChange}></input>
+          <input className={style.titleInput} value={lesson.get('title')} onChange={onLessonTitleChange}></input>
         </div>
         <div>
           <label>Bild</label>
           <ImageUploader className={style.imageUploader} handleImageUpload={setLessonIcon} />
         </div>
         <label>Beskrivning</label>
-        <textarea rows="1" value={lesson.get('description')} onChange={onLessonDescriptionChange}></textarea>
-
-      </section>
-      <TagInput handleDeleteTag={removeTag} handleAddTag={addTag}
+        <textarea className={style.descriptionInput}  rows="1" value={lesson.get('description')} onChange={onLessonDescriptionChange}></textarea>
+		<label>Taggar</label>
+		<TagInput className={style.tagInput} handleDeleteTag={removeTag} handleAddTag={addTag}
                 tags={lesson.get('tags')} suggestions={tags} />
+      </section>
+     
       <SlidePanel
         {...props}
       />

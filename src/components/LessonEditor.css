@@ -32,7 +32,7 @@
   display: block;
 }
 
-.lessonInfo input {
+.input {
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -40,14 +40,16 @@
   border-bottom: 1px #72888F solid;
 }
 
-.lessonInfo textarea {
+
+.titleInput {
+  composes: input;
+}
+
+.descriptionInput {
+  composes: input;
   resize: vertical;
   overflow: visible;
-  width: 100%;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 1px #72888F solid;
+  width: 100%;  
 }
 
 .lessonInfo div:nth-child(2) {
