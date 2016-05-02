@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha 'src/**/*.spec.js' --require './mocha.config.js' --compilers js:babel-core/register",
+    "test": "node ./node_modules/mocha/bin/mocha \"src/**/*.spec.js\" --require \"./mocha.config.js\" --compilers js:babel-core/register",
     "test:watch": "npm run test -- --watch",
     "webserver": "node api/src/server.js",
     "build": "node_modules/.bin/webpack",
@@ -29,7 +29,6 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.4.1",
     "chai-immutable": "^1.5.3",
-    "co-nano": "0.0.3",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.0.0",
     "eslint-config-airbnb": "^1.0.0",

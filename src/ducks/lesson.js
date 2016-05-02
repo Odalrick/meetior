@@ -9,6 +9,8 @@ const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
 const STOP_EDITING_SLIDE = 'planck/lesson/STOP_EDITING_SLIDE'
 const DELETE_SLIDE =  'planck/lesson/DELETE_SLIDE'
 const ADD_SLIDE =  'planck/lesson/ADD_SLIDE'
+const ADD_TAG =  'planck/lesson/ADD_TAG'
+const REMOVE_TAG =  'planck/lesson/REMOVE_TAG'
 
 const initialState = Immutable.fromJS({title: '', description: '', slides: []})
 
@@ -67,6 +69,14 @@ const actions = {
   [ADD_SLIDE](state, action) {
     return state.updateIn(
       ['slides'], (slides) => slides.push(Immutable.fromJS({text:''})))
+  },
+  [ADD_TAG](state, action) {
+    return state.updateIn(
+      ['tags'], (tags) => tags.push(action.payload.tag))
+  },
+  [REMOVE_TAG](state, action) {
+    return state.updateIn(
+      ['tags'], (tags) => tags.delete(tags.findIndex(t => t === action.payload.tag)))
   }
 }
 
@@ -124,3 +134,15 @@ export function addSlide() {
     type: ADD_SLIDE, payload: {}
   }
 }
+
+export function addTag(tag) {
+  return {
+    type: ADD_TAG, payload: {tag}
+  }
+}
+export function removeTag(tag) {
+  return {
+    type: REMOVE_TAG, payload: {tag}
+  }
+}
+
