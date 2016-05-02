@@ -1,0 +1,6 @@
+.emptyPanelItem {
+  composes: slidePanelItem from './SlidePanelItem.css';
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../img/add_slide.png");
+}
