@@ -5,7 +5,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 import {ItemTypes} from './ItemTypes'
 
 import Slide from './Slide'
-import SlideEditor from './WYSIWYG'
+import SlideEditor from './SlideEditor'
 
 import style from './SlidePanelItem.css'
 
@@ -68,11 +68,12 @@ function collectTarget(connect) {
 }
 
 const componentToggle = (props) => {
-  const {slide, isDragging, setSlideText} = props
+  const {slide, isDragging, setSlideText, stopEditingSlide} = props
   const opacity = isDragging ? 0.5 : 1
   if (slide.get('editing')) {
     return <SlideEditor
-      handleEditorChange={setSlideText}
+      stopEditingSlide={stopEditingSlide}
+	    setSlideText={setSlideText}
       text={slide.get('text')}/>
   }
   else {
