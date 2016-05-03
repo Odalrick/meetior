@@ -5,8 +5,10 @@ import WYSIWYG from './WYSIWYG'
 import style from './SlideEditor.css'
 
 export default function SlideEditor(props){
+	console.log(props)
   return (
-    <Modal isOpen={true}>
+    <Modal isOpen={props.isEditorOpen}>
       <WYSIWYG {...props}></WYSIWYG>
+	  <button className={style.closeButton} onClick={props.handleCloseEditor}>Stäng</button>
     </Modal>)
 }

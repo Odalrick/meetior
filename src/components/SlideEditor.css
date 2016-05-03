@@ -1,12 +1,68 @@
-.button {
-  display: inline-block;
-  height: 24px;
-  vertical-align: middle;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
-  box-sizing: border-box;
-  cursor: pointer;
-  text-align: center;
-  float: right
+.ReactModal__Overlay {
+  -webkit-perspective: 600;
+  perspective: 600;
+  opacity: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+.ReactModal__Content {
+  -webkit-transform: scale(0.5) rotateX(-30deg);
+  transform: scale(0.5) rotateX(-30deg);
+}
+
+.ReactModal__Content--after-open {
+  -webkit-transform: scale(1) rotateX(0deg);
+  transform: scale(1) rotateX(0deg);
+  transition: all 150ms ease-in;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content--before-close {
+  -webkit-transform: scale(0.5) rotateX(30deg);
+  transform: scale(0.5) rotateX(30deg);
+  transition: all 150ms ease-in;
+}
+
+.ReactModal__Content.modal-dialog {
+  border: none;
+  background-color: transparent;
+}
+
+.closeButton{
+ bottom: 0;
+ display: inline-block;
+ border:1px solid #bfbfbf;
+ color: #8c8c8c;
+ border-radius: 5px 5px 5px 5px;
+ -webkit-border-radius: 5px 5px 5px 5px;
+ -moz-border-radius: 5px 5px 5px 5px;
+ font-family: Verdana;
+ width: auto;
+ height: auto;
+ font-size: 16px;
+ padding: 10px 40px;
+ box-shadow: inset 0 1px 0 0 #fff,inset 0 -1px 0 0 #d9d9d9,inset 0 0 0 1px #f2f2f2,0 2px 4px 0 #f2f2f2;
+ -moz-box-shadow: inset 0 1px 0 0 #fff,inset 0 -1px 0 0 #d9d9d9,inset 0 0 0 1px #f2f2f2,0 2px 4px 0 #f2f2f2;
+ -webkit-box-shadow: inset 0 1px 0 0 #fff,inset 0 -1px 0 0 #d9d9d9,inset 0 0 0 1px #f2f2f2,0 2px 4px 0 #f2f2f2;
+ text-shadow: 0 1px 0 #fff;
+ background-image: linear-gradient(to bottom, #f2f2f2, #f2f2f2);
+ background-color: #f2f2f2;
+}
+.closeButton:hover, .closeButton:active{
+ border:1px solid #8c8c8c;
+ color: #8c8c8c;
+ box-shadow: inset 0 1px 0 0 #ffffff,inset 0 -1px 0 0 #d9d9d9,inset 0 0 0 1px #f2f2f2;
+ -moz-box-shadow: inset 0 1px 0 0 #ffffff,inset 0 -1px 0 0 #d9d9d9,inset 0 0 0 1px #f2f2f2;
+ -webkit-box-shadow: inset 0 1px 0 0 #ffffff,inset 0 -1px 0 0 #d9d9d9,inset 0 0 0 1px #f2f2f2;
+ background-color: #f2f2f2;
 }

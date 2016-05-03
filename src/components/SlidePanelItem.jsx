@@ -68,11 +68,13 @@ function collectTarget(connect) {
 }
 
 const componentToggle = (props) => {
-  const {slide, isDragging, setSlideText} = props
+  const {slide, isDragging, setSlideText, stopEditingSlide} = props
   const opacity = isDragging ? 0.5 : 1
   if (slide.get('editing')) {
     return <SlideEditor
       handleEditorChange={setSlideText}
+	  handleCloseEditor={stopEditingSlide}
+	  isEditorOpen={slide.get('editing')}
       text={slide.get('text')}/>
   }
   else {
