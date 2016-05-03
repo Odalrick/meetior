@@ -72,9 +72,8 @@ const componentToggle = (props) => {
   const opacity = isDragging ? 0.5 : 1
   if (slide.get('editing')) {
     return <SlideEditor
-      handleEditorChange={setSlideText}
-	  handleCloseEditor={stopEditingSlide}
-	  isEditorOpen={slide.get('editing')}
+      stopEditingSlide={stopEditingSlide}
+	    setSlideText={setSlideText}
       text={slide.get('text')}/>
   }
   else {
