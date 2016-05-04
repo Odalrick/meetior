@@ -68,8 +68,12 @@ function collectTarget(connect) {
 }
 
 const componentToggle = (props) => {
-  const {slide, isDragging, setSlideText, stopEditingSlide} = props
+  const {slide, isDragging, setSlideText, stopEditingSlide, deleteSlide} = props
   const opacity = isDragging ? 0.5 : 1
+  const handleDeleteSlide = (e) => {
+    e.stopPropagation()
+    deleteSlide()
+  }
   if (slide.get('editing')) {
     return <SlideEditor
       stopEditingSlide={stopEditingSlide}
@@ -82,9 +86,9 @@ const componentToggle = (props) => {
 			<div className={style.content}>
 				<Slide style={{opacity}} text={slide.get('text')}></Slide>
 			</div>
-			<div className={style.footer}>	
+			<div className={style.footer}>
 				<div>
-					<button>REDIGERA</button><button>TA BORT</button>
+					<button>REDIGERA</button><button onClick={handleDeleteSlide}>TA BORT</button>
 				</div>
 			</div>
 		</div>
@@ -95,7 +99,6 @@ const componentToggle = (props) => {
 class SlidePanelItem extends Component {
   render() {
     const {startEditingSlide,
-      stopEditingSlide, deleteSlide,
       connectDragSource, connectDropTarget} = this.props
     return (
       connectDropTarget(connectDragSource(
