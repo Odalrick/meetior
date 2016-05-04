@@ -21,25 +21,26 @@ export default (props) => {
   return (
     <div className={style.lessonEditor}>
       <section className={style.lessonInfo}>
-		<div>
-			<h1>Skapa lektion</h1>
-			<button>Spara</button>
-		</div>
+        <div>
+          <h1>Skapa lektion</h1>
+          <button>Spara</button>
+        </div>
         <div>
           <label>Titel</label>
           <input className={style.titleInput} value={lesson.get('title')} onChange={onLessonTitleChange}></input>
         </div>
         <div>
           <label>Bild</label>
-          <ImageUploader className={style.imageUploader} handleImageUpload={setLessonIcon} />
+          <ImageUploader className={style.imageUploader} handleImageUpload={setLessonIcon}/>
         </div>
         <label>Beskrivning</label>
-        <textarea className={style.descriptionInput}  rows="1" value={lesson.get('description')} onChange={onLessonDescriptionChange}></textarea>
-		<label>Taggar</label>
-		<TagInput className={style.tagInput} handleDeleteTag={removeTag} handleAddTag={addTag}
-                tags={lesson.get('tags')} suggestions={tags} />
+        <textarea className={style.descriptionInput} rows="1" value={lesson.get('description')}
+                  onChange={onLessonDescriptionChange}></textarea>
+        <label>Taggar</label>
+        <TagInput className={style.tagInput} handleDeleteTag={removeTag} handleAddTag={addTag}
+                  tags={lesson.get('tags')} suggestions={tags}/>
       </section>
-     
+
       <SlidePanel
         {...props}
       />

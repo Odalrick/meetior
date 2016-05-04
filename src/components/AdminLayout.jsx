@@ -9,8 +9,8 @@ class AdminLayout extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-3">{children[0]}</div>
-          <div className="col-sm-9">{children[1]}</div>
+          <div className="col-sm-2">{children[0]}</div>
+          <div className="col-sm-10">{children[1]}</div>
         </div>
       </div>
     )

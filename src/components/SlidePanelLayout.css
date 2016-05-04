@@ -1,4 +1,4 @@
-.slidePanelLayout {
-	
+.slidePanelLayout > div {
+	float: left;
 }
 
