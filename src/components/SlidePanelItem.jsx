@@ -77,7 +77,18 @@ const componentToggle = (props) => {
       text={slide.get('text')}/>
   }
   else {
-    return <Slide style={{opacity}} text={slide.get('text')}></Slide>
+    return (
+		<div className={style.container}>
+			<div className={style.content}>
+				<Slide style={{opacity}} text={slide.get('text')}></Slide>
+			</div>
+			<div className={style.footer}>	
+				<div>
+					<button>REDIGERA</button><button>TA BORT</button>
+				</div>
+			</div>
+		</div>
+	)
   }
 }
 
