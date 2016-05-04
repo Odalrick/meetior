@@ -74,26 +74,28 @@ const componentToggle = (props) => {
     e.stopPropagation()
     deleteSlide()
   }
-  if (slide.get('editing')) {
-    return <SlideEditor
-      stopEditingSlide={stopEditingSlide}
-	    setSlideText={setSlideText}
-      text={slide.get('text')}/>
-  }
-  else {
-    return (
-		<div className={style.container}>
-			<div className={style.content}>
-				<Slide style={{opacity}} text={slide.get('text')}></Slide>
-			</div>
-			<div className={style.footer}>
-				<div>
-					<button>REDIGERA</button><button onClick={handleDeleteSlide}>TA BORT</button>
-				</div>
-			</div>
-		</div>
-	)
-  }
+
+  return (
+    <div>
+      <div className={style.container}>
+        <div className={style.content}>
+          <Slide style={{opacity}} text={slide.get('text')}></Slide>
+        </div>
+        <div className={style.footer}>
+          <div>
+            <button>REDIGERA</button>
+            <button onClick={handleDeleteSlide}>TA BORT</button>
+          </div>
+        </div>
+      </div>
+      <SlideEditor
+        isEditing={slide.get('editing')}
+        stopEditingSlide={stopEditingSlide}
+        setSlideText={setSlideText}
+        text={slide.get('text')}/>
+    </div>
+  )
+
 }
 
 class SlidePanelItem extends Component {
