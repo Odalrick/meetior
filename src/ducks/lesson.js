@@ -1,4 +1,5 @@
 import Immutable from 'immutable'
+import R from 'ramda'
 
 const SET_LESSON_TITLE = 'planck/lesson/SET_LESSON_TITLE'
 const SET_LESSON_DESCRIPTION = 'planck/lesson/SET_LESSON_DESCRIPTION'
@@ -7,20 +8,12 @@ const SET_SLIDE_TEXT = 'planck/lesson/SET_SLIDE_TEXT'
 const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
 const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
 const STOP_EDITING_SLIDE = 'planck/lesson/STOP_EDITING_SLIDE'
-const DELETE_SLIDE =  'planck/lesson/DELETE_SLIDE'
-const ADD_SLIDE =  'planck/lesson/ADD_SLIDE'
-const ADD_TAG =  'planck/lesson/ADD_TAG'
-const REMOVE_TAG =  'planck/lesson/REMOVE_TAG'
+const DELETE_SLIDE = 'planck/lesson/DELETE_SLIDE'
+const ADD_SLIDE = 'planck/lesson/ADD_SLIDE'
+const ADD_TAG = 'planck/lesson/ADD_TAG'
+const REMOVE_TAG = 'planck/lesson/REMOVE_TAG'
 
-const initialState = Immutable.fromJS({title: '', description: '', slides: []})
-
-export default function reducer(state = initialState, action) {
-  if (actions[action.type]) {
-    return actions[action.type](state, action)
-  } else {
-    return state
-  }
-}
+const initialState = Immutable.fromJS({ title: '', description: '', slides: [] })
 
 const actions = {
   [SET_LESSON_TITLE](state, action) {
@@ -51,12 +44,12 @@ const actions = {
   },
   [START_EDITING_SLIDE](state, action) {
     return state.updateIn(
-      ['slides'], (slides) => {
-        return Immutable.fromJS(slides.toJS().map((slide, i) => {
-          slide.editing = action.payload.slideIndex === i
-          return slide
-        }))
-      })
+      ['slides'], (slides) => Immutable.fromJS(
+        slides.toJS().map(
+          (slide, i) => R.assoc('editing', action.payload.slideIndex === i)(slide)
+        )
+      )
+    )
   },
   [STOP_EDITING_SLIDE](state, action) {
     return state.updateIn(
@@ -66,9 +59,9 @@ const actions = {
     return state.deleteIn(
       ['slides', action.payload.slideIndex])
   },
-  [ADD_SLIDE](state, action) {
+  [ADD_SLIDE](state) {
     return state.updateIn(
-      ['slides'], (slides) => slides.push(Immutable.fromJS({text:''})))
+      ['slides'], (slides) => slides.push(Immutable.fromJS({ text: '' })))
   },
   [ADD_TAG](state, action) {
     return state.updateIn(
@@ -77,72 +70,79 @@ const actions = {
   [REMOVE_TAG](state, action) {
     return state.updateIn(
       ['tags'], (tags) => tags.delete(tags.findIndex(t => t === action.payload.tag)))
+  },
+}
+
+export default function reducer(state = initialState, action) {
+  if (actions[action.type]) {
+    return actions[action.type](state, action)
+  } else {
+    return state
   }
 }
 
 export function setLessonTitle(newTitle) {
   return {
-    type: SET_LESSON_TITLE, payload: {newTitle}
+    type: SET_LESSON_TITLE, payload: { newTitle },
   }
 }
 
 export function setLessonDescription(newDescription) {
   return {
-    type: SET_LESSON_DESCRIPTION, payload: {newDescription}
+    type: SET_LESSON_DESCRIPTION, payload: { newDescription },
   }
 }
 
 export function setLessonIcon(newIcon) {
   return {
-    type: SET_LESSON_ICON, payload: {newIcon}
+    type: SET_LESSON_ICON, payload: { newIcon },
   }
 }
 
-
 export function setSlideText(slideIndex, newText) {
   return {
-    type: SET_SLIDE_TEXT, payload: {slideIndex, newText}
+    type: SET_SLIDE_TEXT, payload: { slideIndex, newText },
   }
 }
 
 export function moveSlide(fromIndex, toIndex) {
   return {
-    type: MOVE_SLIDE, payload: {fromIndex, toIndex}
+    type: MOVE_SLIDE, payload: { fromIndex, toIndex },
   }
 }
 
 export function startEditingSlide(slideIndex) {
   return {
-    type: START_EDITING_SLIDE, payload: {slideIndex}
+    type: START_EDITING_SLIDE, payload: { slideIndex },
   }
 }
 
 export function stopEditingSlide(slideIndex) {
   return {
-    type: STOP_EDITING_SLIDE, payload: {slideIndex}
+    type: STOP_EDITING_SLIDE, payload: { slideIndex },
   }
 }
 
 export function deleteSlide(slideIndex) {
   return {
-    type: DELETE_SLIDE, payload: {slideIndex}
+    type: DELETE_SLIDE, payload: { slideIndex },
   }
 }
 
 export function addSlide() {
   return {
-    type: ADD_SLIDE, payload: {}
+    type: ADD_SLIDE, payload: {},
   }
 }
 
 export function addTag(tag) {
   return {
-    type: ADD_TAG, payload: {tag}
+    type: ADD_TAG, payload: { tag },
   }
 }
 export function removeTag(tag) {
   return {
-    type: REMOVE_TAG, payload: {tag}
+    type: REMOVE_TAG, payload: { tag },
   }
 }
 
