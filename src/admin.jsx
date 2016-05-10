@@ -12,7 +12,7 @@ import dbFactory from './db/couch'
 import Admin from './components/Admin'
 import Login from './components/Login'
 import ShowLesson from './containers/ShowLessonContainer'
-import CourseEditor from './components/CourseEditor'
+import CourseEditor from './containers/CourseEditorContainer'
 
 import lesson from './ducks/lesson'
 import showLesson from './ducks/showLesson'
