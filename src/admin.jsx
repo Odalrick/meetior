@@ -12,6 +12,7 @@ import dbFactory from './db/couch'
 import Admin from './components/Admin'
 import Login from './components/Login'
 import ShowLesson from './containers/ShowLessonContainer'
+import CourseEditor from './components/CourseEditor'
 
 import lesson from './ducks/lesson'
 import showLesson from './ducks/showLesson'
@@ -39,8 +40,12 @@ import saveLessonSagas from './sagas/saveLessonSaga'
     <Provider store={store}>
       <Router history={history}>
         <Route path="/" component={Login} />
-        <Route path="admin" component={Admin} />
-        <Route path="lesson" component={ShowLesson} />
+        <Route path="admin" component={Admin}>
+          <Route path="courses/:id" component={CourseEditor} />
+        </Route>
+        {/*<Route path="show">
+          <Route path="lesson" component={ShowLesson} />
+        </Route>*/}
       </Router>
     </Provider>,
     app
