@@ -1,13 +1,19 @@
 import React from 'react'
 
 import EditorLayout from './EditorLayout'
-import CourseHeaderEditor from './CourseHeaderEditor'
+import HeaderEditor from './HeaderEditor'
+import LessonCard from './LessonCard'
 
-
-export default function CourseEditor() {
+export default function CourseEditor(props) {
+  const {course} = props
   return (
     <EditorLayout>
-      <CourseHeaderEditor/>
+      <HeaderEditor header = {course} />
+	  {course.get('lessons').map((lesson) => {
+		return (
+			<LessonCard key={lesson.get('_id')} lesson={lesson} />
+		)
+	  })}
     </EditorLayout>
   )
 };

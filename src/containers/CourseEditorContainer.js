@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import immutable from 'immutable'
 
 import CourseEditor from '../components/CourseEditor'
 
@@ -88,7 +89,7 @@ const course = {
 
 function mapStateToProps(state) {
   return {
-    course
+    course: immutable.fromJS(course)
   }
 }
 
