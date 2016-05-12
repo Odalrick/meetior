@@ -8,7 +8,7 @@ export default function FlowPanel(props) {
       {
         props.children
           .map((c, i) =>
-            <PanelItem index={i} canMove={props.canMove} moveItem={props.moveItem}>{c}</PanelItem>)
+            <PanelItem key={i} index={i} canMove={props.canMove} moveItem={props.moveItem}>{c}</PanelItem>)
       }
     </div>
   )

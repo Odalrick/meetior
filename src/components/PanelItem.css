@@ -1,3 +1,7 @@
 .panelItem {
-  max-width: 350px;
+  composes: card from '../stylesheets/card.css';
+  max-width: 400px;  
+}
+.panelItem > * {
+	border: none;
 }
