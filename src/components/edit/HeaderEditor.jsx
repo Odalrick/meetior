@@ -1,6 +1,6 @@
 import React from 'react'
-import ImageUploader from './ImageUploader'
-import TagInput from './TagInput'
+import ImageUploader from '../ImageUploader'
+import TagInput from '../TagInput'
 
 import style from './HeaderEditor.css'
 
