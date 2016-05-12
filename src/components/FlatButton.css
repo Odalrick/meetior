@@ -1,0 +1,17 @@
+.flatButton {
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #FFF;
+  border: 1px solid #72888F;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.flatButton:hover {
+  color: #FFF;
+  background-color: #72888F;
+}
+
+.flatButton:active {
+  background-color: #666;
+}

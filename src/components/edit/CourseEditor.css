@@ -5,18 +5,14 @@
 	margin: auto;
 	bottom: 0;
 	left: 5%;
-	clear: both;	
+	clear: both;
 	border-top: 2px #72888F solid;
 }
 
-.buttons button:nth-child(1) { 	
+.buttons button:nth-child(1) {
 }
 
 .buttons button:nth-child(2) {
-  float: right;  
-}
-
-.button {
-	composes: button from '../../stylesheets/button.css'
+  float: right;
 }
 

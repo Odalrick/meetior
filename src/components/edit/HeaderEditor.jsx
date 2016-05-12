@@ -1,8 +1,9 @@
 import React from 'react'
 import ImageUploader from '../ImageUploader'
 import TagInput from '../TagInput'
+import FlatButton from '../FlatButton'
 
-import style from './HeaderEditor.css'
+import styles from './HeaderEditor.css'
 
 export default (props) => {
   const {header, tags, setTitle, setDescription, setIcon,
@@ -18,25 +19,25 @@ export default (props) => {
   }
 
   return (
-    <section className={style.headerEditor}>      
-        <div>
-          <h1>Skapa huvud..?</h1>
-          <button>Spara</button>
-        </div>
-        <div>
-          <label>Titel</label>
-          <input className={style.titleInput} value={header.get('title')} onChange={onTitleChange}></input>
-        </div>
-        <div>
-          <label>Bild</label>
-          <ImageUploader className={style.imageUploader} handleImageUpload={setIcon}/>
-        </div>
+    <section className={styles.headerEditor}>
+      <div className={styles.titleInput}>
+        <label>Titel</label>
+        <input className={styles.titleInput} value={header.get('title')} onChange={onTitleChange}></input>
+      </div>
+      <FlatButton>Spara</FlatButton>
+      <div className={styles.iconInput}>
+        <label>Bild</label>
+        <ImageUploader className={styles.imageUploader} handleImageUpload={setIcon}/>
+      </div>
+      <div className={styles.descriptionInput}>
         <label>Beskrivning</label>
-        <textarea className={style.descriptionInput} rows="1" value={header.get('description')}
-                  onChange={onDescriptionChange}></textarea>
-        <label>Taggar</label>
-        <TagInput className={style.tagInput} handleDeleteTag={removeTag} handleAddTag={addTag}
-                  tags={header.get('tags')} suggestions={tags}/>      
+        <textarea className={styles.descriptionInput} rows="5" value={header.get('description')}
+                  onChange={onDescriptionChange}>
+        </textarea>
+      </div>
+      <label>Taggar</label>
+      <TagInput className={styles.tagInput} handleDeleteTag={removeTag} handleAddTag={addTag}
+                tags={header.get('tags')} suggestions={tags}/>
     </section>
   )
 }
