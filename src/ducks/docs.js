@@ -9,7 +9,7 @@ const emptyDocument = I.Map().set('current', I.Map()).set('draft', I.Map())
 export default function factory(innerReducers) {
   const actions = {
     [LOAD_DOCUMENT](state, action) {
-      const { _id, draft, type } = action.payload
+      const { _id, draft } = action.payload
       return state.update(
         _id,
         emptyDocument,
@@ -20,15 +20,42 @@ export default function factory(innerReducers) {
           )
           .set(
             'draft',
-            I.fromJS(action.payload)
+            draft ? I.fromJS(draft) : I.fromJS(action.payload)
+          )
+          .delete('pending')
+      )
+    },
+    [SET_PENDING_DOCUMENT](state, action) {
+      const { _id } = action.payload
+      return state.update(
+        _id,
+        emptyDocument,
+        middleState => middleState
+          .set(
+            'pending',
+            true
           )
       )
     },
   }
 
+  function innerReducer(state, action) {
+    const type = state.getIn([action.payload._id, 'draft', 'type'])
+    if (innerReducers[type]) {
+      return state.updateIn(
+        [action.payload._id, 'draft'],
+        innerState => innerReducers[type](innerState, action)
+      )
+    } else {
+      return state
+    }
+  }
+
   function reducer(state = initialState, action = {}) {
     if (actions[action.type]) {
       return actions[action.type](state, action)
+    } else if (action.payload && action.payload._id) {
+      return innerReducer(state, action)
     } else {
       return state
     }
@@ -41,5 +68,12 @@ export function loadDocument(doc) {
   return {
     type: LOAD_DOCUMENT,
     payload: doc,
+  }
+}
+
+export function setPending({ _id }) {
+  return {
+    type: SET_PENDING_DOCUMENT,
+    payload: { _id },
   }
 }
