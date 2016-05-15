@@ -1,11 +1,11 @@
 import fetch from 'isomorphic-fetch'
+import couchTools from 'couchdb-tools'
 
 const serialise = data => JSON.stringify(data,
-  (key, value) => (typeof value === 'function') ? value.toString() : value
+  (key, value) => (typeof value === 'function') ? '('+value.toString()+')' : value
 )
 
 export default config => {
-
   return {
     loadLessons() {
       return fetch(
