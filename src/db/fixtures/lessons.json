@@ -12,7 +12,8 @@
         "text": "<h1>Non est ista, inquam, Piso, magna dissensio.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles,\npostea. Sed fortuna fortis; Cur iustitia laudatur? Duo Reges: constructio interrete. </p>\n\n<ul>\n  <li>Quid ergo hoc loco intellegit honestum?</li>\n  <li>Nobis aliter videtur, recte secusne, postea;</li>\n  <li>Sequitur disserendi ratio cognitioque naturae;</li>\n  <li>Quis animo aequo videt eum, quem inpure ac flagitiose putet vivere?</li>\n</ul>\n\n\n<p>Paria sunt igitur. Ut aliquid scire se gaudeant? Haec dicuntur fortasse ieiunius;\nTubulo putas dicere? </p>\n\n<p>Eaedem res maneant alio modo. Res enim concurrent contrariae. Hoc tu nunc in illo\n probas. Eaedem res maneant alio modo. Hoc tu nunc in illo probas. </p>\n\n"
       }
     ],
-    "_id": "eecf0a39454b4b2244ebdc3518015605"
+    "_id": "eecf0a39454b4b2244ebdc3518015605",
+    "type": "lesson"
   },
   {
     "title": "Excretion ignatius",
@@ -27,7 +28,8 @@
         "text": "<h1>Est enim effectrix multarum et magnarum voluptatum.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Certe, nisi voluptatem\ntanti aestimaretis. Duo Reges: constructio interrete. Negare non possum. Cur post\nTarentum ad Archytam? Quid me istud rogas? </p>\n\n<ul>\n  <li>Sed est forma eius disciplinae, sicut fere ceterarum, triplex: una pars est\n  naturae, disserendi altera, vivendi tertia.</li>\n  <li>Si qua in iis corrigere voluit, deteriora fecit.</li>\n  <li>Antiquorum autem sententiam Antiochus noster mihi videtur persequi diligentissime,\n   quam eandem Aristoteli fuisse et Polemonis docet.</li>\n</ul>\n\n\n<p>Pauca mutat vel plura sane; Comprehensum, quod cognitum non habet? De quibus cupio\n scire quid sentias. An eiusdem modi? Ratio quidem vestra sic cogit. Philosophi autem in\n  suis lectulis plerumque moriuntur. Non igitur bene. Sed ad rem redeamus; </p>\n\n<p>Primum in nostrane potestate est, quid meminerimus? Hic nihil fuit, quod quaereremus.\n Sed ad bona praeterita redeamus. Praeclare hoc quidem. Summae mihi videtur inscitiae.\n Praeteritis, inquit, gaudeo. Ita prorsus, inquam; Satis est ad hoc responsum. </p>\n\n"
       }
     ],
-    "_id": "eecf0a39454b4b2244ebdc351801603e"
+    "_id": "eecf0a39454b4b2244ebdc351801603e",
+    "type": "lesson"
   },
   {
     "title": "Absolvo summarun",
@@ -42,10 +44,10 @@
         "text": "<h1>Negat enim summo bono afferre incrementum diem.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duo Reges: constructio\ninterrete. Haeret in salebra. Sequitur disserendi ratio cognitioque naturae; Sed fac\n ista esse non inportuna; Quid ad utilitatem tantae pecuniae? Inquit, dasne\n adolescenti veniam? At certe gravius. Prioris generis est docilitas, memoria; </p>\n\n<ul>\n  <li>Quod ea non occurrentia fingunt, vincunt Aristonem;</li>\n  <li>Qualem igitur hominem natura inchoavit?</li>\n  <li>Quonam, inquit, modo?</li>\n</ul>\n\n\n<p>Sic enim censent, oportunitatis esse beate vivere. Murenam te accusante defenderem.\n Itaque contra est, ac dicitis; Magna laus. Verum hoc idem saepe faciamus. Honesta\n oratio, Socratica, Platonis etiam. </p>\n\n<p>Simus igitur contenti his. At multis malis affectus. Quid est igitur, inquit, quod\nrequiras? Quid igitur, inquit, eos responsuros putas? Sed haec omittamus; Confecta\nres esset. </p>\n\n"
       }
     ],
-    "_id": "eecf0a39454b4b2244ebdc351801623f"
+    "_id": "eecf0a39454b4b2244ebdc351801623f",
+    "type": "lesson"
   },
   {
-    "title": "Exctretias Buggis",
     "slides": [
       {
         "text": "<h1>Quia nec honesto quic quam honestius nec turpi turpius.</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Age, inquies, ista parva\nsunt. Oratio me istius philosophi non offendit; Si quae forte-possumus. Duo Reges:\nconstructio interrete. </p>\n\n<ul>\n  <li>Sed quid attinet de rebus tam apertis plura requirere?</li>\n  <li>Quod cum ita sit, perspicuum est omnis rectas res atque laudabilis eo referri,\n   ut cum voluptate vivatur.</li>\n  <li>Idemque diviserunt naturam hominis in animum et corpus.</li>\n  <li>Hunc ipsum Zenonis aiunt esse finem declarantem illud, quod a te dictum est,\n  convenienter naturae vivere.</li>\n</ul>\n\n\n<h2>An vero, inquit, quisquam potest probare, quod perceptfum, quod.</h2>\n\n<p>Que Manilium, ab iisque M. Etiam beatissimum? Beatum, inquit. Tuo vero id quidem,\ninquam, arbitratu. </p>\n\n<h3>Semovenda est igitur voluptas, non solum ut recta sequamini, sed etiam ut loqui\n deceat frugaliter.</h3>\n\n<p>Negare non possum. In schola desinis. </p>\n\n"
@@ -57,7 +59,8 @@
         "text": "<h1>Graccho, eius fere, aequalí?</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita prorsus, inquam; At\n certe gravius. Duo Reges: constructio interrete. Tollenda est atque extrahenda\n radicitus. Cur id non ita fit? Haec dicuntur inconstantissime. </p>\n\n<ul>\n  <li>Itaque e contrario moderati aequabilesque habitus, affectiones ususque corporis\n   apti esse ad naturam videntur.</li>\n  <li>Illa videamus, quae a te de amicitia dicta sunt.</li>\n  <li>Iam quae corporis sunt, ea nec auctoritatem cum animi partibus, comparandam et\n  cognitionem habent faciliorem.</li>\n  <li>Quantum Aristoxeni ingenium consumptum videmus in musicis?</li>\n</ul>\n\n\n<p>Quid Zeno? Dempta enim aeternitate nihilo beatior Iuppiter quam Epicurus; Tibi hoc\nincredibile, quod beatissimum. Reguli reiciendam; Praeclare hoc quidem. Hunc vos\nbeatum; </p>\n\n<h2>Quae qui non vident, nihil umquam magnum ac cognitione dignum amaverunt.</h2>\n\n<p>Videsne quam sit magna dissensio? Est, ut dicis, inquam. Nos commodius agimus.\nQuam nemo umquam voluptatem appellavit, appellat; Tum Torquatus: Prorsus, inquit,\nassentior; </p>\n\n"
       }
     ],
-    "_id": "eecf0a39454b4b2244ebdc3518016fc2"
+    "_id": "eecf0a39454b4b2244ebdc3518016fc2",
+    "type": "lesson"
   },
   {
     "title": "Tempori exta",
@@ -72,6 +75,7 @@
         "text": "<h1>Quod autem principium officii quaerunt, melius quam Pyrrho;</h1>\n\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praeteritis, inquit,\n gaudeo. Vide, quaeso, rectumne sit. Duo Reges: constructio interrete. Reguli\n reiciendam; </p>\n\n<ul>\n  <li>Nec enim, dum metuit, iustus est, et certe, si metuere destiterit, non erit;</li>\n  <li>Ait enim se, si uratur, Quam hoc suave! dicturum.</li>\n  <li>Quamvis enim depravatae non sint, pravae tamen esse possunt.</li>\n  <li>Praeclare hoc quidem.</li>\n</ul>\n\n\n<p>Memini me adesse P. Paria sunt igitur. A mene tu? </p>\n\n<h2>Non est ista, inquam, Piso, magna dissensio.</h2>\n\n<p>Prioris generis est docilitas, memoria; Id enim natura desiderat. Tu quidem reddes;\n Quis Aristidem non mortuum diligit? </p>\n\n"
       }
     ],
-    "_id": "eecf0a39454b4b2244ebdc3518017cb0"
+    "_id": "eecf0a39454b4b2244ebdc3518017cb0",
+    "type": "lesson"
   }
 ]

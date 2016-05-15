@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch'
-import couchTools from 'couchdb-tools'
 
 const serialise = data => JSON.stringify(data,
-  (key, value) => (typeof value === 'function') ? '('+value.toString()+')' : value
+  (key, value) => (typeof value === 'function') ? '(' + value.toString() + ')' : value
 )
 
 export default config => {
@@ -10,6 +9,13 @@ export default config => {
     loadLessons() {
       return fetch(
         `${config.couchUrl}/${config.dataDB}/_design/lesson/_view/lesson`, {
+          method: 'GET',
+        }).then(res => res.json())
+    },
+    loadType(type) {
+      const sType = serialise(type)
+      return fetch(
+        `${config.couchUrl}/${config.dataDB}/_design/docs/_view/type?key=${sType}`, {
           method: 'GET',
         }).then(res => res.json())
     },

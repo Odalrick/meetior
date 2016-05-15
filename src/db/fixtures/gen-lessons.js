@@ -459,7 +459,7 @@ si sequetur; Hunc vos beatum; Quibusnam praeteritis? Hic ambiguo ludimur. Hic ni
 
 co(function *() {
   try {
-    const test = yield raw
+    const test = yield R.map(R.assoc('type', 'lesson'))(raw)
 
     console.log(JSON.stringify(test, null, 2))
   } catch (e) {
