@@ -1,16 +1,16 @@
 import { connect } from 'react-redux'
 
 import Immutable from 'immutable'
-import LessonEditor from '../components/LessonEditor'
+import LessonEditor from '../components/edit/LessonEditor'
 import {setLessonTitle, setLessonDescription, setLessonIcon,
   setSlideText, moveSlide, startEditingSlide, stopEditingSlide,
   deleteSlide, addSlide, addTag, removeTag} from '../ducks/lesson'
 
-function mapStateToProps(state) {
-
+function mapStateToProps(state, ownProps) {
+  const lesson = state.get('course').get('lessons').find((l) => l.get('_id') === ownProps.params.lessonId)  
   return {
-    lesson: state.lesson,
-    slides: state.lesson.get('slides'),
+    lesson,
+    slides: lesson.get('slides'),
     tags: Immutable.fromJS(['Tacos', 'cray', 'gluten-free'])
   }
 }

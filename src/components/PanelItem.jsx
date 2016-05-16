@@ -8,7 +8,7 @@ import style from './PanelItem.css'
 
 const dragSource = {
   canDrag(props, monitor){
-    return props.canMove()
+    return props.canMove(monitor.getItem().index)
   },
   beginDrag(props){
     return {

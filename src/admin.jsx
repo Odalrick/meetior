@@ -19,7 +19,7 @@ import course from './ducks/course'
 import lesson from './ducks/lesson'
 import showLesson from './ducks/showLesson'
 import showLessonSagas from './sagas/showLessonSagas'
-import saveLessonSagas from './sagas/saveLessonSaga'
+//import saveLessonSagas from './sagas/saveLessonSaga'
 
 
 (() => {
@@ -28,7 +28,7 @@ import saveLessonSagas from './sagas/saveLessonSaga'
 
   const reducer = combineReducers({course, lesson, showLesson, routing: routerReducer})
   const sagaMiddleware = createSagaMiddleware(
-    showLessonSagas, saveLessonSagas(db))
+    showLessonSagas /*, saveLessonSagas(db)*/)
 
   const store = createStore(reducer,{},
     compose(applyMiddleware(sagaMiddleware, routerMiddleware(browserHistory)),
