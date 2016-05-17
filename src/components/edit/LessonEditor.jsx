@@ -21,9 +21,9 @@ export default (props) => {
       <FlowPanel canMove={canMove} moveItem={moveSlide}>
         {lesson.get('slides').map((slide, i) => {
           return (
-            <div>
-			 A slide!
-			</div>
+            <Card key={slide.get('_id')}>
+				 <Slide text={slide.get('text')}></Slide>
+			</Card>
           )
         })}
       </FlowPanel>

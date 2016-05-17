@@ -7,7 +7,8 @@ import {setLessonTitle, setLessonDescription, setLessonIcon,
   deleteSlide, addSlide, addTag, removeTag} from '../ducks/lesson'
 
 function mapStateToProps(state, ownProps) {
-  const lesson = state.get('course').get('lessons').find((l) => l.get('_id') === ownProps.params.lessonId)  
+  console.log('GODAWFUL HACK, JUST TO GET THINGS ROLLING! WILL NOT WORK REMOVE ASAP!!!!!!!')
+  const lesson = state.course.get('lessons').find((l) => l.get('_id') === ownProps.params.lessonId)  
   return {
     lesson,
     slides: lesson.get('slides'),
