@@ -8,7 +8,7 @@ import style from './PanelItem.css'
 
 const dragSource = {
   canDrag(props, monitor){
-    return props.canMove(monitor.getItem().index)
+    return props.canMove(props.index)
   },
   beginDrag(props){
     return {
@@ -66,10 +66,11 @@ function collectTarget(connect) {
 
 class PanelItem extends Component {
   render() {
-    const {connectDragSource, connectDropTarget} = this.props
+    const {connectDragSource, connectDropTarget, isDragging} = this.props
+    const opacity = isDragging ? 0.5 : 1
     return (
       connectDropTarget(connectDragSource(
-        <div className={style.panelItem}>{this.props.children}</div>
+        <div style={{opacity}} className={style.panelItem}>{this.props.children}</div>
       ))
     )
   }
