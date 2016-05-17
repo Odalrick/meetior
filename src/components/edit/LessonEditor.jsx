@@ -12,7 +12,7 @@ import styles from './LessonEditor.css'
 export default (props) => {
   const {lesson, tags, setLessonTitle, setLessonDescription, setLessonIcon, addTag, removeTag,
     moveSlide, deleteSlide, addSlide, editSlide} = props
-  const canMove = (i) => !lesson.get('slides')[i].get('editing');
+  const canMove = (i) => !lesson.get('slides').get(i).get('editing');
   return (
     <EditorLayout className={styles.lessonEditor}>
       <HeaderEditor setTitle={setLessonTitle} setDescription={setLessonDescription}
@@ -26,6 +26,7 @@ export default (props) => {
             </Card>
           )
         })}
+        <Card className={styles.emptyPanelItem} onClick={addSlide}></Card>
       </FlowPanel>
     </EditorLayout>
 

@@ -7,9 +7,9 @@ import {setLessonTitle, setLessonDescription, setLessonIcon,
   deleteSlide, addSlide, addTag, removeTag} from '../ducks/lesson'
 
 function mapStateToProps(state, ownProps) {
-  console.log('GODAWFUL HACK, JUST TO GET THINGS ROLLING! WILL NOT WORK REMOVE ASAP!!!!!!!')
-  const lesson = state.course.get('lessons').find((l) => l.get('_id') === ownProps.params.lessonId)  
+  const lesson = state.lesson
   return {
+    course: state.course,
     lesson,
     slides: lesson.get('slides'),
     tags: Immutable.fromJS(['Tacos', 'cray', 'gluten-free'])
