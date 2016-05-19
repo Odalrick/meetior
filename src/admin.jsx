@@ -3,17 +3,10 @@ import ReactDOM from 'react-dom'
 import createSagaMiddleware from 'redux-saga'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
+import {tinyMiddleware ,tinyReducer, reduxTinyRouter } from 'redux-tiny-router';
 
 import config from './config'
 import dbFactory from './db/couch'
-
-import Admin from './components/Admin'
-import Login from './components/Login'
-import ShowLesson from './containers/ShowLessonContainer'
-import CourseEditor from './containers/CourseEditorContainer'
-import LessonEditor from './containers/LessonEditorContainer'
 
 import course from './ducks/course'
 import lesson from './ducks/lesson'
@@ -26,30 +19,21 @@ import showLessonSagas from './sagas/showLessonSagas'
 
   const db = dbFactory(config)
 
-  const reducer = combineReducers({course, lesson, showLesson, routing: routerReducer})
+  const reducer = combineReducers(Object.assign({},tinyReducer, {course, lesson, showLesson}))
   const sagaMiddleware = createSagaMiddleware(
     showLessonSagas /*, saveLessonSagas(db)*/)
 
   const store = createStore(reducer,{},
-    compose(applyMiddleware(sagaMiddleware, routerMiddleware(browserHistory)),
+    compose(applyMiddleware(sagaMiddleware, tinyMiddleware ),
       window.devToolsExtension ? window.devToolsExtension() : f => f))
-
-  const history = syncHistoryWithStore(browserHistory, store)
-
+  
+  reduxTinyRouter.init(store);
+  
   const app = document.createElement('div')
   document.body.appendChild(app)
   ReactDOM.render(
-    <Provider store={store}>
-      <Router history={history}>
-        <Route path="/" component={Login} />
-        <Route path="admin" component={Admin}>
-          <Route path="courses/:courseId" component={CourseEditor} />
-          <Route path="courses/:courseId/lessons/:lessonId" component={LessonEditor} />
-        </Route>
-        {/*<Route path="show">
-          <Route path="lesson" component={ShowLesson} />
-        </Route>*/}
-      </Router>
+    <Provider store={store}>        
+		<div>asdf</div>    
     </Provider>,
     app
   )
