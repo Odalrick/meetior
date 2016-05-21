@@ -1,15 +1,14 @@
-var webpack = require('webpack');
+const webpack = require('webpack')
 
-var path = require('path');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlwebpackPlugin = require('html-webpack-plugin')
 
-var ROOT_PATH = path.resolve(__dirname);
+const ROOT_PATH = path.resolve(__dirname)
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
   entry: {
-    admin: ['babel-polyfill', path.resolve(ROOT_PATH, 'src/admin')],
-    server: ['babel-polyfill', path.resolve(ROOT_PATH, 'src/server')]
+    client: ['babel-polyfill', path.resolve(ROOT_PATH, 'src/client')],
   },
   module: {
     loaders: [
@@ -19,7 +18,7 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: ['es2015', 'stage-0', 'react'],
-        }
+        },
       },
       {
         test: /\.scss$/,
@@ -32,19 +31,19 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /quill.*.css$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        ]
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
+        ],
       },
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file'
-      }
+        loader: 'file',
+      },
     ],
   },
   resolve: {
@@ -65,11 +64,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
-      chunks: ['admin',],
+      chunks: ['client'],
       template: 'src/index.html',
       inject: 'body',
-    })
-  ]
-};
-
-
+    }),
+  ],
+}

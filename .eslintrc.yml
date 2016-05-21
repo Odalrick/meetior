@@ -6,6 +6,7 @@ parserOptions:
   sourceType: module
   ecmaFeatures:
     jsx: true
+    experimentalObjectRestSpread: true
 globals:
   __DEV__: false
   __PROD__: false
