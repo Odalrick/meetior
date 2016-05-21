@@ -1,3 +1,7 @@
+.flowPanel {
+  overflow: hidden;
+}
+
 .flowPanel > * {
   float: left;
   margin: 5px;
