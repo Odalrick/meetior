@@ -7,7 +7,7 @@ import { tinyMiddleware, tinyReducer, reduxTinyRouter } from 'redux-tiny-router'
 
 import config from './config'
 import dbFactory from './db/couch'
-import Admin from './components/Admin.jsx'
+import Index from './components/Index.jsx'
 
 import course from './ducks/course'
 import lesson from './ducks/lesson'
@@ -42,7 +42,7 @@ import docFac from './ducks/docs'
   document.body.appendChild(app)
   ReactDOM.render(
     <Provider store={store}>
-      <Admin />
+      <Index />
     </Provider>,
     app
   )

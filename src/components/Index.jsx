@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import AdminLayout from './layout/AdminLayout.jsx'
 import Sidebar from '../containers/SidebarContainer'
 
-require('./Admin.scss')
+import Home from './page/Home.jsx'
+import NotFound from './page/NotFound.jsx'
 
 utils.set('/:page/:id')
 const mainComponentMap = {
@@ -16,9 +17,9 @@ const getComp = ({ page, path }) => {
   if (Main) {
     return Main
   } else if (path === '/') {
-    return () => <div>Index</div>
+    return Home
   } else {
-    return () => <div>404</div>
+    return NotFound
   }
 }
 
