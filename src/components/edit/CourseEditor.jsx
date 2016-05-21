@@ -1,58 +1,40 @@
 import React from 'react'
 
-import EditorLayout from '../layout/EditorLayout.jsx'
-import HeaderEditor from './HeaderEditor.jsx'
 import FlowPanel from '../FlowPanel.jsx'
-import Card from '../Card.jsx'
-import LessonSummary from '../LessonSummary.jsx'
+import Card from './Card.jsx'
 import FlatButton from '../input/FlatButton.jsx'
 
 const styles = require('./CourseEditor.css')
 
 export default function CourseEditor(props) {
-
   const {
     draft,
-    setCourseTitle,
-    setCourseDescription,
-    setCourseIcon,
-    addTag,
-    removeTag,
     moveLesson,
-    deleteLesson,
-    addLesson,
     editLesson,
+    setField,
     } = props
   if (!draft || draft.isEmpty()) {
     return (
-    <div style={{width: 200}}>
-      <marquee>Loading...</marquee>
-    </div>
+      <div style={{width: 200}}>
+        <marquee>Loading...</marquee>
+      </div>
     )
   }
   else {
-    console.log(props.draft.toJS())
     return (
-      <EditorLayout className={styles.courseEditor}>
-        <HeaderEditor setTitle={setCourseTitle} setDescription={setCourseDescription}
-                      setIcon={setCourseIcon} addTag={addTag} removeTag={removeTag}
-                      header={draft}/>
+      <Card draft={draft} setField={setField}>
         <FlowPanel canMove={() => true} moveItem={moveLesson}>
-          {draft.get('lessons').map((lesson, i) => {
-            return (
-            <Card key={lesson.get('_id')}>
-              <LessonSummary lesson={lesson}/>
-              <div className={styles.buttons}>
-                <div>
-                  <FlatButton onClick={() => editLesson(lesson.get('_id'))}>REDIGERA</FlatButton>
-                  <FlatButton onClick={() => deleteLesson(i)}>TA BORT</FlatButton>
-                </div>
+          {draft.get('lessons').map((lessonLink) =>(
+          <div key={lessonLink.get('_id')}>
+            <a href={'/' + lessonLink.get('type') + '/' + lessonLink.get('_id')}>{lessonLink.get('title')}</a>
+            <div className={styles.buttons}>
+              <div>
+                <FlatButton onClick={() => editLesson(lessonLink.get('_id'))}>REDIGERA</FlatButton>
               </div>
-            </Card>
-              )
-            })}
+            </div>
+          </div>))}
         </FlowPanel>
-      </EditorLayout>
+      </Card>
     )
   }
 }

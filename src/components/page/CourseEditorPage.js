@@ -1,16 +1,12 @@
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import R from 'ramda'
 
 import CourseEditor from '../edit/CourseEditor.jsx'
 import {
-  setCourseTitle,
-  setCourseDescription,
-  setCourseIcon,
-  addTag,
-  removeTag,
+  setField,
   moveLesson,
   deleteLesson,
-  addLesson,
 } from '../../ducks/course'
 
 function mapStateToProps(state, ownProps) {
@@ -21,16 +17,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    setCourseTitle: (newTitle) => dispatch(setCourseTitle(newTitle)),
-    setCourseDescription: (newDescription) => dispatch(setCourseDescription(newDescription)),
-    setCourseIcon: (newIcon) => dispatch(setCourseIcon(newIcon)),
-    addTag: (tag) => dispatch(addTag(tag)),
-    removeTag: (tag) => dispatch(removeTag(tag)),
+    setField: R.curry((field, value) => dispatch(R.assocPath(['payload', '_id',], ownProps.id, setField(field, value)))),
     moveLesson: (fromIndex, toIndex) => dispatch(moveLesson(fromIndex, toIndex)),
     deleteLesson: (lessonIndex) => dispatch(deleteLesson(lessonIndex)),
-    addLesson: () => dispatch(addLesson()),
-    editLesson: (lessonId) =>
-      dispatch(push(`/admin/courses/${ownProps.params.courseId}/lessons/${lessonId}`)),
   }
 }
 

@@ -1,19 +1,19 @@
-.headerEditor {
-	border: 2px #72888F solid;
-	margin: 5px auto;
-	width: 400px;
-	min-height: 280px;
-	padding: 15px;
-	-webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
-	-moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
-	box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
+.card {
+  border: 2px #72888F solid;
+  margin: 5px auto;
+  width: 400px;
+  min-height: 280px;
+  padding: 15px;
+  -webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
+  box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.3);
 }
 
-.headerEditor button {
+.card button {
   float: right;
 }
 
-.headerEditor input {
+.card input {
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -21,7 +21,7 @@
   border-bottom: 1px #72888F solid;
 }
 
-.headerEditor textarea {
+.card textarea {
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -29,7 +29,7 @@
   border-bottom: 1px #72888F solid;
 }
 
-.headerEditor label {
+.card label {
   margin-bottom: 2px;
   margin-top: 10px;
   font-weight: bold;

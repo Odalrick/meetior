@@ -3,41 +3,38 @@ import ImageUploader from '../input/ImageUploader.jsx'
 import TagInput from '../input/TagInput.jsx'
 import FlatButton from '../input/FlatButton.jsx'
 
-import styles from './HeaderEditor.css'
+import styles from './Card.css'
 
-export default (props) => {
-  const {header, tags, setTitle, setDescription, setIcon,
-    addTag, removeTag} = props
+export default function Card(props) {
+  const {draft, setField} = props
   const onTitleChange = (event) => {
     const newTitle = event.target.value
-    setTitle(newTitle)
+    setField('title', newTitle)
   }
 
   const onDescriptionChange = (event) => {
     const newDescription = event.target.value
-    setDescription(newDescription)
+    setField('description', newDescription)
   }
-
   return (
-    <section className={styles.headerEditor}>
+    <section className={styles.card}>
       <div className={styles.titleInput}>
         <label>Titel</label>
-        <input className={styles.titleInput} value={header.get('title')} onChange={onTitleChange}/>
+        <input className={styles.titleInput} value={draft.get('title')} onChange={onTitleChange}/>
       </div>
-      <FlatButton>Spara</FlatButton>
       <div className={styles.iconInput}>
         <label>Bild</label>
-        <ImageUploader className={styles.imageUploader} handleImageUpload={setIcon}/>
+        <ImageUploader className={styles.imageUploader} handleImageUpload={setField('icon')}/>
       </div>
       <div className={styles.descriptionInput}>
         <label>Beskrivning</label>
-        <textarea className={styles.descriptionInput} rows="5" value={header.get('description')}
+        <textarea className={styles.descriptionInput} rows="5" value={draft.get('description')}
                   onChange={onDescriptionChange}>
         </textarea>
       </div>
       <label>Taggar</label>
-      <TagInput className={styles.tagInput} handleDeleteTag={removeTag} handleAddTag={addTag}
-                tags={header.get('tags')} suggestions={tags}/>
+      <TagInput className={styles.tagInput} />
+      {props.children}
     </section>
   )
 }

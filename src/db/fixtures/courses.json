@@ -2,6 +2,7 @@
   {
     "title": "Course me!",
     "description": "Describe me?",
+    "type": "course",
     "_id": "eecf0a39454b4b2244ebdc3518899605",
     "lessons": [
       {
