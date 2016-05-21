@@ -1,19 +1,16 @@
 import R from 'ramda'
 import { put, call } from 'redux-saga/effects'
-import { sagaFactory } from './commitDocumentSaga'
+import sagaFactory from './loadDocumentSaga'
 import { loadedDocument, setPending } from '../../ducks/docs'
 
-describe('commit document saga', function () {
+describe('load document saga', function () {
   const db = {
-    save: () => {},
     load: () => {},
   }
   const testSaga = sagaFactory(db)
-  const setRev = R.assoc('_rev')
   const cont = R.assoc('value', R.__, { done: false })
-  const done = R.assoc('value', R.__, { done: true })
 
-  it('should commit a document', () => {
+  it('should load a document', () => {
     const _id = 'test123'
     const lesson = {
       _id,
@@ -26,19 +23,17 @@ describe('commit document saga', function () {
         type: 'lesson',
       },
     }
-    const action = testSaga.actionCreators.commitDocument(lesson)
-    const saga = testSaga.commitDocument(action)
+    const action = testSaga.actionCreators.loadDocument({ _id })
+    const saga = testSaga.loadDocument(action)
     expect(saga.next()).to.deep.equal(
       cont( // handles generator
         put( // effect
-          setPending(lesson) // action
+          setPending({ _id }) // action
         )
       )
     )
-    expect(saga.next()).to.deep.equal(cont(call(db.save, setRev(lesson._rev, lesson.draft))))
     expect(saga.next()).to.deep.equal(cont(call(db.load, _id)))
-    const updatedDoc = setRev('beta', lesson.draft)
-    expect(saga.next(updatedDoc)).to.deep.equal(cont(put(loadedDocument(updatedDoc))))
+    expect(saga.next(lesson)).to.deep.equal(cont(put(loadedDocument(lesson))))
     expect(saga.next().done).to.be.true()
   })
 })

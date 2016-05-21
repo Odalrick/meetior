@@ -1,14 +1,21 @@
 import { connect } from 'react-redux'
-import immutable from 'immutable'
-import { push } from 'react-router-redux';
+import { push } from 'react-router-redux'
 
-import CourseEditor from '../components/edit/CourseEditor'
-import {setCourseTitle, setCourseDescription, setCourseIcon, addTag, removeTag,
-  moveLesson, deleteLesson, addLesson} from '../ducks/course'
+import CourseEditor from '../edit/CourseEditor.jsx'
+import {
+  setCourseTitle,
+  setCourseDescription,
+  setCourseIcon,
+  addTag,
+  removeTag,
+  moveLesson,
+  deleteLesson,
+  addLesson,
+} from '../../ducks/course'
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    course: state.course
+    draft: state.documents.getIn([ownProps.id, 'draft']),
   }
 }
 
@@ -23,7 +30,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     deleteLesson: (lessonIndex) => dispatch(deleteLesson(lessonIndex)),
     addLesson: () => dispatch(addLesson()),
     editLesson: (lessonId) =>
-      dispatch(push(`/admin/courses/${ownProps.params.courseId}/lessons/${lessonId}`))
+      dispatch(push(`/admin/courses/${ownProps.params.courseId}/lessons/${lessonId}`)),
   }
 }
 

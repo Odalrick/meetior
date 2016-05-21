@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Course me!",
+    "description": "Describe me?",
+    "_id": "eecf0a39454b4b2244ebdc3518899605",
+    "lessons": [
+      {
+        "title": "Nulli potentus",
+        "_id": "eecf0a39454b4b2244ebdc3518015605",
+        "type": "lesson"
+      }, {
+        "title": "Excretion ignatius",
+        "_id": "eecf0a39454b4b2244ebdc351801603e",
+        "type": "lesson"
+      }, {
+        "title": "Absolvo summarun",
+        "_id": "eecf0a39454b4b2244ebdc351801623f",
+        "type": "lesson"
+      },
+      {
+        "title": "Tempori exta",
+        "_id": "eecf0a39454b4b2244ebdc3518017cb0",
+        "type": "lesson"
+      }
+    ]
+  }
+]

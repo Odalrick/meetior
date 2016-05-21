@@ -1,6 +1,6 @@
 import I from 'immutable'
 
-const LOAD_DOCUMENT = 'planck/documents/LOAD_DOCUMENT'
+const LOADED_DOCUMENT = 'planck/documents/LOADED_DOCUMENT'
 const SET_PENDING_DOCUMENT = 'planck/documents/SET_PENDING_DOCUMENT'
 
 const initialState = I.Map()
@@ -8,7 +8,7 @@ const emptyDocument = I.Map().set('current', I.Map()).set('draft', I.Map())
 
 export default function factory(innerReducers) {
   const actions = {
-    [LOAD_DOCUMENT](state, action) {
+    [LOADED_DOCUMENT](state, action) {
       const { _id, draft } = action.payload
       return state.update(
         _id,
@@ -64,9 +64,9 @@ export default function factory(innerReducers) {
   return reducer
 }
 
-export function loadDocument(doc) {
+export function loadedDocument(doc) {
   return {
-    type: LOAD_DOCUMENT,
+    type: LOADED_DOCUMENT,
     payload: doc,
   }
 }

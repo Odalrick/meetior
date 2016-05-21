@@ -1,7 +1,7 @@
 import React from 'react'
-import ImageUploader from '../ImageUploader'
-import TagInput from '../TagInput'
-import FlatButton from '../FlatButton'
+import ImageUploader from '../input/ImageUploader.jsx'
+import TagInput from '../input/TagInput.jsx'
+import FlatButton from '../input/FlatButton.jsx'
 
 import styles from './HeaderEditor.css'
 
@@ -22,7 +22,7 @@ export default (props) => {
     <section className={styles.headerEditor}>
       <div className={styles.titleInput}>
         <label>Titel</label>
-        <input className={styles.titleInput} value={header.get('title')} onChange={onTitleChange}></input>
+        <input className={styles.titleInput} value={header.get('title')} onChange={onTitleChange}/>
       </div>
       <FlatButton>Spara</FlatButton>
       <div className={styles.iconInput}>

@@ -5,7 +5,7 @@ import reducer, { setSlideText, moveSlide, startEditingSlide,
   addTag, removeTag } from './lesson'
 
 describe('lesson duck', () => {
-  it.skip('should create initial state', () => {
+  it('should create initial state', () => {
     const newState = reducer(undefined, { type: 'unknown' })
     expect(newState).equal(Immutable.fromJS({ title: '', description: '', slides: [] }))
   })

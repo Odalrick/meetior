@@ -1,25 +1,45 @@
 import React from 'react'
 
-import EditorLayout from './EditorLayout'
-import HeaderEditor from './HeaderEditor'
-import FlowPanel from '../FlowPanel'
-import Card from '../Card'
-import LessonSummary from '../LessonSummary'
-import FlatButton from '../FlatButton'
+import EditorLayout from '../layout/EditorLayout.jsx'
+import HeaderEditor from './HeaderEditor.jsx'
+import FlowPanel from '../FlowPanel.jsx'
+import Card from '../Card.jsx'
+import LessonSummary from '../LessonSummary.jsx'
+import FlatButton from '../input/FlatButton.jsx'
 
-import styles from './CourseEditor.css'
+const styles = require('./CourseEditor.css')
 
 export default function CourseEditor(props) {
-  const {course, setCourseTitle, setCourseDescription, setCourseIcon, addTag, removeTag,
-    moveLesson, deleteLesson, addLesson, editLesson} = props
-  return (
-    <EditorLayout className={styles.courseEditor}>
-      <HeaderEditor setTitle={setCourseTitle} setDescription={setCourseDescription}
-                    setIcon={setCourseIcon} addTag={addTag} removeTag={removeTag}
-                    header={course}/>
-      <FlowPanel canMove={() => true} moveItem={moveLesson}>
-        {course.get('lessons').map((lesson, i) => {
-          return (
+
+  const {
+    draft,
+    setCourseTitle,
+    setCourseDescription,
+    setCourseIcon,
+    addTag,
+    removeTag,
+    moveLesson,
+    deleteLesson,
+    addLesson,
+    editLesson,
+    } = props
+  if (!draft || draft.isEmpty()) {
+    return (
+    <div style={{width: 200}}>
+      <marquee>Loading...</marquee>
+    </div>
+    )
+  }
+  else {
+    console.log(props.draft.toJS())
+    return (
+      <EditorLayout className={styles.courseEditor}>
+        <HeaderEditor setTitle={setCourseTitle} setDescription={setCourseDescription}
+                      setIcon={setCourseIcon} addTag={addTag} removeTag={removeTag}
+                      header={draft}/>
+        <FlowPanel canMove={() => true} moveItem={moveLesson}>
+          {draft.get('lessons').map((lesson, i) => {
+            return (
             <Card key={lesson.get('_id')}>
               <LessonSummary lesson={lesson}/>
               <div className={styles.buttons}>
@@ -29,9 +49,10 @@ export default function CourseEditor(props) {
                 </div>
               </div>
             </Card>
-          )
-        })}
-      </FlowPanel>
-    </EditorLayout>
-  )
-};
+              )
+            })}
+        </FlowPanel>
+      </EditorLayout>
+    )
+  }
+}

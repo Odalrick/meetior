@@ -6,10 +6,12 @@ import Sidebar from '../containers/SidebarContainer'
 
 import Home from './page/Home.jsx'
 import NotFound from './page/NotFound.jsx'
+import CoursePage from './page/CourseEditorPage'
 
 utils.set('/:page/:id')
 const mainComponentMap = {
   test: () => <div>Boo!</div>,
+  course: CoursePage,
 }
 
 const getComp = ({ page, path }) => {

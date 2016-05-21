@@ -1,6 +1,6 @@
 import I from 'immutable'
 import R from 'ramda'
-import factory, { loadDocument, setPending } from './docs'
+import factory, { loadedDocument, setPending } from './docs'
 
 describe('documents duck', function () {
   const fakeReducer = state => state
@@ -17,7 +17,7 @@ describe('documents duck', function () {
 
   it('should handle load of document', function () {
     const actual = buildState([
-      loadDocument({ _id: 'test123', title: 'Title', type: 'test' }),
+      loadedDocument({ _id: 'test123', title: 'Title', type: 'test' }),
     ])
 
     expect(actual).to.deep.equal(I.fromJS({
@@ -43,7 +43,7 @@ describe('documents duck', function () {
   })
   it('should set pending for loaded documents', function () {
     const actual = buildState([
-      loadDocument({ _id: 'test123', title: 'Title', type: 'test' }),
+      loadedDocument({ _id: 'test123', title: 'Title', type: 'test' }),
       setPending({ _id: 'test123' }),
     ])
 
@@ -58,7 +58,7 @@ describe('documents duck', function () {
   it('should clear pending when document is loaded', function () {
     const actual = buildState([
       setPending({ _id: 'test123' }),
-      loadDocument({ _id: 'test123', title: 'Title', type: 'test' }),
+      loadedDocument({ _id: 'test123', title: 'Title', type: 'test' }),
     ])
 
     expect(actual).to.deep.equal(I.fromJS({
@@ -71,7 +71,7 @@ describe('documents duck', function () {
 
   it('should extract draft', function () {
     const actual = buildState([
-      loadDocument({
+      loadedDocument({
         _id: 'test123',
         title: 'Title',
         type: 'test',
@@ -94,8 +94,8 @@ describe('documents duck', function () {
 
   it('should direct actions to correct document', function () {
     const actual = buildState([
-      loadDocument({ _id: 'test123', title: 'Title', type: 'hopper' }),
-      loadDocument({ _id: 'test321', title: 'Title', type: 'hopper' }),
+      loadedDocument({ _id: 'test123', title: 'Title', type: 'hopper' }),
+      loadedDocument({ _id: 'test321', title: 'Title', type: 'hopper' }),
       {
         type: 'whatever',
         payload: { _id: 'test123' },

@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router'
 import style from './Sidebar.css'
 export default function Sidebar(props) {
   return (
@@ -7,7 +6,7 @@ export default function Sidebar(props) {
       <section>
         <h1>Administrera</h1>
         <ul>
-          <li><Link to="/admin/courses/1">Kurs 1</Link></li>
+          <li><a href="/course/eecf0a39454b4b2244ebdc3518899605">Kurs 1</a></li>
         </ul>
       </section>
     </div>
