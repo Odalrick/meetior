@@ -6,12 +6,6 @@ const serialise = data => JSON.stringify(data,
 
 export default config => {
   return {
-    loadLessons() {
-      return fetch(
-        `${config.couchUrl}/${config.dataDB}/_design/lesson/_view/lesson`, {
-          method: 'GET',
-        }).then(res => res.json())
-    },
     loadType(type) {
       const sType = serialise(type)
       return fetch(

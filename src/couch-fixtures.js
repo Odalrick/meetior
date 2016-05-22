@@ -5,7 +5,6 @@ import config from './config'
 import DBfactory from './db/couch'
 import courseFixtures from './db/fixtures/courses.json'
 import lessonFixtures from './db/fixtures/lessons.json'
-import lessonDesign from './db/fixtures/lesson.design'
 import docsDesign from './db/fixtures/docs.design'
 
 const log = req => {
@@ -22,7 +21,6 @@ co(function *() {
   try {
     log(yield db.deleteDb())
     log(yield db.createDb())
-    log(yield db.save(lessonDesign))
     log(yield db.save(docsDesign))
     R.forEach(log)(yield R.map(db.save, courseFixtures))
     R.forEach(log)(yield R.map(db.save, lessonFixtures))
