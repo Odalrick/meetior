@@ -1,5 +1,6 @@
 import Immutable from 'immutable'
-import reducer, { setField, moveLesson, deleteLesson } from './course'
+import reducer, { moveLesson, deleteLesson } from './course'
+import { setField } from './commonActions'
 
 describe('course duck', () => {
   it('should create initial state', () => {
@@ -33,29 +34,35 @@ describe('course duck', () => {
 
   it('should set the course description', () => {
     const description = 'a rather short description'
-    const setCourseDescription = setField('description')
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', lessons: [{ text: 'old content' }] }),
-      setCourseDescription(description))
+      { title: '', description: '', lessons: [{ text: 'old content' }], _id: '123' }),
+      setField('123', 'description', description))
     expect(newState).equal(Immutable.fromJS(
-      { title: '', description, lessons: [{ text: 'old content' }] }))
+      { title: '', description, lessons: [{ text: 'old content' }], _id: '123' }))
   })
 
   it('should set course title', () => {
     const title = 'a title'
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', lessons: [{ text: 'old content' }] }),
-      setField('title', title))
+      { title: '', description: '', lessons: [{ text: 'old content' }], _id: '123' }),
+      setField('123', 'title', title))
     expect(newState).equal(Immutable.fromJS(
-      { title, description: '', lessons: [{ text: 'old content' }] }))
+      { title, description: '', lessons: [{ text: 'old content' }], _id: '123' }))
   })
 
   it('should set course icon', () => {
-    const setCourseIcon = setField('icon')
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', icon: null, lessons: [] }),
-      setCourseIcon({})
+      { title: '', description: '', icon: null, lessons: [], _id: '123' }),
+      setField('123', 'icon', {})
     )
     expect(newState.get('icon')).to.exist()
+  })
+
+  it('should not set course icon when _id does not match', () => {
+    const newState = reducer(Immutable.fromJS(
+      { title: '', description: '', icon: null, lessons: [], _id: '123' }),
+      setField('321', 'icon', {})
+    )
+    expect(newState.get('icon')).not.to.exist()
   })
 })

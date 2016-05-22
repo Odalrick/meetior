@@ -11,7 +11,6 @@ describe('commit document saga', function () {
   const testSaga = sagaFactory(db)
   const setRev = R.assoc('_rev')
   const cont = R.assoc('value', R.__, { done: false })
-  const done = R.assoc('value', R.__, { done: true })
 
   it('should commit a document', () => {
     const _id = 'test123'

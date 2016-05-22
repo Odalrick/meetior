@@ -1,14 +1,18 @@
 import Immutable from 'immutable'
-import R from 'ramda'
 
-const SET_FIELD = 'planck/course/SET_FIELD'
+import { SET_FIELD } from './commonActions'
+
 const MOVE_LESSON = 'planck/course/MOVE_LESSON'
 const DELETE_LESSON = 'planck/course/DELETE_LESSON'
 
 const initialState = Immutable.fromJS({ title: '', description: '', lessons: [] })
 const actions = {
   [SET_FIELD](state, action) {
-    return state.set(action.payload.field, action.payload.value)
+    if (state.get('_id') === action.payload._id) {
+      return state.set(action.payload.field, action.payload.value)
+    } else {
+      return state
+    }
   },
   [MOVE_LESSON](state, action) {
     const toIndex = action.payload.toIndex
@@ -35,10 +39,6 @@ export default function reducer(state = initialState, action) {
     return state
   }
 }
-
-export const setField = R.curry((field, value) => ({
-  type: SET_FIELD, payload: { field, value },
-}))
 
 export function moveLesson(fromIndex, toIndex) {
   return {
