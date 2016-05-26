@@ -7,20 +7,24 @@
     "lessons": [
       {
         "title": "Nulli potentus",
-        "_id": "eecf0a39454b4b2244ebdc3518015605",
+        "id": "eecf0a39454b4b2244ebdc3518015605",
+        "id2": "eecf0a39454b4b2244ebdc3518899605",
         "type": "lesson"
       }, {
         "title": "Excretion ignatius",
-        "_id": "eecf0a39454b4b2244ebdc351801603e",
+        "id": "eecf0a39454b4b2244ebdc351801603e",
+        "id2": "eecf0a39454b4b2244ebdc3518899605",
         "type": "lesson"
       }, {
         "title": "Absolvo summarun",
-        "_id": "eecf0a39454b4b2244ebdc351801623f",
+        "id": "eecf0a39454b4b2244ebdc351801623f",
+        "id2": "eecf0a39454b4b2244ebdc3518899605",
         "type": "lesson"
       },
       {
         "title": "Tempori exta",
-        "_id": "eecf0a39454b4b2244ebdc3518017cb0",
+        "id": "eecf0a39454b4b2244ebdc3518017cb0",
+        "id2": "eecf0a39454b4b2244ebdc3518899605",
         "type": "lesson"
       }
     ]

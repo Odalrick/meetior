@@ -10,7 +10,7 @@ export default function Loading(props) {
     <div className={styles.loading}>
       {waiting ?
         <div className={styles.overlay}>
-          <marquee>Loading...</marquee>
+          <marquee style={{height: 100}} behavior="alternate">Loading...</marquee>
         </div> : null }
       {props.children}
     </div>

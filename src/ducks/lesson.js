@@ -1,10 +1,8 @@
 import Immutable from 'immutable'
 import R from 'ramda'
 
-const SET_LESSON_TITLE = 'planck/lesson/SET_LESSON_TITLE'
-const SET_LESSON_DESCRIPTION = 'planck/lesson/SET_LESSON_DESCRIPTION'
-const SET_LESSON_ICON = 'planck/lesson/SET_LESSON_ICON'
-const SET_SLIDE_TEXT = 'planck/lesson/SET_SLIDE_TEXT'
+import { SET_FIELD, SET_FIELD_IN } from './commonActions'
+
 const MOVE_SLIDE = 'planck/lesson/MOVE_SLIDE'
 const START_EDITING_SLIDE = 'planck/lesson/START_EDITING_SLIDE'
 const STOP_EDITING_SLIDE = 'planck/lesson/STOP_EDITING_SLIDE'
@@ -16,19 +14,19 @@ const REMOVE_TAG = 'planck/lesson/REMOVE_TAG'
 const initialState = Immutable.fromJS({ title: '', description: '', slides: [] })
 
 const actions = {
-  [SET_LESSON_TITLE](state, action) {
-    return state.set('title', action.payload.newTitle)
+  [SET_FIELD](state, action) {
+    if (state.get('_id') === action.payload._id) {
+      return state.set(action.payload.field, action.payload.value)
+    } else {
+      return state
+    }
   },
-  [SET_LESSON_DESCRIPTION](state, action) {
-    return state.set('description', action.payload.newDescription)
-  },
-  [SET_LESSON_ICON](state, action) {
-    return state.set('icon', action.payload.newIcon)
-  },
-  [SET_SLIDE_TEXT](state, action) {
-    return state.updateIn(
-      ['slides', action.payload.slideIndex, 'text'],
-      () => action.payload.newText)
+  [SET_FIELD_IN](state, action) {
+    if (state.get('_id') === action.payload._id) {
+      return state.setIn(action.payload.path, action.payload.value)
+    } else {
+      return state
+    }
   },
   [MOVE_SLIDE](state, action) {
     const toIndex = action.payload.toIndex
@@ -62,14 +60,6 @@ const actions = {
   [ADD_SLIDE](state) {
     return state.updateIn(
       ['slides'], (slides) => slides.push(Immutable.fromJS({ text: '' })))
-  },
-  [ADD_TAG](state, action) {
-    return state.updateIn(
-      ['tags'], (tags) => tags.push(action.payload.tag))
-  },
-  [REMOVE_TAG](state, action) {
-    return state.updateIn(
-      ['tags'], (tags) => tags.delete(tags.findIndex(t => t === action.payload.tag)))
   },
 }
 
@@ -134,15 +124,3 @@ export function addSlide() {
     type: ADD_SLIDE, payload: {},
   }
 }
-
-export function addTag(tag) {
-  return {
-    type: ADD_TAG, payload: { tag },
-  }
-}
-export function removeTag(tag) {
-  return {
-    type: REMOVE_TAG, payload: { tag },
-  }
-}
-

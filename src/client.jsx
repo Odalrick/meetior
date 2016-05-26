@@ -42,6 +42,13 @@ import sagaFactory from './sagas/document/loadDocumentSaga'
             })
           )
         }
+        if (action.router.params.id2) {
+          yield fork(saga.loadDocument,
+            saga.actionCreators.loadDocument({
+              _id: action.router.params.id2,
+            })
+          )
+        }
       }
     }
   )

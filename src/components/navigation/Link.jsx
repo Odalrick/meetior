@@ -11,11 +11,25 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
+function toUrl(link) {
+  const url = ['', link.get('type')]
+  if(link.get('index')) {
+    url.push('i')
+    url.push(link.get('index'))
+  }
+  url.push(link.get('id'))
+  if(link.get('id2')) {
+    url.push(link.get('id2'))
+  }
+  return  url.join('/');
+}
+
 function Link(props) {
   const { navigate, to } = props
+  const url = toUrl(to)
   return (
-    <a href={to} onClick={(e) => navigate(to,e)}>
-      {props.children}
+    <a href={url} onClick={(e) => navigate(url,e)}>
+      {to.get('title')}
     </a>
   )
 }

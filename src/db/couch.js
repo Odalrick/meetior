@@ -21,7 +21,7 @@ export default config => {
           return new Promise((resolve, reject) =>
           {
             console.log('Remove the delay...')
-            setTimeout(() => resolve(res.json()), 10000)
+            setTimeout(() => resolve(res.json()), 3000)
           })
       })
     },

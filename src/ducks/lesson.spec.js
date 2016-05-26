@@ -1,8 +1,8 @@
 import Immutable from 'immutable'
-import reducer, { setSlideText, moveSlide, startEditingSlide,
+import reducer, { moveSlide, startEditingSlide,
   stopEditingSlide, deleteSlide, addSlide,
-  setLessonTitle, setLessonDescription, setLessonIcon,
-  addTag, removeTag } from './lesson'
+  setLessonTitle, setLessonDescription, setLessonIcon } from './lesson'
+import { setField, setFieldIn } from './commonActions'
 
 describe('lesson duck', () => {
   it('should create initial state', () => {
@@ -16,10 +16,10 @@ describe('lesson duck', () => {
     const targetSlide = { text: 'old content' }
     const otherSlide = { text: 'nothing interesting' }
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', slides: [targetSlide, otherSlide] }),
-      setSlideText(targetIndex, newText))
+      { title: '', _id: '123', description: '', slides: [targetSlide, otherSlide] }),
+      setFieldIn('123', ['slides', targetIndex, 'text'], newText))
     expect(newState).equal(
-      Immutable.fromJS({ title: '', description: '', slides: [{ text: newText }, otherSlide] }))
+      Immutable.fromJS({ title: '', _id: '123', description: '', slides: [{ text: newText }, otherSlide] }))
   })
 
   it('should move slide upwards', () => {
@@ -120,44 +120,27 @@ describe('lesson duck', () => {
   it('should set the lesson description', () => {
     const description = 'a rather short description'
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', slides: [{ text: 'old content' }] }),
-      setLessonDescription(description))
+      { title: '', _id: '123', description: '', slides: [{ text: 'old content' }] }),
+      setField('123', 'description', description))
     expect(newState).equal(Immutable.fromJS(
-      { title: '', description, slides: [{ text: 'old content' }] }))
+      { title: '', _id: '123', description, slides: [{ text: 'old content' }] }))
   })
 
   it('should set lesson title', () => {
     const title = 'a title'
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', slides: [{ text: 'old content' }] }),
-      setLessonTitle(title))
+      { title: '', _id: '123', description: '', slides: [{ text: 'old content' }] }),
+      setField('123', 'title', title))
     expect(newState).equal(Immutable.fromJS(
-      { title, description: '', slides: [{ text: 'old content' }] }))
+      { title, _id: '123', description: '', slides: [{ text: 'old content' }] }))
   })
 
   it('should set lesson icon', () => {
     const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', icon: null, slides: [] }),
-      setLessonIcon({})
-    )
+      { title: '', _id: '123', description: '', icon: null, slides: [] }),
+      setField('123', 'icon',{}))
+
     expect(newState.get('icon')).to.exist()
   })
 
-  it('should add a tag', () => {
-    const tag = 'bacon'
-    const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', tags: [], slides: [{ text: 'old content' }] }),
-      addTag(tag))
-    expect(newState).equal(Immutable.fromJS(
-      { title: '', description: '', tags: [tag], slides: [{ text: 'old content' }] }))
-  })
-
-  it('should remove a tag', () => {
-    const tag = 'bacon'
-    const newState = reducer(Immutable.fromJS(
-      { title: '', description: '', tags: ['salami', tag], slides: [{ text: 'old content' }] }),
-      removeTag(tag))
-    expect(newState).equal(Immutable.fromJS(
-      { title: '', description: '', tags: ['salami'], slides: [{ text: 'old content' }] }))
-  })
 })

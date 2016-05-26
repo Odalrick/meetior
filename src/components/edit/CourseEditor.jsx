@@ -18,8 +18,8 @@ export default function CourseEditor(props) {
   } = props
 
   const panelItems = draft && draft.get('lessons') ? draft.get('lessons').map((lessonLink, i) =>(
-    <div className={styles.lessonLink} key={lessonLink.get('_id')}>
-      <Link to={'/' + lessonLink.get('type') + '/' + lessonLink.get('_id')}>{lessonLink.get('title')}</Link>
+    <div className={styles.lessonLink} key={lessonLink.get('id')}>
+      <Link to={lessonLink} />
       <div className={styles.footer}>
         <span className={styles.ordinal}>{i}.</span>
         <FlatButton onClick={() => {deleteLesson(i); alert('GOTCHA!')}}>REDIGERA</FlatButton>

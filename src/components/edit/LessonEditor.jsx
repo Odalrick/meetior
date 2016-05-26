@@ -1,35 +1,25 @@
 import React from 'react'
 
-import EditorLayout from './EditorLayout'
-import HeaderEditor from './HeaderEditor'
-import FlowPanel from '../FlowPanel'
-import Card from '../Card'
-import Slide from '../Slide'
-import FlatButton from '../FlatButton'
+import Link from '../navigation/Link.jsx'
+import FlowPanel from '../layout/FlowPanel.jsx'
+import Card from './Card.jsx'
+import FlatButton from '../input/FlatButton.jsx'
+import Loading from '../navigation/Loading.jsx'
 
 import styles from './LessonEditor.css'
 
 export default (props) => {
-  const {lesson, tags, setLessonTitle, setLessonDescription, setLessonIcon, addTag, removeTag,
-    moveSlide, deleteSlide, addSlide, editSlide} = props
+  const {
+    draft,
+    setField,
+    } = props
+
   const canMove = (i) => !lesson.get('slides').get(i).get('editing');
   return (
-    <EditorLayout className={styles.lessonEditor}>
-      <HeaderEditor setTitle={setLessonTitle} setDescription={setLessonDescription}
-                    setIcon={setLessonIcon} addTag={addTag} removeTag={removeTag}
-                    header={lesson}/>
-      <FlowPanel canMove={canMove} moveItem={moveSlide}>
-        {lesson.get('slides').map((slide, i) => {
-          return (
-            <Card key={slide.get('_id')}>
-              <Slide text={slide.get('text')}></Slide>
-            </Card>
-          )
-        })}
-        <Card className={styles.emptyPanelItem} onClick={addSlide}></Card>
-      </FlowPanel>
-    </EditorLayout>
-
+    <Loading waitFor={draft}>
+      <Card draft={draft} setField={setField}>
+      </Card>
+    </Loading>
   )
 }
 
