@@ -1,0 +1,24 @@
+.lessonLink {
+  border: 2px #72888F solid;
+  padding: 5px;
+  min-width: 200px;
+  min-height: 100px;
+  position: relative;
+}
+
+.footer {
+  width: 90%;
+  position: absolute;
+  left: 5%;
+  bottom: 0px;
+  border-top: 1px #72888F solid;
+  padding: 5px;
+}
+
+.ordinal {
+  font-weight: bold;
+}
+
+.footer button:nth-child(1)  {
+  float: left;
+}

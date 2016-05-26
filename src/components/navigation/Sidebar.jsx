@@ -1,6 +1,7 @@
 import React from 'react'
-import Link from './navigation/Link'
+import Link from './Link'
 import style from './Sidebar.css'
+
 export default function Sidebar(props) {
   return (
     <div className={style.sideBar}>

@@ -2,7 +2,7 @@ import React from 'react'
 import { utils } from 'redux-tiny-router'
 import { connect } from 'react-redux'
 import AdminLayout from './layout/AdminLayout.jsx'
-import Sidebar from '../containers/SidebarContainer'
+import Sidebar from './navigation/Sidebar'
 
 import Home from './page/Home.jsx'
 import NotFound from './page/NotFound.jsx'

@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {findDOMNode} from 'react-dom'
+import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 
-import {ItemTypes} from './ItemTypes'
+import { ItemTypes } from './ItemTypes'
 
 import style from './PanelItem.css'
 
 const dragSource = {
-  canDrag(props, monitor){
+  canDrag(props, monitor) {
     return props.canMove(props.index)
   },
   beginDrag(props){
@@ -25,11 +25,12 @@ function collectSource(connect, monitor) {
 }
 
 const dragTarget = {
-  hover(props, monitor, component){
+  hover(props, monitor, component) {
     const dragIndex = monitor.getItem().index
     const hoverIndex = props.index
-    if (dragIndex === hoverIndex)
+    if (dragIndex === hoverIndex) {
       return
+    }
 
     const domNode = findDOMNode(component)
 
@@ -40,16 +41,18 @@ const dragTarget = {
     const hoverClientY = clientOffset.y - hoverBoundingRect.top
 
 
-    const tolerance = 20;
+    const toleranceX = domNode.clientWidth * 0.1
+    const toleranceY = domNode.clientHeight * 0.1
+
     if (dragIndex === hoverIndex) {
       return
     }
-    if ((hoverClientX < tolerance)
-      || (hoverClientX > (domNode.clientWidth - tolerance))) {
+    if ((hoverClientX < toleranceX)
+      || (hoverClientX > (domNode.clientWidth - toleranceX))) {
       return
     }
-    if ((hoverClientY < tolerance)
-      || (hoverClientY > (domNode.clientHeight - tolerance))) {
+    if ((hoverClientY < toleranceY)
+      || (hoverClientY > (domNode.clientHeight - toleranceY))) {
       return
     }
 
@@ -66,7 +69,7 @@ function collectTarget(connect) {
 
 class PanelItem extends Component {
   render() {
-    const {connectDragSource, connectDropTarget, isDragging} = this.props
+    const { connectDragSource, connectDropTarget, isDragging } = this.props
     const opacity = isDragging ? 0.5 : 1
     return (
       connectDropTarget(connectDragSource(
@@ -77,4 +80,4 @@ class PanelItem extends Component {
 }
 
 export default DropTarget(ItemTypes.SLIDE, dragTarget, collectTarget)(
-  DragSource(ItemTypes.SLIDE, dragSource, collectSource)(PanelItem));
+  DragSource(ItemTypes.SLIDE, dragSource, collectSource)(PanelItem))
