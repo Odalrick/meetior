@@ -17,7 +17,7 @@ export default function CourseEditor(props) {
     setField,
   } = props
 
-  const panelItems = draft.get('lessons') ? draft.get('lessons').map((lessonLink, i) =>(
+  const panelItems = draft && draft.get('lessons') ? draft.get('lessons').map((lessonLink, i) =>(
     <div className={styles.lessonLink} key={lessonLink.get('_id')}>
       <Link to={'/' + lessonLink.get('type') + '/' + lessonLink.get('_id')}>{lessonLink.get('title')}</Link>
       <div className={styles.footer}>

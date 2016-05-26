@@ -38,7 +38,7 @@ export default connect(mapStateToProps)(({ page, id, path }) => {
   return (
     <AdminLayout>
       <Sidebar />
-      <Main id={id}/>
+      <Main id={id} />
     </AdminLayout>
   )
 })
