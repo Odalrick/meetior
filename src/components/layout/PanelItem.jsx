@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 
-import { ItemTypes } from './ItemTypes'
+import { ItemTypes } from '../ItemTypes'
 
 import style from './PanelItem.css'
 

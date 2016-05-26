@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Link from '../navigation/Link.jsx'
-import FlowPanel from '../FlowPanel.jsx'
+import FlowPanel from '../layout/FlowPanel.jsx'
 import Card from './Card.jsx'
 import FlatButton from '../input/FlatButton.jsx'
 
