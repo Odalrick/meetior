@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from './navigation/Link'
 import style from './Sidebar.css'
 export default function Sidebar(props) {
   return (
@@ -6,7 +7,8 @@ export default function Sidebar(props) {
       <section>
         <h1>Administrera</h1>
         <ul>
-          <li><a href="/course/eecf0a39454b4b2244ebdc3518899605">Kurs 1</a></li>
+          <li><Link to="/course/eecf0a39454b4b2244ebdc3518899605">Kurs 1</Link></li>
+          <li><Link to="/XXX">404</Link></li>
         </ul>
       </section>
     </div>
