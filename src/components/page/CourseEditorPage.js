@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import R from 'ramda'
+import I from 'immutable'
 
 import CourseEditor from '../edit/CourseEditor.jsx'
 import { moveLesson, deleteLesson } from '../../ducks/course'
@@ -7,7 +8,7 @@ import { setFieldDispatch } from '../../ducks/commonActions'
 
 function mapStateToProps(state, ownProps) {
   return {
-    draft: state.documents.getIn([ownProps.id, 'draft']),
+    draft: state.documents.getIn([ownProps.id, 'draft']) || I.Map(),
   }
 }
 
