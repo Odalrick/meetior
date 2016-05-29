@@ -1,12 +1,12 @@
 import React from 'react'
 import ImageUploader from '../input/ImageUploader.jsx'
 import TagInput from '../input/TagInput.jsx'
-import FlatButton from '../input/FlatButton.jsx'
+import Spinner from 'react-spinkit'
 
 import styles from './Card.css'
 
 export default function Card(props) {
-  const {draft, setField} = props
+  const { draft, setField, pending } = props
   const onTitleChange = (event) => {
     const newTitle = event.target.value
     setField('title', newTitle)
@@ -16,6 +16,8 @@ export default function Card(props) {
     const newDescription = event.target.value
     setField('description', newDescription)
   }
+  const spinner = pending ? <div>Test pending</div> : <div>test not pending</div>
+
   return (
     <section className={styles.card}>
       <div className={styles.titleInput}>
@@ -25,6 +27,8 @@ export default function Card(props) {
       <div className={styles.iconInput}>
         <label>Bild</label>
         <ImageUploader className={styles.imageUploader} handleImageUpload={setField('icon')}/>
+        {spinner}
+
       </div>
       <div className={styles.descriptionInput}>
         <label>Beskrivning</label>
@@ -33,7 +37,7 @@ export default function Card(props) {
         </textarea>
       </div>
       <label>Taggar</label>
-      <TagInput className={styles.tagInput} />
+      <TagInput className={styles.tagInput}/>
       {props.children}
     </section>
   )

@@ -13,8 +13,8 @@ export default function CourseEditor(props) {
     draft,
     moveLesson,
     deleteLesson,
-    editLesson,
     setField,
+    pending,
   } = props
 
   const panelItems = draft && draft.get('lessons') ? draft.get('lessons').map((lessonLink, i) =>(
@@ -29,7 +29,7 @@ export default function CourseEditor(props) {
 
   return (
     <Loading waitFor={draft}>
-      <Card draft={draft} setField={setField}>
+      <Card draft={draft} setField={setField} pending={pending}>
         <FlowPanel canMove={() => true} moveItem={moveLesson}>
           {panelItems}
         </FlowPanel>
