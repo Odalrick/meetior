@@ -77,3 +77,10 @@ export function setPending({ _id }) {
     payload: { _id },
   }
 }
+
+export const helpers = {
+  getCurrentDocument(state, _id) {
+    return state.getIn([_id, 'current'])
+      .set('draft', state.getIn([_id, 'draft']))
+  },
+}

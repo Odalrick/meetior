@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware, { takeLatest } from 'redux-saga'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { tinyMiddleware, tinyReducer, reduxTinyRouter } from 'redux-tiny-router'
@@ -13,9 +13,11 @@ import Index from './components/Index.jsx'
 
 import course from './ducks/course'
 import lesson from './ducks/lesson'
-import docFac from './ducks/docs'
+import docFac, { helpers } from './ducks/docs'
 
+import { SET_FIELD, SET_FIELD_IN } from './ducks/commonActions'
 import sagaFactory from './sagas/document/loadDocumentSaga'
+import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
 
 (() => {
   const documents = docFac({
@@ -29,8 +31,11 @@ import sagaFactory from './sagas/document/loadDocumentSaga'
     }
   )
 
+  const delay = () => new Promise((accept) => setTimeout(accept, 3000))
+
   const db = dbFactory(config)
   const saga = sagaFactory(db)
+  const saga2 = sagaFactory2(db, delay, (state, id) => helpers.getCurrentDocument(state.documents, id))
   const sagaMiddleware = createSagaMiddleware(
     function *() {
       while (true) {
@@ -50,6 +55,12 @@ import sagaFactory from './sagas/document/loadDocumentSaga'
           )
         }
       }
+    },
+    function *() {
+      yield* takeLatest(SET_FIELD, saga2.updateDocument)
+    },
+    function *() {
+      yield* takeLatest(SET_FIELD_IN, saga2.updateDocument)
     }
   )
 

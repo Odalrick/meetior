@@ -1,6 +1,6 @@
 import I from 'immutable'
 import R from 'ramda'
-import factory, { loadedDocument, setPending } from './docs'
+import factory, { loadedDocument, setPending, helpers } from './docs'
 
 describe('documents duck', function () {
   const fakeReducer = state => state
@@ -112,4 +112,43 @@ describe('documents duck', function () {
       },
     }))
   })
+
+  const helperState = I.fromJS({
+    test123: {
+      current: { _id: 'test123', title: 'Title', type: 'hopper' },
+      draft: { _id: 'test123', title: 'Title', type: 'hopper', hopper: 1 },
+    },
+    test321: {
+      current: {
+        _id: 'test321',
+        title: 'Title',
+        type: 'hopper',
+        draft: { _id: 'test321', title: 'Title', type: 'hopper' },
+      },
+      draft: { _id: 'test321', title: 'Title', type: 'hopper' },
+    },
+  })
+
+  it('should get current state of document by id', function () {
+    const actual = helpers.getCurrentDocument(helperState, 'test321')
+
+    expect(actual).to.deep.equal(I.fromJS({
+      _id: 'test321',
+      title: 'Title',
+      type: 'hopper',
+      draft: { _id: 'test321', title: 'Title', type: 'hopper' },
+    }))
+  })
+
+  it('should merge draft into current state of document', function () {
+    const actual = helpers.getCurrentDocument(helperState, 'test123')
+
+    expect(actual).to.deep.equal(I.fromJS({
+      _id: 'test123',
+      title: 'Title',
+      type: 'hopper',
+      draft: { _id: 'test123', title: 'Title', type: 'hopper', hopper: 1 },
+    }))
+  })
+
 })
