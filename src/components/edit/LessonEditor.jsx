@@ -12,12 +12,13 @@ export default (props) => {
   const {
     draft,
     setField,
+    pending,
     } = props
 
-  const canMove = (i) => !lesson.get('slides').get(i).get('editing');
+  const canMove = (i) => !lesson.get('slides').get(i).get('editing')
   return (
     <Loading waitFor={draft}>
-      <Card draft={draft} setField={setField}>
+      <Card draft={draft} setField={setField} pending={pending}>
       </Card>
     </Loading>
   )

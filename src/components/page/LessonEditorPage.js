@@ -9,6 +9,7 @@ function mapStateToProps(state, ownProps) {
   return {
     draft: state.documents.getIn([ownProps.id, 'draft']) || I.Map(),
     course: state.documents.getIn([ownProps.id2, 'draft']) || I.Map(),
+    pending: state.documents.getIn([ownProps.id, 'pending']),
   }
 }
 
