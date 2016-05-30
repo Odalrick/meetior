@@ -1,7 +1,6 @@
 import React from 'react'
 import ImageUploader from '../input/ImageUploader.jsx'
 import TagInput from '../input/TagInput.jsx'
-import Spinner from 'react-spinkit'
 
 import styles from './Card.css'
 
