@@ -15,9 +15,10 @@ import course from './ducks/course'
 import lesson from './ducks/lesson'
 import docFac, { helpers } from './ducks/docs'
 
-import { SET_FIELD, SET_FIELD_IN } from './ducks/commonActions'
+import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT } from './ducks/commonActions'
 import sagaFactory from './sagas/document/loadDocumentSaga'
 import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
+import sagaFactory3 from './sagas/document/setAttachmentSaga'
 
 (() => {
   const documents = docFac({
@@ -36,6 +37,7 @@ import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
   const db = dbFactory(config)
   const saga = sagaFactory(db)
   const saga2 = sagaFactory2(db, delay, (state, id) => helpers.getCurrentDocument(state.documents, id))
+  const saga3 = sagaFactory3(db)
   const sagaMiddleware = createSagaMiddleware(
     function *() {
       while (true) {
@@ -61,6 +63,9 @@ import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
     },
     function *() {
       yield* takeLatest(SET_FIELD_IN, saga2.updateDocument)
+    },
+    function* () {
+      yield* takeEvery(SET_ATTACHMENT, )
     }
   )
 
