@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createSagaMiddleware, { takeLatest } from 'redux-saga'
+import createSagaMiddleware, { takeLatest, takeEvery } from 'redux-saga'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { tinyMiddleware, tinyReducer, reduxTinyRouter } from 'redux-tiny-router'
@@ -18,7 +18,7 @@ import docFac, { helpers } from './ducks/docs'
 import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT } from './ducks/commonActions'
 import sagaFactory from './sagas/document/loadDocumentSaga'
 import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
-import sagaFactory3 from './sagas/document/setAttachmentSaga'
+import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
 
 (() => {
   const documents = docFac({
@@ -65,7 +65,7 @@ import sagaFactory3 from './sagas/document/setAttachmentSaga'
       yield* takeLatest(SET_FIELD_IN, saga2.updateDocument)
     },
     function* () {
-      yield* takeEvery(SET_ATTACHMENT, )
+      yield* takeEvery(SET_ATTACHMENT, saga3.uploadAttachment )
     }
   )
 

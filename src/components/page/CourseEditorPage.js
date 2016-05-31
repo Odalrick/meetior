@@ -4,7 +4,7 @@ import I from 'immutable'
 
 import CourseEditor from '../edit/CourseEditor.jsx'
 import { moveLesson, deleteLesson } from '../../ducks/course'
-import { setFieldDispatch } from '../../ducks/commonActions'
+import { setFieldDispatch, setAttachmentDispatch } from '../../ducks/commonActions'
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -18,6 +18,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     setField: setFieldDispatch(dispatch, ownProps.id),
     moveLesson: (fromIndex, toIndex) => dispatch(R.assocPath(['payload', '_id'], ownProps.id, moveLesson(fromIndex, toIndex))),
     deleteLesson: (lessonIndex) => dispatch(R.assocPath(['payload', '_id'], ownProps.id, deleteLesson(lessonIndex))),
+    setAttachment: setAttachmentDispatch(dispatch, ownProps.id)
   }
 }
 
