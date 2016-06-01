@@ -12,10 +12,10 @@ export const setFieldIn = R.curry((_id, path, value) => ({
   type: SET_FIELD_IN, payload: { path, value, _id },
 }))
 
-export const setAttachment = R.curry((_id, field, file) => ({
-  type: SET_ATTACHMENT, payload: { field, file, _id },
+export const setAttachment = R.curry((_id, field, preview, file) => ({
+  type: SET_ATTACHMENT, payload: { field, file, preview, _id },
 }))
 
 export const setFieldDispatch = R.curry((dispatch, _id, field, value) => dispatch(setField(_id, field, value)))
 export const setFieldInDispatch = R.curry((dispatch, _id, path, value) => dispatch(setField(_id, path, value)))
-export const setAttachmentDispatch = R.curry((dispatch, _id, field, file) => dispatch(setAttachment(_id, field, file)))
+export const setAttachmentDispatch = R.curry((dispatch, _id, field, preview, file) => dispatch(setAttachment(_id, field, preview, file)))

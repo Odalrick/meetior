@@ -16,7 +16,8 @@ export default function Card(props) {
     setField('description', newDescription)
   }
   const spinner = pending ? <div>Test pending</div> : <div>test not pending</div>
-
+  const imageUploaderBackground = draft.get('icon') ? draft.get('icon') : 'transparent'
+  console.log(imageUploaderBackground)
   return (
     <section className={styles.card}>
       <div className={styles.titleInput}>
@@ -25,9 +26,10 @@ export default function Card(props) {
       </div>
       <div className={styles.iconInput}>
         <label>Bild</label>
-        <ImageUploader className={styles.imageUploader} handleImageUpload={setAttachment('icon')}/>
-        {spinner}
-
+        <div>
+          <ImageUploader className={styles.imageUploader} handleImageUpload={setAttachment('icon')}/>
+          <img className={styles.imageUploader} src={imageUploaderBackground}/>
+        </div>
       </div>
       <div className={styles.descriptionInput}>
         <label>Beskrivning</label>
