@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageUploader from '../input/ImageUploader.jsx'
+import ImageInput from '../input/ImageInput.jsx'
 import TagInput from '../input/TagInput.jsx'
 
 import styles from './Card.css'
@@ -25,7 +25,7 @@ export default function Card(props) {
       </div>
       <div className={styles.iconInput}>
         <label>Bild</label>
-        <ImageUploader className={styles.imageUploader} handleImageUpload={setField('icon')}/>
+        <ImageInput className={styles.imageUploader} onChange={setField('icon')} value={draft.get('icon')} />
         {spinner}
 
       </div>
