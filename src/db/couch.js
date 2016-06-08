@@ -18,11 +18,10 @@ export default config => {
         `${config.couchUrl}/${config.dataDB}/${_id}`, {
           method: 'GET',
         }).then(res => {
-          return new Promise((resolve, reject) =>
-          {
-            console.log('Remove the delay...')
-            setTimeout(() => resolve(res.json()), 3000)
-          })
+        return new Promise((resolve, reject) => {
+          console.log('Remove the delay...')
+          setTimeout(() => resolve(res.json()), 3000)
+        })
       })
     },
     save(doc) {
@@ -31,11 +30,17 @@ export default config => {
         body: serialise(doc),
       })
     },
+    uploadAttachment(doc, file) {
+      return fetch(`${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}?rev=${doc._rev}`, {
+        method: 'PUT',
+        body: file,
+      })
+    },
     createDb() {
-      return fetch(`${config.couchUrl}/${config.dataDB}`, { method: 'PUT' })
+      return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'PUT'})
     },
     deleteDb() {
-      return fetch(`${config.couchUrl}/${config.dataDB}`, { method: 'DELETE' })
+      return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'DELETE'})
     },
   }
 }

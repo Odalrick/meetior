@@ -36,8 +36,9 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
 
   const db = dbFactory(config)
   const saga = sagaFactory(db)
-  const saga2 = sagaFactory2(db, delay, (state, id) => helpers.getCurrentDocument(state.documents, id))
-  const saga3 = sagaFactory3(db)
+  const documentGetter = (state, id) => helpers.getCurrentDocument(state.documents, id)
+  const saga2 = sagaFactory2(db, delay, documentGetter)
+  const saga3 = sagaFactory3(db, documentGetter)
   const sagaMiddleware = createSagaMiddleware(
     function *() {
       while (true) {
