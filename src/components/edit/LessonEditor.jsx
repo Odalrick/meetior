@@ -13,13 +13,23 @@ export default (props) => {
     draft,
     setField,
     pending,
+    makeSlideLink,
     } = props
 
+  const panelItems = draft && draft.get('slides') ? draft.get('slides').map((slide, i) => (
+    <section onClick={() => console.log('clicked')}>
+      <span>{i}</span>
+      <Link to={makeSlideLink(i, slide.get('title'))}></Link>
+      <p>{slide.get('text').slice(0,100)}...</p>
+    </section>)) : []
   const canMove = (i) => !lesson.get('slides').get(i).get('editing')
   return (
     <Loading waitFor={draft}>
       <Card draft={draft} setField={setField} pending={pending}>
       </Card>
+      <FlowPanel canMove={() => true} moveItem={() => {}}>
+        {panelItems}
+      </FlowPanel>
     </Loading>
   )
 }

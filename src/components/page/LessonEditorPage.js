@@ -10,6 +10,7 @@ function mapStateToProps(state, ownProps) {
     draft: state.documents.getIn([ownProps.id, 'draft']) || I.Map(),
     course: state.documents.getIn([ownProps.id2, 'draft']) || I.Map(),
     pending: state.documents.getIn([ownProps.id, 'pending']),
+    makeSlideLink: (index, title) => (I.fromJS({id: ownProps.id, id2: ownProps.id2, type: "slide", index, title})),
   }
 }
 

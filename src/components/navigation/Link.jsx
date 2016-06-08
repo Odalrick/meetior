@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch) {
 
 function toUrl(link) {
   const url = ['', link.get('type')]
-  if(link.get('index')) {
+  if(link.has('index')) {
     url.push('i')
     url.push(link.get('index'))
   }

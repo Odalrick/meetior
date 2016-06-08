@@ -17,13 +17,7 @@ export default config => {
       return fetch(
         `${config.couchUrl}/${config.dataDB}/${_id}`, {
           method: 'GET',
-        }).then(res => {
-          return new Promise((resolve, reject) =>
-          {
-            console.log('Remove the delay...')
-            setTimeout(() => resolve(res.json()), 3000)
-          })
-      })
+        }).then(res => res.json())
     },
     save(doc) {
       return fetch(`${config.couchUrl}/${config.dataDB}/${doc._id}`, {
