@@ -44,25 +44,11 @@
   font-weight: bold;
 }
 
-.iconInput {
+.imageInput {
   float: right;
-  position: relative;
-}
-
-.iconInput .imageUploader {
   width: 100px;
   height: 100px;
-  padding: 10px;
-  border: 2px #72888F dashed;
   margin: auto;
-}
-
-.iconInput img {
-  float: left;
-  position: absolute;
-  bottom: 0px;
-  border: none;
-  z-index: -1;
 }
 
 .descriptionInput {

@@ -15,17 +15,23 @@ export default function Card(props) {
     const newDescription = event.target.value
     setField('description', newDescription)
   }
+
+  const onIconChange = (file) => {
+    setField('icon', file.preview)
+    setAttachment('icon', file)
+  }
+
   const spinner = pending ? <div>Test pending</div> : <div>test not pending</div>
 
   return (
     <section className={styles.card}>
       <div className={styles.titleInput}>
         <label>Titel</label>
-        <input className={styles.titleInput} value={draft.get('title')} onChange={onTitleChange}/>
+        <input className={styles.titleInput} value={draft.get('title')} onChange={onTitleChange} />
       </div>
-      <div className={styles.iconInput}>
+      <div className={styles.imageInput}>
         <label>Bild</label>
-        <ImageInput className={styles.imageUploader} onChange={setField('icon')} value={draft.get('icon')} />
+        <ImageInput onChange={onIconChange} value={draft.get('icon')} />
         {spinner}
       </div>
       <div className={styles.descriptionInput}>
