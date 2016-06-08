@@ -14,6 +14,7 @@ export default function CourseEditor(props) {
     moveLesson,
     deleteLesson,
     setField,
+    setAttachment,
     pending,
   } = props
 
@@ -29,7 +30,7 @@ export default function CourseEditor(props) {
 
   return (
     <Loading waitFor={draft}>
-      <Card draft={draft} setField={setField} pending={pending}>
+      <Card draft={draft} setField={setField} setAttachment={setAttachment} pending={pending}>
         <FlowPanel canMove={() => true} moveItem={moveLesson}>
           {panelItems}
         </FlowPanel>

@@ -46,6 +46,7 @@
 
 .iconInput {
   float: right;
+  position: relative;
 }
 
 .iconInput .imageUploader {
@@ -54,6 +55,14 @@
   padding: 10px;
   border: 2px #72888F dashed;
   margin: auto;
+}
+
+.iconInput img {
+  float: left;
+  position: absolute;
+  bottom: 0px;
+  border: none;
+  z-index: -1;
 }
 
 .descriptionInput {
