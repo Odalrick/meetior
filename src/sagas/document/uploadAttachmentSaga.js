@@ -9,9 +9,10 @@ export default function sagaFactory(db, documentGetter) {
       const { file, field, _id } = action.payload
       yield put(setPending({_id}))
       const document = yield select(documentGetter, _id)
-      //yield call(db.save, setRev(action.payload._rev, action.payload.draft))
-      //const updatedDoc = yield call(db.load, action.payload._id)
-      //yield put(loadedDocument(updatedDoc))
+      console.log('document',document)
+      const url = yield call(db.uploadAttachment, document.toJS(), file)
+      console.log('url',url)
+      yield put(setField(_id, field, url)) // TODO: Do more? Update revision?
     }
   })
 }

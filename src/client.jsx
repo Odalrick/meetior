@@ -66,7 +66,7 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
       yield* takeLatest(SET_FIELD_IN, saga2.updateDocument)
     },
     function* () {
-      yield* takeEvery(SET_ATTACHMENT, saga3.uploadAttachment )
+      yield* takeEvery(SET_ATTACHMENT, saga3.uploadAttachment)
     }
   )
 

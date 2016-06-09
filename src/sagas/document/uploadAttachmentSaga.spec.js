@@ -37,9 +37,9 @@ describe('upload attachment saga', function () {
 
     const action = setAttachment(_id, field, file)
     const sagaInstance = testSaga.uploadAttachment(action)
-    expect(sagaInstance.next(I.fromJS(document))).to.deep.equal(cont(put(setPending({ _id }))))
+    expect(sagaInstance.next()).to.deep.equal(cont(put(setPending({ _id }))))
     expect(sagaInstance.next()).to.deep.equal(cont(select(documentGetter, _id)))
-    expect(sagaInstance.next()).to.deep.equal(cont(call(db.uploadAttachment, file)))
+    expect(sagaInstance.next(I.fromJS(document))).to.deep.equal(cont(call(db.uploadAttachment, document, file)))
     expect(sagaInstance.next(url)).to.deep.equal(cont(put(setField(_id, field, url))))
     expect(sagaInstance.next().done).to.be.true()
   })
