@@ -34,7 +34,7 @@ export default config => {
       return fetch(`${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}?rev=${doc._rev}`, {
         method: 'PUT',
         body: file,
-      }).then(res => {debugger})
+      }).then(res => `${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}`)
     },
     createDb() {
       return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'PUT'})

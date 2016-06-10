@@ -18,4 +18,4 @@ export const setAttachment = R.curry((_id, field, file) => ({
 
 export const setFieldDispatch = R.curry((dispatch, _id, field, value) => dispatch(setField(_id, field, value)))
 export const setFieldInDispatch = R.curry((dispatch, _id, path, value) => dispatch(setField(_id, path, value)))
-export const setAttachmentDispatch = R.curry((dispatch, _id, field, preview, file) => dispatch(setAttachment(_id, field, file)))
+export const setAttachmentDispatch = R.curry((dispatch, _id, field, file) => dispatch(setAttachment(_id, field, file)))
