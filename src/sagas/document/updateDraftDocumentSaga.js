@@ -16,7 +16,6 @@ export default function sagaFactory(db, delay, documentGetter) {
         return
       }
       const document = yield select(documentGetter, _id)
-      console.log('document', document)
       yield call(db.save, document.toJS())
       const updatedDoc = yield call(db.load, _id)
       yield put(loadedDocument(updatedDoc))

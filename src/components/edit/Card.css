@@ -44,15 +44,10 @@
   font-weight: bold;
 }
 
-.iconInput {
+.imageInput {
   float: right;
-}
-
-.iconInput .imageUploader {
   width: 100px;
   height: 100px;
-  padding: 10px;
-  border: 2px #72888F dashed;
   margin: auto;
 }
 

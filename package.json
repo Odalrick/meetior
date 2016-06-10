@@ -49,6 +49,7 @@
     "babel-polyfill": "^6.7.2",
     "co": "^4.6.0",
     "css-loader": "^0.23.1",
+    "dropzone": "^4.3.0",
     "html-webpack-plugin": "^1.7.0",
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.0",
@@ -64,12 +65,12 @@
     "react-quill": "^0.4.1",
     "react-redux": "^4.0.2",
     "react-router": "^2.4.0",
-    "react-router-redux": "^4.0.4",    
+    "react-router-redux": "^4.0.4",
     "redux": "^3.3.1",
     "redux-saga": "^0.9.4",
     "redux-tiny-router": "^0.6.1",
     "sass-loader": "^3.1.2",
-    "style-loader": "^0.13.0",    
+    "style-loader": "^0.13.0",
     "webpack": "^1.12.9"
   },
   "babel": {

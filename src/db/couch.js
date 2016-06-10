@@ -25,11 +25,17 @@ export default config => {
         body: serialise(doc),
       })
     },
+    uploadAttachment(doc, file) {
+      return fetch(`${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}?rev=${doc._rev}`, {
+        method: 'PUT',
+        body: file,
+      }).then(res => `${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}`)
+    },
     createDb() {
-      return fetch(`${config.couchUrl}/${config.dataDB}`, { method: 'PUT' })
+      return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'PUT'})
     },
     deleteDb() {
-      return fetch(`${config.couchUrl}/${config.dataDB}`, { method: 'DELETE' })
+      return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'DELETE'})
     },
   }
 }
