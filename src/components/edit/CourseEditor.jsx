@@ -23,7 +23,6 @@ export default function CourseEditor(props) {
       <Link to={lessonLink} />
       <div className={styles.footer}>
         <span className={styles.ordinal}>{i}.</span>
-        <FlatButton onClick={() => {deleteLesson(i); alert('GOTCHA!')}}>REDIGERA</FlatButton>
         <FlatButton onClick={() => deleteLesson(i) }>TA BORT</FlatButton>
       </div>
     </div>)) : []
