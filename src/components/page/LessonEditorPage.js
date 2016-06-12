@@ -32,7 +32,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     setField: setFieldDispatch(dispatch, ownProps.id),
-    setAttachment: setAttachmentDispatch(dispatch, ownProps.id)
+    setAttachment: setAttachmentDispatch(dispatch, ownProps.id),
   }
 }
 
@@ -44,7 +44,7 @@ function LessonEditorPage(props) {
           <CardStatic draft={props.course.draft} pending={props.course.pending} />
         </Loading>
       </Link>
-      <LessonEditor {...props.lesson} setField={props.setField} />
+      <LessonEditor {...props.lesson} setField={props.setField} setAttachment={props.setAttachment} />
     </div>
   )
 }

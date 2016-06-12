@@ -1,14 +1,12 @@
 import React from 'react'
+import IPropTypes from 'react-immutable-proptypes'
 
 import Link from '../navigation/Link.jsx'
 import FlowPanel from '../layout/FlowPanel.jsx'
 import Card from './Card.jsx'
-import FlatButton from '../input/FlatButton.jsx'
 import Loading from '../navigation/Loading.jsx'
 
-import styles from './LessonEditor.css'
-
-export default (props) => {
+function LessonEditor(props) {
   const {
     draft,
     setField,
@@ -18,7 +16,7 @@ export default (props) => {
     } = props
 
   const panelItems = draft && draft.get('slides') ? draft.get('slides').map((slide, i) => (
-    <section>
+    <section key={`slide-index-${i}`}>
       <Link to={makeSlideLink(i, slide.get('title'))} />
       <p>{slide.get('text').slice(0, 100)}...</p>
     </section>)) : []
@@ -31,3 +29,13 @@ export default (props) => {
     </Loading>
   )
 }
+
+LessonEditor.propTypes = {
+  draft: IPropTypes.map,
+  setField: React.PropTypes.func.isRequired,
+  setAttachment: React.PropTypes.func.isRequired,
+  pending: React.PropTypes.bool,
+  makeSlideLink: React.PropTypes.func.isRequired,
+}
+
+export default LessonEditor
