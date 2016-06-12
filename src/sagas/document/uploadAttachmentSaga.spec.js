@@ -13,7 +13,10 @@ describe('upload attachment saga', function () {
   const documentGetter = () => {
   }
 
-  const testSaga = sagaFactory(db, documentGetter)
+  const reloadDocument = () => {
+  }
+
+  const testSaga = sagaFactory(db, documentGetter, reloadDocument)
   const cont = R.assoc('value', R.__, { done: false })
 
   it('should upload an attachment', () => {
@@ -40,7 +43,8 @@ describe('upload attachment saga', function () {
     expect(sagaInstance.next()).to.deep.equal(cont(put(setPending({ _id }))))
     expect(sagaInstance.next()).to.deep.equal(cont(select(documentGetter, _id)))
     expect(sagaInstance.next(I.fromJS(document))).to.deep.equal(cont(call(db.uploadAttachment, document, file)))
-    expect(sagaInstance.next(url)).to.deep.equal(cont(put(setField(_id, field, url))))
+    expect(sagaInstance.next({url})).to.deep.equal(cont(call(reloadDocument,_id)))
+    expect(sagaInstance.next()).to.deep.equal(cont(put(setField(_id, field, url))))
     expect(sagaInstance.next().done).to.be.true()
   })
 })

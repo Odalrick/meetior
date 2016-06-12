@@ -3,7 +3,7 @@ import R from 'ramda'
 import I from 'immutable'
 
 import LessonEditor from '../edit/LessonEditor.jsx'
-import { setFieldDispatch } from '../../ducks/commonActions'
+import { setFieldDispatch, setAttachmentDispatch } from '../../ducks/commonActions'
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -17,6 +17,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     setField: setFieldDispatch(dispatch, ownProps.id),
+    setAttachment: setAttachmentDispatch(dispatch, ownProps.id)
   }
 }
 

@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import R from 'ramda'
 
 const serialise = data => JSON.stringify(data,
   (key, value) => (typeof value === 'function') ? '(' + value.toString() + ')' : value
@@ -29,7 +30,9 @@ export default config => {
       return fetch(`${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}?rev=${doc._rev}`, {
         method: 'PUT',
         body: file,
-      }).then(res => `${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}`)
+      })
+      .then(res => res.json())
+      .then(json => R.assoc('url', `${config.couchUrl}/${config.dataDB}/${doc._id}/${file.name}`, json))
     },
     createDb() {
       return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'PUT'})

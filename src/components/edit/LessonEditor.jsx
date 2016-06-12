@@ -12,6 +12,7 @@ export default (props) => {
   const {
     draft,
     setField,
+    setAttachment,
     pending,
     makeSlideLink,
     } = props
@@ -25,7 +26,7 @@ export default (props) => {
   const canMove = (i) => !lesson.get('slides').get(i).get('editing')
   return (
     <Loading waitFor={draft}>
-      <Card draft={draft} setField={setField} pending={pending}>
+      <Card draft={draft} setField={setField} setAttachment={setAttachment} pending={pending}>
       </Card>
       <FlowPanel canMove={() => true} moveItem={() => {}}>
         {panelItems}
