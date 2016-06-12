@@ -6,7 +6,7 @@ import LessonEditor from '../edit/LessonEditor.jsx'
 import CardStatic from '../edit/CartStatic.jsx'
 import Link from '../navigation/Link.jsx'
 import Loading from '../navigation/Loading.jsx'
-import { setFieldDispatch } from '../../ducks/commonActions'
+import { setFieldDispatch, setAttachmentDispatch } from '../../ducks/commonActions'
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -32,6 +32,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     setField: setFieldDispatch(dispatch, ownProps.id),
+    setAttachment: setAttachmentDispatch(dispatch, ownProps.id)
   }
 }
 

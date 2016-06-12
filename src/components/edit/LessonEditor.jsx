@@ -12,6 +12,7 @@ export default (props) => {
   const {
     draft,
     setField,
+    setAttachment,
     pending,
     makeSlideLink,
     } = props
@@ -23,7 +24,7 @@ export default (props) => {
     </section>)) : []
   return (
     <Loading waitFor={draft} >
-      <Card draft={draft} setField={setField} pending={pending} />
+      <Card draft={draft} setField={setField} pending={pending} setAttachment={setAttachment} />
       <FlowPanel canMove={() => true} moveItem={() => {}} >
         {panelItems}
       </FlowPanel>
