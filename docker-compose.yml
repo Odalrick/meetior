@@ -10,6 +10,8 @@ services:
      - .:/app
     depends_on:
      - db
+    links:
+     - db
     command: webpack-dev-server --host 0.0.0.0
   db:
     container_name: planck-db
