@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  web:
+    container_name: planck-web
+    image: jmfirth/webpack
+    ports:
+     - "3000:8080"
+    volumes:
+     - .:/app
+    depends_on:
+     - db
+    command: webpack-dev-server
+  db:
+    container_name: planck-db
+    image: planck/db:latest
+    build: . 
+    ports:
+      - "5984:5984"
