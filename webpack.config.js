@@ -59,11 +59,11 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true,	
-	watchOptions: {
-		aggregateTimeout: 300,
-		poll: 1000
-	},
+    progress: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

@@ -5,15 +5,15 @@ services:
     container_name: planck-web
     image: jmfirth/webpack
     ports:
-     - "3000:8080"
+     - "8080:8080"
     volumes:
      - .:/app
     depends_on:
      - db
-    command: webpack-dev-server
+    command: webpack-dev-server --host 0.0.0.0
   db:
     container_name: planck-db
     image: planck/db:latest
-    build: . 
+    build: .
     ports:
       - "5984:5984"
