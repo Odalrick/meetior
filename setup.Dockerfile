@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+FROM ubuntu:trusty
 RUN apt-get update && apt-get install -y \
-  npm
+  nodejs \
+  build-essential
 WORKDIR \app
