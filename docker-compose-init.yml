@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  setup:
+    container_name: planck-setup
+    image: planck/setup:latest
+    build:
+      context: .
+      dockerfile: setup.Dockerfile
+    volumes:
+       - .:/app
+    command: npm install
