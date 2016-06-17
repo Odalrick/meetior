@@ -17,7 +17,7 @@ const log = req => {
 }
 
 co(function *() {
-  const db = DBfactory(config)
+  const db = DBfactory(process.argv.length > 2 ? R.assoc('couchUrl', process.argv[2], config) : config)
   try {
     log(yield db.deleteDb())
     log(yield db.createDb())
