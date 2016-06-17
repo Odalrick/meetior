@@ -3,19 +3,28 @@ version: '2'
 services:
   web:
     container_name: planck-web
-    image: jmfirth/webpack
+    image: planck/web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.web
     ports:
      - "8080:8080"
     volumes:
      - .:/app
     depends_on:
-     - db
+      - db
     links:
-     - db:planck-db
+      - db:planck-db
     command: webpack-dev-server --host 0.0.0.0
+
   db:
     container_name: planck-db
     image: planck/db:latest
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.db
     ports:
       - "5984:5984"
+    expose:
+      - "80"
+
