@@ -4,6 +4,7 @@ import I from 'immutable'
 
 import LessonEditor from '../edit/LessonEditor.jsx'
 import CardStatic from '../edit/CartStatic.jsx'
+import CardHolder from '../layout/CardHolder.jsx'
 import Link from '../navigation/Link.jsx'
 import Loading from '../navigation/Loading.jsx'
 import { setFieldDispatch, setAttachmentDispatch } from '../../ducks/commonActions'
@@ -38,14 +39,14 @@ function mapDispatchToProps(dispatch, ownProps) {
 
 function LessonEditorPage(props) {
   return (
-    <div>
+    <CardHolder>
       <Link to={props.course.link} >
         <Loading waitFor={props.course.draft} >
           <CardStatic draft={props.course.draft} pending={props.course.pending} />
         </Loading>
       </Link>
       <LessonEditor {...props.lesson} setField={props.setField} setAttachment={props.setAttachment} />
-    </div>
+    </CardHolder>
   )
 }
 

@@ -25,6 +25,10 @@ module.exports = {
         loaders: ['style', 'css', 'sass'],
       },
       {
+        test: /\.less$/,
+        loaders: ['style', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'less-loader?modules'],
+      },
+      {
         test: /quill.*.css$/,
         loaders: ['style', 'css'],
       },
