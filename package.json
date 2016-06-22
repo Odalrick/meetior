@@ -2,7 +2,7 @@
   "name": "meetior",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "index.js",  
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha \"src/**/*.spec.js\" --require \"./mocha.config.js\" --compilers js:babel-core/register",
     "test:watch": "npm run test -- --watch",
@@ -12,7 +12,8 @@
     "dev:docker": "docker-compose up",
     "dev:bash": "docker exec -t -i planck-dev /bin/bash",
     "deploy": "NODE_ENV=production webpack -p",
-    "db:reset": "node node_modules/babel-cli/bin/babel-node.js \"src/couch-fixtures.js\""
+    "db:reset": "node node_modules/babel-cli/bin/babel-node.js \"src/couch-fixtures.js\"",
+	"db": "node node_modules/babel-cli/bin/babel-node.js \"db.js\""
   },
   "repository": {
     "type": "git",
@@ -87,7 +88,10 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+      "path": "./node_modules/cz-conventional-changelog"	  
+    },
+	"db": {
+		"tag": "1"
+	}
   }
 }
