@@ -14,8 +14,7 @@ const wrapExec = (cmd) => new Promise((resolve, reject) => {
       if (error) {
         reject(R.assoc('stderr', stderr, error))
       }
-      console.log(stdout)
-      resolve(stdout.trim().slice(1, -1))
+      resolve(stdout && stdout[0] ==='\'' ? stdout.trim().slice(1, -1) : stdout)
     })
 })
 
@@ -30,8 +29,9 @@ const wrapSpawn = (cmd, params) => new Promise((resolve, reject) => {
   });
 })
 
-const getContainerId = (tag) =>
-  wrapExec(`docker ps -f name=${DB_CONTAINER} -f ancestor=${DB_IMAGE}:${tag} -a --format \'{{.ID}}\'`)
+const getContainerId = (tag) => {
+  return wrapExec(`docker ps -f name=${DB_CONTAINER} -f ancestor=${DB_IMAGE}${tag ? ':' + tag : ''} -a --format \'{{.ID}}\'`)
+}
 
 const login = () => {
   console.log('Authentication required!')
@@ -51,11 +51,19 @@ const rm = (id) => {
   return wrapExec(`docker rm ${id}`)
 }
 
+const build = (tag) => {
+  if (!tag) {
+    throw 'You must provide a tag when building an image: \n\t usage: build <tag>'
+  }
+  //--no-cache
+  return wrapSpawn('docker', ['build', '-t', `${DB_IMAGE}:${tag}`,'-f', 'db.Dockerfile', '.'])
+}
+
 const commit = (id, tag) => {
   if (!tag) {
     throw 'You must provide a tag when committing a container: \n\t usage: commit <tag>'
   }
-  wrapExec(`docker commit ${id} ${DB_IMAGE}:${tag}`)
+  return wrapExec(`docker commit ${id} ${DB_IMAGE}:${tag}`)
 }
 
 const push = function*(id, tag) {
@@ -70,7 +78,7 @@ const push = function*(id, tag) {
 co(function*() {
   const cmd = process.argv[2]
   const tag = process.argv[3]
-  const id = yield getContainerId(tag)
+  const id = yield getContainerId(tag || DB_DEFAULT_TAG)
   switch (cmd) {
     case 'start':
       yield start(id, process.argv[3] || DB_DEFAULT_TAG)
@@ -80,6 +88,9 @@ co(function*() {
       break
     case 'rm':
       yield rm(id)
+      break
+    case 'build':
+      yield build(process.argv[3])
       break
     case 'commit':
       yield commit(id, process.argv[3])
