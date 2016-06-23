@@ -4,8 +4,9 @@ import util from 'util'
 import {exec, spawn, spawnSync} from 'child_process'
 
 const DB_CONTAINER = 'planck-db'
+const DB_LUCENE_CONTAINER = 'planck-lucene'
 const DB_IMAGE = 'planck/db'
-const DB_DEFAULT_TAG = process.env.npm_package_config_db_tag
+const DB_LUCENE_IMAGE = 'planck/db-lucene'
 
 const wrapExec = (cmd) => new Promise((resolve, reject) => {
   console.log(cmd)
@@ -13,13 +14,15 @@ const wrapExec = (cmd) => new Promise((resolve, reject) => {
     (error, stdout, stderr) => {
       if (error) {
         reject(R.assoc('stderr', stderr, error))
-      }
-      resolve(stdout && stdout[0] ==='\'' ? stdout.trim().slice(1, -1) : stdout)
+      }	  
+      const result = stdout && stdout[0] ==='\'' ? stdout.trim().slice(1, -1) : stdout
+	  console.log(result)
+	  resolve(result)
     })
 })
 
 const wrapSpawn = (cmd, params) => new Promise((resolve, reject) => {
-  console.log(cmd)
+  console.log(cmd, params.join(' '))
   const p = spawn(cmd, params, {stdio: 'inherit'});
   p.on('close', (code) => {
     resolve(code)
@@ -29,8 +32,8 @@ const wrapSpawn = (cmd, params) => new Promise((resolve, reject) => {
   });
 })
 
-const getContainerId = (tag) => {
-  return wrapExec(`docker ps -f name=${DB_CONTAINER} -f ancestor=${DB_IMAGE}${tag ? ':' + tag : ''} -a --format \'{{.ID}}\'`)
+const getContainerId = (image, tag) => {
+  return wrapExec(`docker ps -f ancestor=${image}${tag ? ':' + tag : ''} -a --format \'{{.ID}}\'`)
 }
 
 const login = () => {
@@ -39,64 +42,67 @@ const login = () => {
 }
 
 // Commands
-const start = (id, tag) => (id ? wrapExec(`docker start ${DB_CONTAINER}`) :
-  wrapExec(`docker run -d -p 5984:5984 --name=${DB_CONTAINER} ${DB_IMAGE}:${tag}`))
-
-const stop = (id) => wrapExec(`docker stop ${id}`)
-
-const rm = (id) => {
-  if (!id) {
-    throw `No ${DB_CONTAINER} container to remove`
-  }
-  return wrapExec(`docker rm ${id}`)
+const start = function*(){
+	let isRunning = yield getContainerId(DB_IMAGE, 'empty') 
+	isRunning = yield getContainerId(DB_LUCENE_IMAGE, 'empty')	
+	yield isRunning ? wrapExec(`docker-compose start`) :
+		wrapSpawn(`docker-compose`, ['up', '-d' ])
 }
 
-const build = (tag) => {
+const stop = () => wrapExec(`docker-compose stop`)
+
+const rm = () => wrapSpawn('docker-compose', ['rm'])
+
+const build = (tag) => {  
   if (!tag) {
     throw 'You must provide a tag when building an image: \n\t usage: build <tag>'
   }
   //--no-cache
   return wrapSpawn('docker', ['build', '-t', `${DB_IMAGE}:${tag}`,'-f', 'db.Dockerfile', '.'])
+	.then(() => wrapSpawn('docker', ['build', '-t', `${DB_LUCENE_IMAGE}:${tag}`,'-f', 'lucene.Dockerfile', '.']))
 }
 
-const commit = (id, tag) => {
+const commit = function*(tag){
   if (!tag) {
-    throw 'You must provide a tag when committing a container: \n\t usage: commit <tag>'
+    throw 'You must provide a tag when committing: \n\t usage: commit <tag>'
   }
-  return wrapExec(`docker commit ${id} ${DB_IMAGE}:${tag}`)
+  const dbId = yield getContainerId(DB_IMAGE, 'empty')
+  const luceneId = yield getContainerId(DB_LUCENE_IMAGE, 'empty')  
+  return wrapExec(`docker commit ${dbId} ${DB_IMAGE}:${tag}`)
+	.then(wrapExec(`docker commit ${luceneId} ${DB_LUCENE_IMAGE}:${tag}`))
 }
 
-const push = function*(id, tag) {
+const push = function*(tag) {
   if (!tag) {
     throw 'You must provide a tag when pushing to docker hub: \n\t usage: push <tag>'
   }
   yield login()
   yield wrapExec(`docker push ${DB_IMAGE}:${tag}`)
+	.then(() => wrapExec(`docker push ${DB_LUCENE_IMAGE}:${tag}`))
 }
 
 //main
 co(function*() {
   const cmd = process.argv[2]
-  const tag = process.argv[3]
-  const id = yield getContainerId(tag || DB_DEFAULT_TAG)
+  const tag = process.argv[3]     
   switch (cmd) {
     case 'start':
-      yield start(id, process.argv[3] || DB_DEFAULT_TAG)
+      yield start()
       break
     case 'stop':
-      yield stop(id, process.argv[3] || DB_DEFAULT_TAG)
+      yield stop()
       break
     case 'rm':
-      yield rm(id)
+      yield rm()
       break
     case 'build':
       yield build(process.argv[3])
       break
     case 'commit':
-      yield commit(id, process.argv[3])
+      yield commit(process.argv[3])
       break
     case 'push':
-      yield push(id, process.argv[3])
+      yield push(process.argv[3])
       break
     default:
       console.log(`Unknown command: ${cmd}`)

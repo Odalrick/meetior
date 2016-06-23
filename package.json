@@ -8,9 +8,7 @@
     "test:watch": "npm run test -- --watch",
     "webserver": "node api/src/server.js",
     "build": "node_modules/.bin/webpack",
-    "dev": "npm run db start && node_modules/.bin/webpack-dev-server",
-    "dev:docker": "docker-compose up",
-    "dev:bash": "docker exec -t -i planck-dev /bin/bash",
+    "dev": "node_modules/.bin/webpack-dev-server",        
     "deploy": "NODE_ENV=production webpack -p",
     "db:reset": "node node_modules/babel-cli/bin/babel-node.js \"src/couch-fixtures.js\"",
     "db": "node node_modules/babel-cli/bin/babel-node.js \"db.js\""
