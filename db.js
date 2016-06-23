@@ -43,8 +43,8 @@ const login = () => {
 
 // Commands
 const start = function*(){
-	let isRunning = yield getContainerId(DB_IMAGE, 'empty') 
-	isRunning = yield getContainerId(DB_LUCENE_IMAGE, 'empty')	
+	let isRunning = yield getContainerId(DB_IMAGE, 'base') 
+	isRunning = yield getContainerId(DB_LUCENE_IMAGE, 'base')	
 	yield isRunning ? wrapExec(`docker-compose start`) :
 		wrapSpawn(`docker-compose`, ['up', '-d' ])
 }
@@ -66,8 +66,8 @@ const commit = function*(tag){
   if (!tag) {
     throw 'You must provide a tag when committing: \n\t usage: commit <tag>'
   }
-  const dbId = yield getContainerId(DB_IMAGE, 'empty')
-  const luceneId = yield getContainerId(DB_LUCENE_IMAGE, 'empty')  
+  const dbId = yield getContainerId(DB_IMAGE, 'base')
+  const luceneId = yield getContainerId(DB_LUCENE_IMAGE, 'base')  
   return wrapExec(`docker commit ${dbId} ${DB_IMAGE}:${tag}`)
 	.then(wrapExec(`docker commit ${luceneId} ${DB_LUCENE_IMAGE}:${tag}`))
 }
