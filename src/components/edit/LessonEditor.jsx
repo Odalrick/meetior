@@ -16,16 +16,17 @@ function LessonEditor(props) {
     } = props
 
   const panelItems = draft && draft.get('slides') ? draft.get('slides').map((slide, i) => (
-    <section key={`slide-index-${i}`}>
+    <section key={`slide-index-${i}`} >
       <Link to={makeSlideLink(i, slide.get('title'))} />
       <p>{slide.get('text').slice(0, 100)}...</p>
     </section>)) : []
   return (
     <Loading waitFor={draft} >
-      <Card draft={draft} setField={setField} pending={pending} setAttachment={setAttachment} />
-      <FlowPanel canMove={() => true} moveItem={() => {}} >
-        {panelItems}
-      </FlowPanel>
+      <Card draft={draft} setField={setField} pending={pending} setAttachment={setAttachment} >
+        <FlowPanel canMove={() => true} moveItem={() => {}} >
+          {panelItems}
+        </FlowPanel>
+      </Card>
     </Loading>
   )
 }

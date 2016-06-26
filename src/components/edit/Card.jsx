@@ -1,10 +1,12 @@
 import React from 'react'
+import IPropTypes from 'react-immutable-proptypes'
+
 import ImageInput from '../input/ImageInput.jsx'
 import TagInput from '../input/TagInput.jsx'
 
-import styles from './Card.css'
+const styles = require('./Card.less')
 
-export default function Card(props) {
+function Card(props) {
   const { draft, setField, setAttachment, pending } = props
   const onTitleChange = (event) => {
     const newTitle = event.target.value
@@ -24,25 +26,31 @@ export default function Card(props) {
   const spinner = pending ? <div>Test pending</div> : <div>test not pending</div>
 
   return (
-    <section className={styles.card}>
-      <div className={styles.titleInput}>
-        <label>Titel</label>
-        <input className={styles.titleInput} value={draft.get('title')} onChange={onTitleChange} />
-      </div>
-      <div className={styles.imageInput}>
-        <label>Bild</label>
+    <section className={styles.card} >
+      <h1 className={styles.title} >
+        <input value={draft.get('title')} onChange={onTitleChange} placeholder="Titel" />
+      </h1>
+      <div className={styles.icon} >
         <ImageInput onChange={onIconChange} value={draft.get('icon')} />
         {spinner}
       </div>
-      <div className={styles.descriptionInput}>
-        <label>Beskrivning</label>
-        <textarea className={styles.descriptionInput} rows="5" value={draft.get('description')}
-                  onChange={onDescriptionChange}>
-        </textarea>
+      <div className={styles.description} >
+        <textarea
+          rows="5"
+          value={draft.get('description')}
+          onChange={onDescriptionChange}
+          placeholder="beskrivning"
+        />
       </div>
-      <label>Taggar</label>
-      <TagInput className={styles.tagInput}/>
       {props.children}
     </section>
   )
 }
+
+Card.propTypes = {
+  draft: IPropTypes.map.isRequired,
+  pending: React.PropTypes.bool,
+  children: React.PropTypes.node,
+}
+
+export default Card

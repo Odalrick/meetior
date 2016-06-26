@@ -45,7 +45,9 @@ function LessonEditorPage(props) {
           <CardStatic draft={props.course.draft} pending={props.course.pending} />
         </Loading>
       </Link>
-      <LessonEditor {...props.lesson} setField={props.setField} setAttachment={props.setAttachment} />
+      <div>
+        <LessonEditor {...props.lesson} setField={props.setField} setAttachment={props.setAttachment} />
+      </div>
     </CardHolder>
   )
 }

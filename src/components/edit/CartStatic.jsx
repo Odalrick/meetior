@@ -2,24 +2,18 @@ import React from 'react'
 import Link from '../navigation/Link.jsx'
 import IPropTypes from 'react-immutable-proptypes'
 
-const styles = require('./Card.css')
+const styles = require('./Card.less')
 
 function CardStatic(props) {
   const { draft, pending } = props
   const spinner = pending ? <div>Test pending</div> : <div>test not pending</div>
 
+  const iconSrc = draft.get('icon') ? draft.get('icon') : 'http://placehold.it/100x100'
   return (
     <section className={styles.card} >
-      <div className={styles.titleInput} >
-        <label>Titel</label> <span className={styles.titleInput} value={draft.get('title')} />
-      </div>
-      <div className={styles.imageInput} >
-        <label>Bild</label> <img src={draft.get('icon')} />{spinner}
-      </div>
-      <div className={styles.descriptionInput} >
-        <label>Beskrivning</label>
-        <div className={styles.descriptionInput} >{draft.get('description')}</div>
-      </div>
+      <h1 className={styles.title} >{draft.get('title')}</h1>
+      <div className={styles.icon} ><img src={iconSrc} />{spinner}</div>
+      <div className={styles.description} >{draft.get('description')}</div>
     </section>
   )
 }
