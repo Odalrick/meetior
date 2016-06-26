@@ -1,7 +1,7 @@
 export function toUrl(inLink) {
   const link = inLink.toJS ? inLink.toJS() : inLink
   const url = ['', link.type]
-  if (link.index) {
+  if (link.index !== undefined) {
     url.push('i')
     url.push(link.index)
   }

@@ -2,7 +2,6 @@ import React from 'react'
 import IPropTypes from 'react-immutable-proptypes'
 
 import ImageInput from '../input/ImageInput.jsx'
-import TagInput from '../input/TagInput.jsx'
 
 const styles = require('./Card.less')
 

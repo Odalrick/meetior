@@ -22,6 +22,13 @@ describe('navigation', function () {
 
         expect(toUrl(link)).to.equal('/page-type/i/3/123')
       })
+
+      it('should create url with index 0', function () {
+        const link = I.Map({ type: 'page-type', id: '123', index: 0 })
+
+        expect(toUrl(link)).to.equal('/page-type/i/0/123')
+      })
+
       it('should create url with double id', function () {
         const link = I.Map({ type: 'page-type', id: '123', id2: '321', index: 3 })
 
@@ -46,6 +53,13 @@ describe('navigation', function () {
 
         expect(toUrl(link)).to.equal('/page-type/i/3/123')
       })
+
+      it('should create url with index 0', function () {
+        const link = { type: 'page-type', id: '123', index: 0 }
+
+        expect(toUrl(link)).to.equal('/page-type/i/0/123')
+      })
+
       it('should create url with double id', function () {
         const link = { type: 'page-type', id: '123', id2: '321', index: 3 }
 

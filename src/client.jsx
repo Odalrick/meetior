@@ -15,7 +15,7 @@ import course from './ducks/course'
 import lesson from './ducks/lesson'
 import docFac, { helpers } from './ducks/docs'
 
-import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT } from './ducks/commonActions'
+import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT, SET_ATTACHMENT_IN } from './ducks/commonActions'
 import sagaFactory from './sagas/document/loadDocumentSaga'
 import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
 import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
@@ -71,6 +71,9 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
     },
     function* () {
       yield* takeEvery(SET_ATTACHMENT, saga3.uploadAttachment)
+    },
+    function* () {
+      yield* takeEvery(SET_ATTACHMENT_IN, saga3.uploadAttachment)
     }
   )
 

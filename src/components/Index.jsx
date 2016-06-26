@@ -16,7 +16,7 @@ utils.set('/:page/i/:index/:id/:id2')
 const mainComponentMap = {
   test: () => <div>Boo!</div>,
   course: CoursePage,
-  lesson: LessonPage
+  lesson: LessonPage,
 }
 
 const getComp = ({ page, path }) => {
