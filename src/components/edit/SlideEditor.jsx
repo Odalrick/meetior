@@ -4,6 +4,7 @@ import I from 'immutable'
 
 import Loading from '../navigation/Loading.jsx'
 import ImageInput from '../input/ImageInput.jsx'
+import WYSIWYG from '../input/WYSIWYG.jsx'
 
 const styles = require('./Slide.less')
 
@@ -36,22 +37,17 @@ function SlideEditor(props) {
   const spinner = pending ? <div>Test pending</div> : <div>test not pending</div>
 
   return (
-    <Loading waitFor={draft} >
-      <section className={styles.slide} >
-        <h1 className={styles.title} >
-          <input value={slide.get('title')} onChange={onTitleChange} placeholder="Titel" />
+    <Loading waitFor={draft}>
+      <section className={styles.slide}>
+        <h1 className={styles.title}>
+          <input value={slide.get('title')} onChange={onTitleChange} placeholder="Titel"/>
         </h1>
-        <div className={styles.image} >
-          <ImageInput onChange={onImageChange} value={slide.get('image')} />
+        <div className={styles.image}>
+          <ImageInput onChange={onImageChange} value={slide.get('image')}/>
           {spinner}
         </div>
-        <div className={styles.text} >
-        <textarea
-          rows="5"
-          value={slide.get('text')}
-          onChange={onTextChange}
-          placeholder="Skriv in texten som skall visas på denna slide"
-        />
+        <div className={styles.text}>
+          <WYSIWYG className={styles.text} handleEditorChange={onTextChange} text={slide.get('text')}></WYSIWYG>
         </div>
       </section>
     </Loading>

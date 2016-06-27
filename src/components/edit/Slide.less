@@ -1,4 +1,6 @@
 .slide {
+  width: 640px;
+  height: 400px;
   border: 2px #72888F solid;
   padding: 15px;
   -webkit-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.3);
@@ -9,20 +11,26 @@
   .title {
     margin-top: 0;
     padding-top: 0;
+    font-size: 30px;
   }
   .image {
+    margin-top:50px;
     float: right;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     img {
       max-width: 100%;
       max-height: 100%;
     }
   }
   .text {
-    textarea {
-      height: 10em;
-      width: 100%;
-    }
+      height: 320px;
+      width: 75%;
+      .quill {
+        .quill-contents .ql-container .ql-snow {
+          height: 320px;
+          width: 75%;
+        }
+      }
   }
 }

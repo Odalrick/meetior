@@ -4,12 +4,13 @@ import 'quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill';
 
 export default function(props) {
-  const {handleEditorChange} = props
+  const {handleEditorChange, className} = props
 
   return (
     <ReactQuill theme="snow"
                 value={props.text}
                 onChange={handleEditorChange}
-                pollInterval={1000} />
+                pollInterval={1000}
+                className={className}/>
   )
 }
