@@ -41,8 +41,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   }
 }
 
-function LessonEditorPage(props) {
-  console.log('LessonEditorPage', props)
+function LessonEditorPage(props) {  
   if (props.index !== undefined) {
     return (
       <CardHolder>

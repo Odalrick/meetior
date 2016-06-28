@@ -35,7 +35,7 @@ function mapStateToProps(state) {
     page: state.router.params.page,
     id: state.router.params.id,
     id2: state.router.params.id2,
-    index: state.router.params.index,
+    index: state.router.params.index && Number.parseInt(state.router.params.index),
     path: state.router.path,
   }
 }

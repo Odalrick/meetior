@@ -1,6 +1,6 @@
 .slide {
   width: 640px;
-  height: 400px;
+  height: 420px;
   border: 2px #72888F solid;
   padding: 15px;
   -webkit-box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.3);
@@ -14,7 +14,7 @@
     font-size: 30px;
   }
   .image {
-    margin-top:50px;
+    margin-top:100px;
     float: right;
     width: 150px;
     height: 150px;
@@ -24,13 +24,20 @@
     }
   }
   .text {
-      height: 320px;
-      width: 75%;
-      .quill {
-        .quill-contents .ql-container .ql-snow {
-          height: 320px;
-          width: 75%;
-        }
-      }
+      height: 340px;
+                  
   }
+}
+
+:global {
+	.quill {	
+		.quill-toolbar.ql-toolbar.ql-snow {
+			padding: 0;
+		}	
+		.quill-contents.ql-container.ql-snow {
+			  height: 300px;			  
+			  overflow-y: auto;
+			  padding-bottom: 5px;
+		}
+	}
 }

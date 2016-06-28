@@ -24,9 +24,8 @@ function SlideEditor(props) {
     setFieldIn(['slides', index, 'title'], newTitle)
   }
 
-  const onTextChange = (event) => {
-    const newDescription = event.target.value
-    setFieldIn(['slides', index, 'text'], newDescription)
+  const onTextChange = (newText) => {    
+    setFieldIn(['slides', index, 'text'], newText)
   }
 
   const onImageChange = (file) => {
@@ -45,10 +44,8 @@ function SlideEditor(props) {
         <div className={styles.image}>
           <ImageInput onChange={onImageChange} value={slide.get('image')}/>
           {spinner}
-        </div>
-        <div className={styles.text}>
-          <WYSIWYG className={styles.text} handleEditorChange={onTextChange} text={slide.get('text')}></WYSIWYG>
-        </div>
+        </div>        
+	    <WYSIWYG className={styles.text} handleEditorChange={onTextChange} text={slide.get('text')}></WYSIWYG>        
       </section>
     </Loading>
   )
