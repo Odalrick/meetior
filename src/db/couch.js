@@ -1,8 +1,15 @@
 import fetch from 'isomorphic-fetch'
 import R from 'ramda'
 
-const serialise = data => JSON.stringify(data,
+const serialise = (data, functionExpressions ) => functionExpressions ?
+  serialiseFunctionExpressions(data) : serialiseFunctionStatements(data)
+
+const serialiseFunctionExpressions = data => JSON.stringify(data,
   (key, value) => (typeof value === 'function') ? '(' + value.toString() + ')' : value
+)
+
+const serialiseFunctionStatements = data => JSON.stringify(data,
+  (key, value) => (typeof value === 'function') ? value.toString() : value
 )
 
 export default config => {
@@ -20,10 +27,10 @@ export default config => {
           method: 'GET',
         }).then(res => res.json())
     },
-    save(doc) {
+    save(doc, functionExpressions = true) {
       return fetch(`${config.couchUrl}/${config.dataDB}/${doc._id}`, {
         method: 'PUT',
-        body: serialise(doc),
+        body: serialise(doc, functionExpressions),
       })
     },
     uploadAttachment(doc, file) {

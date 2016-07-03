@@ -92,7 +92,6 @@ const update = function*() {
     if (req.status >= 400) {
       req.json().then(console.log)
     }
-
     return req
   }
 
@@ -103,16 +102,16 @@ const update = function*() {
     return loadedDoc ? loadedDoc._rev : null
   }
 
-  const updateDoc = function*(doc){
+  const updateDoc = function*(doc, functionExpressions){
     const rev = yield getRev(doc)
     if(rev) {
       doc._rev = rev
     }
-    log(yield db.save(doc))
+    log(yield db.save(doc, functionExpressions))
   }
 
   yield updateDoc(docsDesign)
-  yield updateDoc(searchDesign)
+  yield updateDoc(searchDesign, false)
 }
 
 //main
