@@ -1,6 +1,6 @@
 import I from 'immutable'
 
-import { toUrl } from './navigation'
+import { toUrl, makeSearchLink } from './navigation'
 
 describe('navigation', function () {
   describe('toUrl', function () {
@@ -65,6 +65,18 @@ describe('navigation', function () {
 
         expect(toUrl(link)).to.equal('/page-type/i/3/123/321')
       })
+    })
+  })
+
+  describe('makeSearchLink', function () {
+    it('should make a link', function () {
+      const link = makeSearchLink('searching')
+      expect(link).equal(I.fromJS({
+        type: 'search',
+        query: {
+          q: 'searching',
+        },
+      }))
     })
   })
 })

@@ -1,3 +1,5 @@
+import I from 'immutable'
+
 export function toUrl(inLink) {
   const link = inLink.toJS ? inLink.toJS() : inLink
   const url = ['', link.type]
@@ -10,4 +12,10 @@ export function toUrl(inLink) {
     url.push(link.id2)
   }
   return url.join('/')
+}
+
+const rawSearchLink = I.Map().set('type', 'search')
+export function makeSearchLink(searchText) {
+  return rawSearchLink
+    .setIn(['query', 'q'], searchText)
 }
