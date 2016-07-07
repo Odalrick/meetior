@@ -47,5 +47,8 @@ export default config => {
     deleteDb() {
       return fetch(`${config.couchUrl}/${config.dataDB}`, {method: 'DELETE'})
     },
+    addUser(role, userName, password){
+
+    }
   }
 }

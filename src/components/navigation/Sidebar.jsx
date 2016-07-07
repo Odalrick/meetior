@@ -9,7 +9,7 @@ export default function Sidebar(props) {
       <section>
         <h1>Administrera</h1>
         <ul>
-          <li><Link to={ I.fromJS({title:"En kurs", type:"course", id:"eecf0a39454b4b2244ebdc3518899605"}) }></Link></li>
+          <li><Link to={ I.fromJS({title:"En kurs!", type:"course", id:"eecf0a39454b4b2244ebdc3518899605"}) }></Link></li>
           <li><Link to={ I.fromJS({title:"404", type: "XXX", id: "XXX"}) }></Link></li>
         </ul>
       </section>
