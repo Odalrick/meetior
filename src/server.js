@@ -7,6 +7,8 @@ const port = isProduction ? process.env.PORT : 3000
 if(!isProduction) {
   const bundle = require('./server/bundle')
   bundle()
+}else {
+  //todo: production!
 }
 
 //2. Api for find database for user

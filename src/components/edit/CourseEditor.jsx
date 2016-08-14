@@ -23,7 +23,7 @@ export default function CourseEditor(props) {
       <Link to={lessonLink} />
       <div className={styles.footer}>
         <span className={styles.ordinal}>{i}.</span>
-        <FlatButton onClick={() => deleteLesson(i) }>TA BORT</FlatButton>
+        <FlatButton onClick={() => deleteLesson(i) }>TA BORT MIG!</FlatButton>
       </div>
     </div>)) : []
 

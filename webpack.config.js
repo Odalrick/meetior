@@ -62,15 +62,12 @@ module.exports = {
     contentBase: path.resolve(ROOT_PATH, 'dist'),
     historyApiFallback: true,
     hot: true,
-    inline: true,
     progress: true,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    },
   },
   plugins: [
+
     new webpack.HotModuleReplacementPlugin(),
+
     new HtmlwebpackPlugin({
       chunks: ['client'],
       template: 'src/index.html',

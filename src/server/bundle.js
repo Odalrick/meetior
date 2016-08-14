@@ -5,6 +5,7 @@ const webpackConfig = require('../../webpack.config.js');
 module.exports = function () {
 
   let bundleStart;
+  webpackConfig.entry.client.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
   const compiler = Webpack(webpackConfig);
   compiler.plugin('compile', function() {
     console.log('Bundling...');
