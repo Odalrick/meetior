@@ -2,7 +2,8 @@ import React from 'react'
 import { utils } from 'redux-tiny-router'
 import { connect } from 'react-redux'
 import AdminLayout from './layout/AdminLayout.jsx'
-import Sidebar from './navigation/Sidebar'
+import SplashLayout from './layout/SplashLayout.jsx'
+
 
 import Home from './page/Home.jsx'
 import NotFound from './page/NotFound.jsx'
@@ -22,11 +23,11 @@ const mainComponentMap = {
 const getComp = ({ page, path }) => {
   const Main = mainComponentMap[page]
   if (Main) {
-    return Main
+    return {Layout: AdminLayout, Main}
   } else if (path === '/') {
-    return Home
+    return {Layout: SplashLayout, Main: Home}
   } else {
-    return NotFound
+    return {Layout: AdminLayout, Main: NotFound}
   }
 }
 
@@ -41,12 +42,11 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(({ page, id, id2, index, path }) => {
-  const Main = getComp({ page, path })
+  const {Layout, Main} = getComp({ page, path })
   return (
-    <AdminLayout>
-      <Sidebar />
+    <Layout>
       <Main id={id} id2={id2} index={index} />
-    </AdminLayout>
+    </Layout>
   )
 })
 
