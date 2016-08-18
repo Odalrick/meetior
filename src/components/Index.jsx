@@ -5,7 +5,7 @@ import AdminLayout from './layout/AdminLayout.jsx'
 import SplashLayout from './layout/SplashLayout.jsx'
 
 
-import Home from './page/Home.jsx'
+import HomePage from './page/HomePage.jsx'
 import NotFound from './page/NotFound.jsx'
 import CoursePage from './page/CourseEditorPage'
 import LessonPage from './page/LessonEditorPage'
@@ -25,7 +25,7 @@ const getComp = ({ page, path }) => {
   if (Main) {
     return {Layout: AdminLayout, Main}
   } else if (path === '/') {
-    return {Layout: SplashLayout, Main: Home}
+    return {Layout: SplashLayout, Main: HomePage}
   } else {
     return {Layout: AdminLayout, Main: NotFound}
   }
