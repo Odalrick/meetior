@@ -13,6 +13,7 @@ import Index from './components/Index.jsx'
 
 import course from './ducks/course'
 import lesson from './ducks/lesson'
+import user from './ducks/user'
 import docFac, { helpers } from './ducks/docs'
 
 import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT, SET_ATTACHMENT_IN } from './ducks/commonActions'
@@ -29,6 +30,7 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
     {
       ...tinyReducer,
       documents,
+      user,
     }
   )
 

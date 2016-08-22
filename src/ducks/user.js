@@ -1,5 +1,5 @@
 import I from 'immutable'
-import jsonWebToken from 'jsonwebtoken'
+import jsonWebToken from 'jws'
 
 const LOGIN = 'planck/user/login'
 const LOGOUT = 'planck/user/logout'
@@ -10,7 +10,7 @@ const initialState = I.fromJS({jwt:'', payload:{}})
 const actions = {
   [LOGIN](state, action) {
     const jwt = action.payload.jwt
-    const payload = jsonWebToken.decode(jwt)
+    const payload = jsonWebToken.decode(jwt).payload
     return state.set('jwt', jwt).set('payload', I.fromJS(payload))
   },
   [LOGOUT](state, action) {
