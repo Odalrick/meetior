@@ -7,7 +7,13 @@ const initialState = I.Map()
 const actions = {
   [SET_LIST](state, action) {
     const { lessonIndex, entries } = action.payload
-    return state.set(lessonIndex, I.fromJS({ entries, pending: false }))
+
+    return state.set(lessonIndex, I.Map({
+      entries: I.fromJS(entries).map(
+        (entry, i) => entry.set('key', entry.get('key', `_link:${i}`))
+      ),
+      pending: false,
+    }))
   },
   [SET_PENDING](state, action) {
     const { lessonIndex } = action.payload

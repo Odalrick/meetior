@@ -45,7 +45,49 @@ describe('list duck', () => {
     expect(newState).equal(I.fromJS(
       {
         test: {
-          entries: [{ url: 'test', title: 'test2' }],
+          entries: [{ url: 'test', title: 'test2', key: '_link:0' }],
+          pending: false,
+        },
+      }
+    ))
+  })
+
+  it('should add key property based on index for list entries missing key', function () {
+    const newState = buildState([setList('test', [
+      { title: 'En kurs!', type: 'course', id: 'ebdc3518' },
+      { title: 'En kurs!', type: 'course', id: 'ebdc3518' },
+      { title: 'En kurs!', type: 'course', id: 'ebdc3518' },
+    ])])
+
+    expect(newState).equal(I.fromJS(
+      {
+        test: {
+          entries: [
+            { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: '_link:0' },
+            { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: '_link:1' },
+            { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: '_link:2' },
+          ],
+          pending: false,
+        },
+      }
+    ))
+  })
+
+  it('should not change existing keys', function () {
+    const newState = buildState([setList('test', [
+      { title: 'En kurs!', type: 'course', id: 'ebdc3518' },
+      { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: 'keep this key' },
+      { title: 'En kurs!', type: 'course', id: 'ebdc3518' },
+    ])])
+
+    expect(newState).equal(I.fromJS(
+      {
+        test: {
+          entries: [
+            { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: '_link:0' },
+            { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: 'keep this key' },
+            { title: 'En kurs!', type: 'course', id: 'ebdc3518', key: '_link:2' },
+          ],
           pending: false,
         },
       }

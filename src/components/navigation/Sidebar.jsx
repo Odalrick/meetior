@@ -6,12 +6,12 @@ import I from 'immutable'
 
 function mapStateToProps(state) {
   return {
-    links: state.lists.getIn(['sidebar']),
+    links: state.lists.getIn(['sidebar', 'entries']),
   }
 }
 
 function Sidebar(props) {
-  const links = props.links.map(link => <li key={link.get('url')}><Link to={link} /></li>)
+  const links = props.links.map(link => <li key={link.get('key')}><Link to={link} /></li>)
   return (
     <div className={style.sideBar} >
       <section>
