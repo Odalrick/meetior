@@ -1,7 +1,7 @@
 import I from 'immutable'
 
-const SET_LIST = 'planck/list/SET_LIST'
-const SET_PENDING = 'planck/list/SET_PENDING'
+const SET_LIST = 'planck/lists/SET_LIST'
+const SET_PENDING = 'planck/lists/SET_PENDING'
 
 const initialState = I.Map()
 const actions = {

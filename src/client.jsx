@@ -14,6 +14,7 @@ import Index from './components/Index.jsx'
 import course from './ducks/course'
 import lesson from './ducks/lesson'
 import docFac, { helpers } from './ducks/docs'
+import lists, { setList } from './ducks/lists'
 
 import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT, SET_ATTACHMENT_IN } from './ducks/commonActions'
 import sagaFactory from './sagas/document/loadDocumentSaga'
@@ -29,6 +30,7 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
     {
       ...tinyReducer,
       documents,
+      lists,
     }
   )
 
@@ -87,10 +89,15 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
 
   reduxTinyRouter.init(store)
 
+  store.dispatch(setList('sidebar', [
+    { title: 'En kurs!', type: 'course', id: 'eecf0a39454b4b2244ebdc3518899605' },
+    { title: '404', type: 'XXX', id: 'XXX' },
+  ]))
+
   const app = document.createElement('div')
   document.body.appendChild(app)
   ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={store} >
       <Index />
     </Provider>,
     app

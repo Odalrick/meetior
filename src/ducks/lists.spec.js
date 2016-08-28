@@ -1,7 +1,7 @@
 import I from 'immutable'
 import R from 'ramda'
 
-import reducer, { setList, setPending } from './list'
+import reducer, { setList, setPending } from './lists'
 
 describe('list duck', () => {
   const buildState = R.reduce(reducer, undefined)
