@@ -1,18 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Link from './Link'
 import style from './Sidebar.css'
 import I from 'immutable'
 
-export default function Sidebar(props) {
+function mapStateToProps(state) {
+  return {
+    links: state.lists.getIn(['sidebar', 'entries']),
+  }
+}
+
+function Sidebar(props) {
+  const links = props.links.map(link => <li key={link.get('key')}><Link to={link} /></li>)
   return (
-    <div className={style.sideBar}>
+    <div className={style.sideBar} >
       <section>
         <h1>Administrera</h1>
-        <ul>
-          <li><Link to={ I.fromJS({title:"En kurs!", type:"course", id:"eecf0a39454b4b2244ebdc3518899605"}) }></Link></li>
-          <li><Link to={ I.fromJS({title:"404", type: "XXX", id: "XXX"}) }></Link></li>
-        </ul>
+        <ul>{links}</ul>
       </section>
     </div>
   )
 }
+
+export default connect(mapStateToProps)(Sidebar)
