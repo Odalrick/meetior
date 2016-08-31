@@ -1,46 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
 const styles = require('./HomePage.less')
-
-import {login, logout} from '../../ducks/user'
-
-function mapStateToProps(state, ownProps) {
-  return {
-    payload: state.user.get('payload'),
-    error: state.user.get('error')
-  }
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    login: (event) => {
-        dispatch(login ('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'))
-        event.preventDefault()
-    },
-    logout: (event) => {
-      dispatch(logout())
-      event.preventDefault()
-    }
-  }
-}
-
-function HomePage(props){
-  const {login, payload, error} = props
+export default (props) => {
+  const {login} = props
   return (
-    payload.isEmpty() ?
-      <div>
-        <form>
-          <label>Användarnamn
-            <input type="text"></input>
-          </label>
-          <label>Lösenord
-            <input className={styles.password} type="password"></input>
-          </label>
-          <button onClick={login}>Logga in</button>
-          <p>{error}</p>
-        </form>
-      </div> : <p>Inloggad som {payload.get('name')}!</p>
+  <div className={styles.loginpage}>
+  <h1 className={styles.title}>PLANCK</h1>
+  <h3 className={styles.subtitle}>L E A R N I N G</h3>
+      <form className={styles.loginform}>
+        <input type="text" placeholder="Namn"></input>
+        <input className={styles.password} type="password" placeholder="Lösenord"></input>
+        <button className={styles.loginBtn} onClick={login}>Logga in</button>
+        <p className={styles.message}>Inte registrerad? <a className={styles.createAccountText} href="#">Skapa ett konto</a></p>
+      </form>
+  </div>
   )
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

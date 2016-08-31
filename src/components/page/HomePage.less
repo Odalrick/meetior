@@ -1,3 +1,70 @@
-input.password {
-  border: 1px black solid;
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Amatica+SC);
+
+body {
+  background: url(../../img/background2.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+h1.title {
+  color: #FFFFFF;
+  font-size: 20em;
+  margin-bottom: 0px;
+  font-family: 'Amatica SC', cursive;
+}
+h3.subtitle {
+  color: #FFFFFF;
+  font-size: 4em;
+  margin: 0px 0px 100px 23px;
+  letter-spacing: 15px;
+  font-family: "Roboto", sans-serif;
+}
+div.loginpage {
+  text-align: center;
+  width: 900px;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+}
+form.loginform {
+  background: #FFFFFF;
+  padding: 45px;
+  width: 360px;
+  margin: auto;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+input {
+  font-family: "Roboto", sans-serif;
+  background: #f2f2f2;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  font-size: 14px;
+}
+button.loginBtn {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  background: #077db4;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+button:hover,.form button:active,.form button:focus {
+  background: #006391;
+}
+a.createAccountText {
+  color: #077db4;
+}
+p.message {
+  padding: 15px 0 0 0;
 }
