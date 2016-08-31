@@ -21,3 +21,10 @@ See docker to learn more about images and containers.
 To change which version of db runs with the start command you will need to change the
 tags in docker.compose.yml.
 
+###Authentication
+#### Users (role: username password)
+* **Server admin**: server server
+* **Admin**: admin admin
+* **Teacher**: teacher teacher
+* **Learner**: learner learner
+
