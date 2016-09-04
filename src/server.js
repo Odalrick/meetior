@@ -13,8 +13,8 @@ const isProduction = process.env.NODE_ENV === 'production'
 const port = isProduction ? process.env.PORT : 3000
 
 if (!isProduction) {
-  //const bundle = require('./server/bundle')
-  //bundle()
+  const bundle = require('./server/bundle')
+  bundle()
 } else {
   // todo: production!
 }
@@ -34,13 +34,11 @@ router.get('/login', function *(next) {
     )(config)
 
     const protocol = userConfig.protocolSecure ? 'https' : 'http'
+    // TODO: Add escaping to pass and name
     const url = `${protocol}://${userConfig.name}:${userConfig.pass}@${userConfig.couchUrl}/_users/org.couchdb.user:${userConfig.name}`
     console.log(url)
     const res = yield fetch(url, { method: 'GET' })
     const user = yield res.json()
-
-    //console.log(user)
-
     this.response.body = JSON.stringify(user, null, 2)
   }
 })
