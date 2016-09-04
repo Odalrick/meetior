@@ -1,5 +1,6 @@
-export default Object.freeze({
-  couchUrl: 'http://localhost:5984',
+module.exports = Object.freeze({
+  couchUrl: 'localhost:5984',
+  protocolSecure: false,
   dataDB: 'm-data',
   logDB: 'm-log',
   dbs: {
@@ -10,5 +11,5 @@ export default Object.freeze({
     anonymous: 'p-anonymous',
   },
   name: 'server',
-  pass: 'server'
+  pass: 'server',
 })
