@@ -1,20 +1,18 @@
 import I from 'immutable'
-import jsonWebToken from 'jws'
 
 const LOGIN = 'planck/user/login'
-const LOGOUT = 'planck/user/logout'
+const SET_PENDING = 'planck/user/SET_PENDING'
 const ERROR = 'planck/user/error'
 
-const initialState = I.fromJS({jwt:'', payload:{}})
+const initialState = I.fromJS({role: ''})
 
 const actions = {
   [LOGIN](state, action) {
-    const jwt = action.payload.jwt
-    const payload = jsonWebToken.decode(jwt).payload
-    return state.set('jwt', jwt).set('payload', I.fromJS(payload))
+    const role = action.payload.role
+    return state.set('role', role).delete('pending')
   },
-  [LOGOUT](state, action) {
-    return initialState
+  [SET_PENDING](state, action) {
+    return state.set('pending', true)
   },
   [ERROR](state, action) {
     return state.set('error', action.payload.message)
@@ -29,15 +27,15 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function login(jwt) {
+export function login(role) {
   return {
-    type: LOGIN, payload: { jwt },
+    type: LOGIN, payload: { role },
   }
 }
 
-export function logout() {
+export function setPending() {
   return {
-    type: LOGOUT,
+    type: SET_PENDING
   }
 }
 
