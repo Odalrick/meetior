@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import AdminLayout from './layout/AdminLayout.jsx'
 import SplashLayout from './layout/SplashLayout.jsx'
 
-
 import HomePage from './page/HomePage.jsx'
 import NotFound from './page/NotFound.jsx'
 import CoursePage from './page/CourseEditorPage'
@@ -23,11 +22,11 @@ const mainComponentMap = {
 const getComp = ({ page, path }) => {
   const Main = mainComponentMap[page]
   if (Main) {
-    return {Layout: AdminLayout, Main}
+    return { Layout: AdminLayout, Main }
   } else if (path === '/') {
-    return {Layout: SplashLayout, Main: HomePage}
+    return { Layout: SplashLayout, Main: HomePage }
   } else {
-    return {Layout: AdminLayout, Main: NotFound}
+    return { Layout: AdminLayout, Main: NotFound }
   }
 }
 
@@ -38,15 +37,20 @@ function mapStateToProps(state) {
     id2: state.router.params.id2,
     index: state.router.params.index && Number.parseInt(state.router.params.index),
     path: state.router.path,
+    loginPending: state.user.get('pending', false),
   }
 }
 
-export default connect(mapStateToProps)(({ page, id, id2, index, path }) => {
-  const {Layout, Main} = getComp({ page, path })
-  return (
-    <Layout>
-      <Main id={id} id2={id2} index={index} />
-    </Layout>
-  )
+export default connect(mapStateToProps)(function Index({ page, id, id2, index, path, loginPending }) {
+  if (loginPending) {
+    return <div>Pending login</div>
+  } else {
+    const {Layout, Main} = getComp({ page, path })
+    return (
+      <Layout>
+        <Main id={id} id2={id2} index={index} />
+      </Layout>
+    )
+  }
 })
 

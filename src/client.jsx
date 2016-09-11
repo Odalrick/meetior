@@ -20,6 +20,7 @@ import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT, SET_ATTACHMENT_IN } from './du
 import sagaFactory from './sagas/document/loadDocumentSaga'
 import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
 import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
+import { sagaFactory as authSagaFactory, LOGIN } from './sagas/authSaga'
 
 (() => {
   const documents = docFac({
@@ -37,7 +38,7 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
 
   const delay = () => new Promise((accept) => setTimeout(accept, 3000))
 
-  const db = dbFactory(config)
+  const db = dbFactory({})
   const saga = sagaFactory(db)
   const documentGetter = (state, id) => helpers.getCurrentDocument(state.documents, id)
   const saga2 = sagaFactory2(db, delay, documentGetter)
@@ -46,6 +47,7 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
       _id: id,
     }))
   const saga3 = sagaFactory3(db, documentGetter, reloadDocument)
+  const authSaga = authSagaFactory(db)
   const sagaMiddleware = createSagaMiddleware(
     function *() {
       while (true) {
@@ -77,6 +79,9 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
     },
     function* () {
       yield* takeEvery(SET_ATTACHMENT_IN, saga3.uploadAttachment)
+    },
+    function* () {
+      yield* takeEvery(LOGIN, authSaga.login)
     }
   )
 
@@ -90,6 +95,8 @@ import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
 
   reduxTinyRouter.init(store)
 
+  const url = `${window.location.protocol}//${window.location.host}/login`
+  store.dispatch(authSaga.actionCreators.login(url, 'anonymous', 'anonymous'))
   store.dispatch(setList('sidebar', [
     { title: 'En kurs!', type: 'course', id: 'eecf0a39454b4b2244ebdc3518899605' },
     { title: '404', type: 'XXX', id: 'XXX' },
