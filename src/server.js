@@ -4,7 +4,9 @@ const auth = require('basic-auth')
 const R = require('ramda')
 const fetch = require('isomorphic-fetch')
 
-const config = require('./config')
+const configFactoryFactory = require('./server/configFactoryFactory')
+const configFactory = configFactoryFactory(require('./server/configDev'))
+const serverConfig = configFactory.get('server', 'server', 'server')
 
 const router = routerFactory()
 const server = koa()
@@ -23,23 +25,16 @@ if (!isProduction) {
 router.get('/login', function *(next) {
   yield next
   const credentials = auth(this.request)
-  console.log(credentials)
   if (!credentials) {
     const res = this.response
     res.status = 401
   } else {
-    const userConfig = R.compose(
-      R.assoc('name')(credentials.name),
-      R.assoc('pass')(credentials.pass)
-    )(config)
-
-    const protocol = userConfig.protocolSecure ? 'https' : 'http'
     // TODO: Add escaping to pass and name
-    const url = `${protocol}://${userConfig.name}:${userConfig.pass}@${userConfig.couchUrl}/_users/org.couchdb.user:${userConfig.name}`
-    console.log(url)
+    const url = `${serverConfig.protocol}://${credentials.name}:${credentials.pass}@${serverConfig.couchUrl}/_users/org.couchdb.user:${credentials.name}`
     const res = yield fetch(url, { method: 'GET' })
     const user = yield res.json()
-    this.response.body = JSON.stringify(user, null, 2)
+    const userConfig = configFactory.get(user.roles[0], credentials.name, credentials.pass)
+    this.response.body = JSON.stringify(userConfig)
   }
 })
 

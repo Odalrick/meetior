@@ -7,7 +7,6 @@ import { tinyMiddleware, tinyReducer, reduxTinyRouter } from 'redux-tiny-router'
 
 import { take, fork } from 'redux-saga/effects'
 
-const config = require('./config')
 import dbFactory from './db/couch'
 import Index from './components/Index.jsx'
 
