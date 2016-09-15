@@ -8,7 +8,6 @@ const DB_LUCENE_CONTAINER = 'planck-lucene'
 const DB_IMAGE = 'planck/db'
 const DB_LUCENE_IMAGE = 'planck/db-lucene'
 
-import config from './src/config'
 import DBfactory from './src/db/couch'
 import docsDesign from './src/db/fixtures/docs.design'
 import searchDesign from './src/db/fixtures/search.design'
@@ -86,6 +85,7 @@ const push = function*(tag) {
 	  .then(() => wrapExec(`docker push ${DB_LUCENE_IMAGE}:${tag}`))
 }
 
+//TODO: Broken needs to know db
 const update = function*() {
   const log = (req) => {
     console.log(`status ${req.status} ${req.url}`)

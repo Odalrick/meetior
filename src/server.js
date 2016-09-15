@@ -33,6 +33,7 @@ router.get('/login', function *(next) {
     const url = `${serverConfig.protocol}://${credentials.name}:${credentials.pass}@${serverConfig.couchUrl}/_users/org.couchdb.user:${credentials.name}`
     const res = yield fetch(url, { method: 'GET' })
     const user = yield res.json()
+    console.log(user)
     const userConfig = configFactory.get(user.roles[0], credentials.name, credentials.pass)
     this.response.body = JSON.stringify(userConfig)
   }

@@ -11,6 +11,7 @@ function configFactory(config) {
       return {
         name,
         pass,
+        role,
         dataDB,
         protocol,
         couchUrl,

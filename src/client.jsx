@@ -16,11 +16,11 @@ import user from './ducks/user'
 import docFac, { helpers } from './ducks/docs'
 import lists, { setList } from './ducks/lists'
 
-import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT, SET_ATTACHMENT_IN } from './ducks/commonActions'
+import { SET_FIELD, SET_FIELD_IN, SET_ATTACHMENT, SET_ATTACHMENT_IN, LOGIN, login } from './ducks/commonActions'
 import sagaFactory from './sagas/document/loadDocumentSaga'
 import sagaFactory2 from './sagas/document/updateDraftDocumentSaga'
 import sagaFactory3 from './sagas/document/uploadAttachmentSaga'
-import { sagaFactory as authSagaFactory, LOGIN } from './sagas/authSaga'
+import { sagaFactory as authSagaFactory } from './sagas/authSaga'
 
 (() => {
   const documents = docFac({
@@ -96,7 +96,7 @@ import { sagaFactory as authSagaFactory, LOGIN } from './sagas/authSaga'
   reduxTinyRouter.init(store)
 
   const url = `${window.location.protocol}//${window.location.host}/login`
-  store.dispatch(authSaga.actionCreators.login(url, 'anonymous', 'anonymous'))
+  //store.dispatch(login(url, 'anonymous', 'anonymous'))
   store.dispatch(setList('sidebar', [
     { title: 'En kurs!', type: 'course', id: 'eecf0a39454b4b2244ebdc3518899605' },
     { title: '404', type: 'XXX', id: 'XXX' },
