@@ -21,12 +21,12 @@ export const setAttachmentIn = R.curry((_id, path, file) => ({
   type: SET_ATTACHMENT_IN, payload: { path, file, _id },
 }))
 
-export const login = R.curry((url, name, pass) => ({
-  type: LOGIN, payload: { url, name, pass },
+export const login = R.curry((url, name, pass, forward = null) => ({
+  type: LOGIN, payload: { url, name, pass, forward },
 }))
 
 export const setFieldDispatch = R.curry((dispatch, _id, field, value) => dispatch(setField(_id, field, value)))
 export const setFieldInDispatch = R.curry((dispatch, _id, path, value) => dispatch(setFieldIn(_id, path, value)))
 export const setAttachmentDispatch = R.curry((dispatch, _id, field, file) => dispatch(setAttachment(_id, field, file)))
 export const setAttachmentInDispatch = R.curry((dispatch, _id, path, file) => dispatch(setAttachmentIn(_id, path, file)))
-export const loginDispatch = R.curry((dispatch, url, name, pass) => dispatch(login(url, name, pass)))
+export const loginDispatch = R.curry((dispatch, url, name, pass, forward) => dispatch(login(url, name, pass, forward)))

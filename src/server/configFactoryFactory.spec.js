@@ -24,6 +24,7 @@ describe('config factory', function () {
       dataDB: 'm-data',
       name,
       pass,
+      role: 'server',
     })
   })
 
