@@ -11,14 +11,16 @@ describe('auth saga', () => {
     setConfig: () => {
     },
   }
-  const json = () => {}
+  const response = {
+    json: () => {}
+  }
   const cont = R.assoc('value', R.__, { done: false })
   it('should authenticate user', () => {
     const testSaga = sagaFactory(db)
     const name = 'C3PO'
     const pass = 'Excuse me'
     const url = 'Deathstar'
-    const action = loginCommon(url, name, pass)
+    const action = loginCommon(url, name, pass, null)
     const saga = testSaga.login(action)
     expect(saga.next()).to.deep.equal(
       cont( // handles generator
@@ -28,7 +30,7 @@ describe('auth saga', () => {
       )
     )
     expect(saga.next()).to.deep.equal(cont(call(testSaga.fetchConfig, url, name, pass)))
-    expect(saga.next({ json })).to.deep.equal(cont(call(json)))
+    expect(saga.next(response)).to.deep.equal(cont(call([response, response.json])))
     expect(saga.next({
       couchUrl: 'localhost:5984',
       protocol: 'https',

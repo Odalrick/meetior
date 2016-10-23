@@ -23,7 +23,7 @@ function HomePage(props) {
   const login = (e) => {
     e.preventDefault()
     const url = `${window.location.protocol}//${window.location.host}/login`
-    props.login(url, nameInput.value, passInput.value)
+    props.login(url, nameInput.value, passInput.value, null)
   }
   return (
     <div className={styles.loginpage} >

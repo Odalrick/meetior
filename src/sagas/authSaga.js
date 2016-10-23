@@ -18,7 +18,7 @@ export function sagaFactory(db) {
       const { url, name, pass } = action.payload
       yield put(setPending())
       const response = yield call(fetchConfig, url, name, pass)
-      const config = yield call(response.json)
+      const config = yield call([response, response.json])
       console.log(config)
       yield call(db.setConfig, Object.assign(config, { name, pass }))
       yield put(login(config.role))

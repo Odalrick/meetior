@@ -21,7 +21,7 @@ export const setAttachmentIn = R.curry((_id, path, file) => ({
   type: SET_ATTACHMENT_IN, payload: { path, file, _id },
 }))
 
-export const login = R.curry((url, name, pass, forward = null) => ({
+export const login = R.curry((url, name, pass, forward) => ({
   type: LOGIN, payload: { url, name, pass, forward },
 }))
 
