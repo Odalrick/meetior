@@ -12,6 +12,7 @@ import LessonPage from './page/LessonEditorPage'
 utils.set('/:page/:id')
 utils.set('/:page/:id/:id2')
 utils.set('/:page/i/:index/:id/:id2')
+utils.set('/user/:userPage/i/:index/:id/:id2')
 
 const mainComponentMap = {
   test: () => <div>Boo!</div>,

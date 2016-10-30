@@ -12,7 +12,7 @@ describe('auth saga', () => {
     },
   }
   const response = {
-    json: () => {}
+    json: () => {},
   }
   const cont = R.assoc('value', R.__, { done: false })
   it('should authenticate user', () => {
@@ -59,7 +59,7 @@ describe('auth saga', () => {
     saga.next({}) // set config
     saga.next() // store login
 
-    // redux-tiny-router doesn't genereate real actions, but intercepts its own.
+    // redux-tiny-router doesn't generates real actions, but intercepts its own.
     // This is a compromise to test _something_.
     expect(saga.next().value.PUT.type).to.equal('RTR_ACTION')
     expect(saga.next().done).to.be.true()

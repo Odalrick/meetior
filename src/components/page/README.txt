@@ -1,0 +1,14 @@
+*CourseEditor
+*LessonEditor
+*HomePage
+*NotFound
+-Login
+-MyUser
+-AdminUsers
+-LessonView
+-CourseList
+-Search
+-Email
+-Katter
+-Carusou
+-Bach
