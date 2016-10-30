@@ -8,45 +8,39 @@ import HomePage from './page/HomePage.jsx'
 import NotFound from './page/NotFound.jsx'
 import CoursePage from './page/CourseEditorPage'
 import LessonPage from './page/LessonEditorPage'
+import LoginPage from './page/LoginPage.jsx'
 
-utils.set('/:page/:id')
-utils.set('/:page/:id/:id2')
-utils.set('/:page/i/:index/:id/:id2')
-utils.set('/user/:userPage/i/:index/:id/:id2')
-
-const mainComponentMap = {
-  test: () => <div>Boo!</div>,
-  course: CoursePage,
-  lesson: LessonPage,
-}
-
-const getComp = ({ page, path }) => {
-  const Main = mainComponentMap[page]
-  if (Main) {
-    return { Layout: AdminLayout, Main }
-  } else if (path === '/') {
-    return { Layout: SplashLayout, Main: HomePage }
-  } else {
-    return { Layout: AdminLayout, Main: NotFound }
+const componentMap = {}
+const registerComponent = (src, entry) =>
+{
+  componentMap[src] = entry
+  if(src) {
+    utils.set(src)
   }
 }
 
+registerComponent('/', { Layout: SplashLayout, Main: HomePage })
+registerComponent('/course/:id', { Layout: AdminLayout, Main: CoursePage })
+registerComponent('/lesson/:id/:id2', { Layout: AdminLayout, Main: LessonPage })
+registerComponent('/lesson/i/:index/:id/:id2', { Layout: AdminLayout, Main: LessonPage })
+registerComponent('/user/login', {Layout: SplashLayout, Main: LoginPage})
+registerComponent(null, { Layout: AdminLayout, Main: NotFound })
+
 function mapStateToProps(state) {
   return {
-    page: state.router.params.page,
+    src: state.router.src,
     id: state.router.params.id,
     id2: state.router.params.id2,
     index: state.router.params.index && Number.parseInt(state.router.params.index),
-    path: state.router.path,
     loginPending: state.user.get('pending', false),
   }
 }
 
-export default connect(mapStateToProps)(function Index({ page, id, id2, index, path, loginPending }) {
+export default connect(mapStateToProps)(function Index({ src, id, id2, index, loginPending }) {
   if (loginPending) {
     return <div>Pending login</div>
   } else {
-    const {Layout, Main} = getComp({ page, path })
+    const {Layout, Main} = componentMap[src]
     return (
       <Layout>
         <Main id={id} id2={id2} index={index} />

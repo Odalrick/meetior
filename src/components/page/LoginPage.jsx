@@ -49,4 +49,4 @@ function LoginPage(props) {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
